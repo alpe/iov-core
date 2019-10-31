@@ -34,8 +34,9 @@ import { ReadonlyDate } from "readonly-date";
 import { Stream } from "xstream";
 
 import { CosmosBech32Prefix, pubkeyToAddress } from "./address";
+import { CosmosClient, TxsResponse } from "./cosmosclient";
 import { decodeAmount, parseTxsResponse } from "./decode";
-import { RestClient, TxsResponse } from "./restclient";
+import { RestClient } from "./restclient";
 
 const { fromBase64 } = Encoding;
 
@@ -73,20 +74,20 @@ export class CosmosConnection implements BlockchainConnection {
     return new CosmosConnection(restClient, chainData);
   }
 
-  private static async initialize(restClient: RestClient): Promise<ChainData> {
-    const { node_info } = await restClient.nodeInfo();
-    return { chainId: node_info.network as ChainId };
+  private static async initialize(client: CosmosClient): Promise<ChainData> {
+    const { nodeInfo } = await client.nodeInfo();
+    return { chainId: nodeInfo.network as ChainId };
   }
 
-  private readonly restClient: RestClient;
+  private readonly client: CosmosClient;
   private readonly chainData: ChainData;
 
   private get prefix(): CosmosBech32Prefix {
     return "cosmos";
   }
 
-  private constructor(restClient: RestClient, chainData: ChainData) {
-    this.restClient = restClient;
+  private constructor(cosmosClient: CosmosClient, chainData: ChainData) {
+    this.client = cosmosClient;
     this.chainData = chainData;
   }
 
@@ -99,8 +100,8 @@ export class CosmosConnection implements BlockchainConnection {
   }
 
   public async height(): Promise<number> {
-    const { block_meta } = await this.restClient.blocksLatest();
-    return block_meta.header.height;
+    const { blockMeta } = await this.client.blocksLatest();
+    return blockMeta.header.height;
   }
 
   public async getToken(_ticker: TokenTicker): Promise<Token | undefined> {
@@ -113,7 +114,7 @@ export class CosmosConnection implements BlockchainConnection {
 
   public async getAccount(query: AccountQuery): Promise<Account | undefined> {
     const address = isPubkeyQuery(query) ? pubkeyToAddress(query.pubkey, this.prefix) : query.address;
-    const { result } = await this.restClient.authAccounts(address);
+    const { result } = await this.client.authAccounts(address);
     const account = result.value;
     return account.public_key === null
       ? undefined
@@ -133,7 +134,7 @@ export class CosmosConnection implements BlockchainConnection {
 
   public async getNonce(query: AddressQuery | PubkeyQuery): Promise<Nonce> {
     const address = isPubkeyQuery(query) ? pubkeyToAddress(query.pubkey, this.prefix) : query.address;
-    const { result } = await this.restClient.authAccounts(address);
+    const { result } = await this.client.authAccounts(address);
     const account = result.value;
     return parseInt(account.sequence, 10) as Nonce;
   }
@@ -148,12 +149,12 @@ export class CosmosConnection implements BlockchainConnection {
   }
 
   public async getBlockHeader(height: number): Promise<BlockHeader> {
-    const { block_meta } = await this.restClient.blocks(height);
+    const { blockMeta } = await this.client.blocks(height);
     return {
-      id: block_meta.block_id.hash as BlockId,
-      height: block_meta.header.height,
-      time: new ReadonlyDate(block_meta.header.time),
-      transactionCount: block_meta.header.num_txs,
+      id: blockMeta.blockId.hash as BlockId,
+      height: blockMeta.header.height,
+      time: new ReadonlyDate(blockMeta.header.time),
+      transactionCount: blockMeta.header.numTxs,
     };
   }
 
@@ -165,7 +166,7 @@ export class CosmosConnection implements BlockchainConnection {
     id: TransactionId,
   ): Promise<(ConfirmedAndSignedTransaction<UnsignedTransaction>) | FailedTransaction> {
     try {
-      const response = await this.restClient.txsById(id);
+      const response = await this.client.txsById(id);
       const chainId = await this.chainId();
       return this.parseAndPopulateTxResponse(response, chainId);
     } catch (error) {
@@ -177,14 +178,14 @@ export class CosmosConnection implements BlockchainConnection {
   }
 
   public async postTx(tx: PostableBytes): Promise<PostTxResponse> {
-    const { txhash, raw_log } = await this.restClient.postTx(tx);
+    const { txhash, rawLog } = await this.client.postTx(tx);
     const transactionId = txhash as TransactionId;
     const firstEvent: BlockInfo = { state: TransactionState.Pending };
     const producer = new DefaultValueProducer<BlockInfo>(firstEvent);
     return {
       blockInfo: new ValueAndUpdates<BlockInfo>(producer),
       transactionId: transactionId,
-      log: raw_log,
+      log: rawLog,
     };
   }
 
@@ -193,7 +194,7 @@ export class CosmosConnection implements BlockchainConnection {
   ): Promise<readonly (ConfirmedTransaction<LightTransaction> | FailedTransaction)[]> {
     const queryString = buildQueryString(query);
     const chainId = await this.chainId();
-    const { txs: responses } = await this.restClient.txs(queryString);
+    const { txs: responses } = await this.client.txs(queryString);
     return Promise.all(responses.map(response => this.parseAndPopulateTxResponse(response, chainId)));
   }
 
@@ -235,7 +236,7 @@ export class CosmosConnection implements BlockchainConnection {
     chainId: ChainId,
   ): Promise<(ConfirmedAndSignedTransaction<UnsignedTransaction>) | FailedTransaction> {
     const sender = (response.tx.value as any).msg[0].value.from_address;
-    const accountForHeight = await this.restClient.authAccounts(sender, response.height);
+    const accountForHeight = await this.client.authAccounts(sender, response.height);
     const nonce = (parseInt(accountForHeight.result.value.sequence, 10) - 1) as Nonce;
     return parseTxsResponse(chainId, parseInt(response.height, 10), nonce, response);
   }
