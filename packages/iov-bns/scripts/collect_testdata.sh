@@ -2,7 +2,7 @@
 set -o errexit -o nounset -o pipefail
 command -v shellcheck > /dev/null && shellcheck "$0"
 
-WEAVE=${1:-"./go/src/github.com/iov-one/weave/spec/testvectors"}
+WEAVE=${1:-"./go/src/github.com/iov-one/grafain/spec/testvectors"}
 >&2 echo "Collecting test vectors from $WEAVE ..."
 
 function normalizeHex() {

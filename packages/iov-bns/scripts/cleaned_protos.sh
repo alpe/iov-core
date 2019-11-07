@@ -7,7 +7,7 @@ command -v shellcheck > /dev/null && shellcheck "$0"
 #
 # It will write all cleaned proto to a temporary dir
 
-CODEDIR=go/src/github.com/iov-one/weave
+CODEDIR=go/src/github.com/iov-one/grafain
 OUT_DIR=$(mktemp -d "${TMPDIR:-/tmp}/clean_proto.XXXXXXXXX")
 
 # Write debugging to STDERR

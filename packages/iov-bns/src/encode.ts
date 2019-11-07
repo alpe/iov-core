@@ -21,6 +21,7 @@ import { buildMultisignatureCondition, conditionToWeaveAddress } from "./conditi
 import * as codecImpl from "./generated/codecimpl";
 import {
   ChainAddressPair,
+  CreateArtifactTX,
   CreateEscrowTx,
   CreateMultisignatureTx,
   CreateProposalTx,
@@ -189,6 +190,17 @@ function buildSwapAbortTransaction(tx: SwapAbortTransaction): codecImpl.bnsd.ITx
       metadata: { schema: 1 },
       swapId: tx.swapId.data,
     }),
+  };
+}
+
+// Artifact
+function buildCreateArtifactTx(tx: CreateArtifactTX): codecImpl.bnsd.ITx {
+  return {
+    createArtifactMsg: {
+      metadata: { schema: 1 },
+      image: tx.image,
+      checksum: tx.checksum,
+    },
   };
 }
 
@@ -437,7 +449,6 @@ export function buildMsg(tx: UnsignedTransaction): codecImpl.bnsd.ITx {
   if (!isBnsTx(tx)) {
     throw new Error("Transaction is not a BNS transaction");
   }
-
   switch (tx.kind) {
     // BCP: Token sends
     case "bcp/send":
@@ -451,6 +462,9 @@ export function buildMsg(tx: UnsignedTransaction): codecImpl.bnsd.ITx {
     case "bcp/swap_abort":
       return buildSwapAbortTransaction(tx);
 
+    // Artifact
+    case "bns/create_artifact":
+      return buildCreateArtifactTx(tx);
     // BNS: Usernames
     case "bns/register_username":
       return buildRegisterUsernameTx(tx);

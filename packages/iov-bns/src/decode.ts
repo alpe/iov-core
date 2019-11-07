@@ -27,7 +27,7 @@ import * as Long from "long";
 
 import * as codecImpl from "./generated/codecimpl";
 import {
-  ActionKind,
+  ActionKind, Artifact,
   BnsUsernameNft,
   CashConfiguration,
   ChainAddressPair,
@@ -132,6 +132,18 @@ export function decodeUsernameNft(
     id: fromUtf8(nft._id),
     owner: encodeBnsAddress(addressPrefix(registryChainId), rawOwnerAddress),
     targets: ensure(nft.targets, "targets").map(decodeChainAddressPair),
+  };
+}
+export function decodeArtifact(
+  artf: codecImpl.artifact.IArtifact, // & Keyed,
+  registryChainId: ChainId,
+): Artifact {
+  const rawOwnerAddress = ensure(artf.owner, "owner");
+  return {
+    // id: fromUtf8(nft._id),
+    owner: encodeBnsAddress(addressPrefix(registryChainId), rawOwnerAddress),
+    image: ensure(artf.image, "image") as string,
+    checksum: ensure(artf.checksum, "checksum") as string,
   };
 }
 

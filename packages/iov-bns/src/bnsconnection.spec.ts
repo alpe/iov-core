@@ -52,10 +52,11 @@ import { decodeNumericId } from "./decode";
 import { bnsSwapQueryTag } from "./tags";
 import {
   ActionKind,
+  CreateArtifactTX,
   CreateEscrowTx,
   CreateMultisignatureTx,
   CreateProposalTx,
-  CreateTextResolutionAction,
+  CreateTextResolutionAction, isCreateArtifactTX,
   isCreateEscrowTx,
   isCreateMultisignatureTx,
   isRegisterUsernameTx,
@@ -842,7 +843,7 @@ describe("BnsConnection", () => {
         expect(blockInfo.state).toEqual(TransactionState.Succeeded);
       }
 
-      // Clear addresses
+      // Clear artifacts
       const clearAddresses = await connection.withDefaultFee<UpdateTargetsOfUsernameTx & WithCreator>({
         kind: "bns/update_targets_of_username",
         creator: identity,
@@ -924,6 +925,46 @@ describe("BnsConnection", () => {
 
       const usernameAfterTransfer = (await connection.getUsernames({ username: username }))[0];
       expect(usernameAfterTransfer.owner).toEqual(unusedAddress);
+
+      connection.disconnect();
+    });
+    it("can create an artifact", async () => {
+      pendingWithoutBnsd();
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
+      const registryChainId = connection.chainId();
+
+      const profile = new UserProfile();
+      const wallet = profile.addWallet(Ed25519HdWallet.fromEntropy(Random.getBytes(32)));
+      const identity = await profile.createIdentity(wallet.id, registryChainId, HdPaths.iov(0));
+
+      // we need funds to pay the fees
+      const address = identityToAddress(identity);
+      await sendTokensFromFaucet(connection, address, registerAmount);
+
+      // Create and send registration
+      const registration = await connection.withDefaultFee<CreateArtifactTX & WithCreator>({
+        kind: "bns/create_artifact",
+        creator: identity,
+        image: "foo:bar",
+        checksum: "anyValidChecksum",
+      });
+      const nonce = await connection.getNonce({ pubkey: identity.pubkey });
+      const signed = await profile.signTransaction(registration, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
+      const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
+      expect(blockInfo.state).toEqual(TransactionState.Succeeded);
+
+      await tendermintSearchIndexUpdated();
+
+      // Find registration transaction
+      const searchResult = (await connection.searchTx({ signedBy: address })).filter(isConfirmedTransaction);
+      expect(searchResult.length).toEqual(1);
+      const firstSearchResultTransaction = searchResult[0].transaction;
+      if (!isCreateArtifactTX(firstSearchResultTransaction)) {
+        throw new Error("Unexpected transaction kind");
+      }
+      expect(firstSearchResultTransaction.image).toEqual("foo:faul");
+      expect(firstSearchResultTransaction.checksum).toEqual("anyValidChecksum");
 
       connection.disconnect();
     });

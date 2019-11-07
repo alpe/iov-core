@@ -64,6 +64,7 @@ import {
   decodeToken,
   decodeUserData,
   decodeUsernameNft,
+  decodeArtifact,
   decodeVote,
 } from "./decode";
 import * as codecImpl from "./generated/codecimpl";
@@ -72,6 +73,8 @@ import {
   BnsTx,
   BnsUsernameNft,
   BnsUsernamesQuery,
+  Artifact,
+  ArtifactByOwnerQuery,
   Decoder,
   ElectionRule,
   Electorate,
@@ -706,6 +709,24 @@ export class BnsConnection implements AtomicSwapConnection {
     const parser = createParser(codecImpl.username.Token, "tokens:");
     const nfts = results.map(parser).map(nft => decodeUsernameNft(nft, this.chainId()));
     return nfts;
+  }
+
+  public async getArtifacts(query: ArtifactByOwnerQuery): Promise<readonly Artifact[]> {
+    let results: readonly Result[];
+    results = (await this.query("/artifacts", toUtf8(query.owner))).results;
+
+    const parser = createParser(codecImpl.artifact.Artifact, "artifact:");
+    const artfs = results.map(parser).map(artf => decodeArtifact(artf, this.chainId()));
+    return artfs;
+  }
+
+  public async getAllArtifacts(): Promise<readonly Artifact[]> {
+    let results: readonly Result[];
+    results = (await this.query("/artifacts?prefix", Uint8Array.from([]))).results;
+
+    const parser = createParser(codecImpl.artifact.Artifact, "artifact:");
+    const artfs = results.map(parser).map(artf => decodeArtifact(artf, this.chainId()));
+    return artfs;
   }
 
   public async getFeeQuote(transaction: UnsignedTransaction): Promise<Fee> {

@@ -1,14 +1,1379 @@
 import * as $protobuf from "protobufjs";
+
+/** Namespace grafain. */
+export namespace grafain {
+
+  /** Properties of a Tx. */
+  interface ITx {
+
+    /** Tx fees */
+    fees?: (cash.IFeeInfo | null);
+
+    /** Tx signatures */
+    signatures?: (sigs.IStdSignature[] | null);
+
+    /** as if it never got supplied. */
+    multisig?: (Uint8Array[] | null);
+
+    /** Tx cashSendMsg */
+    cashSendMsg?: (cash.ISendMsg | null);
+
+    /** Tx escrowCreateMsg */
+    escrowCreateMsg?: (escrow.ICreateMsg | null);
+
+    /** Tx escrowReleaseMsg */
+    escrowReleaseMsg?: (escrow.IReleaseMsg | null);
+
+    /** Tx escrowReturnMsg */
+    escrowReturnMsg?: (escrow.IReturnMsg | null);
+
+    /** Tx escrowUpdatePartiesMsg */
+    escrowUpdatePartiesMsg?: (escrow.IUpdatePartiesMsg | null);
+
+    /** Tx multisigCreateMsg */
+    multisigCreateMsg?: (multisig.ICreateMsg | null);
+
+    /** Tx multisigUpdateMsg */
+    multisigUpdateMsg?: (multisig.IUpdateMsg | null);
+
+    /** Tx validatorsApplyDiffMsg */
+    validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
+
+    /** Tx currencyCreateMsg */
+    currencyCreateMsg?: (currency.ICreateMsg | null);
+
+    /** Tx executeBatchMsg */
+    executeBatchMsg?: (grafain.IExecuteBatchMsg | null);
+
+    /** username.ChangeTokenTargetsMsg username_change_token_targets_msg = 63; */
+    distributionCreateMsg?: (distribution.ICreateMsg | null);
+
+    /** Tx distributionMsg */
+    distributionMsg?: (distribution.IDistributeMsg | null);
+
+    /** Tx distributionResetMsg */
+    distributionResetMsg?: (distribution.IResetMsg | null);
+
+    /** Tx migrationUpgradeSchemaMsg */
+    migrationUpgradeSchemaMsg?: (migration.IUpgradeSchemaMsg | null);
+
+    /** Tx aswapCreateMsg */
+    aswapCreateMsg?: (aswap.ICreateMsg | null);
+
+    /** Tx aswapReleaseMsg */
+    aswapReleaseMsg?: (aswap.IReleaseMsg | null);
+
+    /** Tx aswapReturnMsg */
+    aswapReturnMsg?: (aswap.IReturnMsg | null);
+
+    /** Tx govCreateProposalMsg */
+    govCreateProposalMsg?: (gov.ICreateProposalMsg | null);
+
+    /** Tx govDeleteProposalMsg */
+    govDeleteProposalMsg?: (gov.IDeleteProposalMsg | null);
+
+    /** Tx govVoteMsg */
+    govVoteMsg?: (gov.IVoteMsg | null);
+
+    /** gov.TallyMsg gov_tally_msg = 76; */
+    govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
+
+    /** Tx govUpdateElectionRuleMsg */
+    govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
+
+    /** grafain */
+    createArtifactMsg?: (artifact.ICreateArtifactMsg | null);
+
+    /** Tx deleteArtifactMsg */
+    deleteArtifactMsg?: (artifact.IDeleteArtifactMsg | null);
+  }
+
+  /** old fields got deprecated. This is done to maintain binary compatibility. */
+  class Tx implements ITx {
+
+    /**
+     * Constructs a new Tx.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: grafain.ITx);
+
+    /** Tx fees. */
+    public fees?: (cash.IFeeInfo | null);
+
+    /** Tx signatures. */
+    public signatures: sigs.IStdSignature[];
+
+    /** as if it never got supplied. */
+    public multisig: Uint8Array[];
+
+    /** Tx cashSendMsg. */
+    public cashSendMsg?: (cash.ISendMsg | null);
+
+    /** Tx escrowCreateMsg. */
+    public escrowCreateMsg?: (escrow.ICreateMsg | null);
+
+    /** Tx escrowReleaseMsg. */
+    public escrowReleaseMsg?: (escrow.IReleaseMsg | null);
+
+    /** Tx escrowReturnMsg. */
+    public escrowReturnMsg?: (escrow.IReturnMsg | null);
+
+    /** Tx escrowUpdatePartiesMsg. */
+    public escrowUpdatePartiesMsg?: (escrow.IUpdatePartiesMsg | null);
+
+    /** Tx multisigCreateMsg. */
+    public multisigCreateMsg?: (multisig.ICreateMsg | null);
+
+    /** Tx multisigUpdateMsg. */
+    public multisigUpdateMsg?: (multisig.IUpdateMsg | null);
+
+    /** Tx validatorsApplyDiffMsg. */
+    public validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
+
+    /** Tx currencyCreateMsg. */
+    public currencyCreateMsg?: (currency.ICreateMsg | null);
+
+    /** Tx executeBatchMsg. */
+    public executeBatchMsg?: (grafain.IExecuteBatchMsg | null);
+
+    /** username.ChangeTokenTargetsMsg username_change_token_targets_msg = 63; */
+    public distributionCreateMsg?: (distribution.ICreateMsg | null);
+
+    /** Tx distributionMsg. */
+    public distributionMsg?: (distribution.IDistributeMsg | null);
+
+    /** Tx distributionResetMsg. */
+    public distributionResetMsg?: (distribution.IResetMsg | null);
+
+    /** Tx migrationUpgradeSchemaMsg. */
+    public migrationUpgradeSchemaMsg?: (migration.IUpgradeSchemaMsg | null);
+
+    /** Tx aswapCreateMsg. */
+    public aswapCreateMsg?: (aswap.ICreateMsg | null);
+
+    /** Tx aswapReleaseMsg. */
+    public aswapReleaseMsg?: (aswap.IReleaseMsg | null);
+
+    /** Tx aswapReturnMsg. */
+    public aswapReturnMsg?: (aswap.IReturnMsg | null);
+
+    /** Tx govCreateProposalMsg. */
+    public govCreateProposalMsg?: (gov.ICreateProposalMsg | null);
+
+    /** Tx govDeleteProposalMsg. */
+    public govDeleteProposalMsg?: (gov.IDeleteProposalMsg | null);
+
+    /** Tx govVoteMsg. */
+    public govVoteMsg?: (gov.IVoteMsg | null);
+
+    /** gov.TallyMsg gov_tally_msg = 76; */
+    public govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
+
+    /** Tx govUpdateElectionRuleMsg. */
+    public govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
+
+    /** grafain */
+    public createArtifactMsg?: (artifact.ICreateArtifactMsg | null);
+
+    /** Tx deleteArtifactMsg. */
+    public deleteArtifactMsg?: (artifact.IDeleteArtifactMsg | null);
+
+    /** msg is a sum type over all allowed messages on this chain. */
+    public sum?: ("cashSendMsg" | "escrowCreateMsg" | "escrowReleaseMsg" | "escrowReturnMsg" | "escrowUpdatePartiesMsg" | "multisigCreateMsg" | "multisigUpdateMsg" | "validatorsApplyDiffMsg" | "currencyCreateMsg" | "executeBatchMsg" | "distributionCreateMsg" | "distributionMsg" | "distributionResetMsg" | "migrationUpgradeSchemaMsg" | "aswapCreateMsg" | "aswapReleaseMsg" | "aswapReturnMsg" | "govCreateProposalMsg" | "govDeleteProposalMsg" | "govVoteMsg" | "govUpdateElectorateMsg" | "govUpdateElectionRuleMsg" | "createArtifactMsg" | "deleteArtifactMsg");
+
+    /**
+     * Creates a new Tx instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns Tx instance
+     */
+    public static create(properties?: grafain.ITx): grafain.Tx;
+
+    /**
+     * Encodes the specified Tx message. Does not implicitly {@link grafain.Tx.verify|verify} messages.
+     * @param message Tx message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: grafain.ITx, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified Tx message, length delimited. Does not implicitly {@link grafain.Tx.verify|verify} messages.
+     * @param message Tx message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: grafain.ITx, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a Tx message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns Tx
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): grafain.Tx;
+
+    /**
+     * Decodes a Tx message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns Tx
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): grafain.Tx;
+
+    /**
+     * Verifies a Tx message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string | null);
+
+    /**
+     * Creates a Tx message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns Tx
+     */
+    public static fromObject(object: { [k: string]: any }): grafain.Tx;
+
+    /**
+     * Creates a plain object from a Tx message. Also converts values to other types if specified.
+     * @param message Tx
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: grafain.Tx, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this Tx to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+  }
+
+  /** Properties of an ExecuteBatchMsg. */
+  interface IExecuteBatchMsg {
+
+    /** ExecuteBatchMsg messages */
+    messages?: (grafain.ExecuteBatchMsg.IUnion[] | null);
+  }
+
+  /** ExecuteBatchMsg encapsulates multiple messages to support batch transaction */
+  class ExecuteBatchMsg implements IExecuteBatchMsg {
+
+    /**
+     * Constructs a new ExecuteBatchMsg.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: grafain.IExecuteBatchMsg);
+
+    /** ExecuteBatchMsg messages. */
+    public messages: grafain.ExecuteBatchMsg.IUnion[];
+
+    /**
+     * Creates a new ExecuteBatchMsg instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns ExecuteBatchMsg instance
+     */
+    public static create(properties?: grafain.IExecuteBatchMsg): grafain.ExecuteBatchMsg;
+
+    /**
+     * Encodes the specified ExecuteBatchMsg message. Does not implicitly {@link grafain.ExecuteBatchMsg.verify|verify} messages.
+     * @param message ExecuteBatchMsg message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: grafain.IExecuteBatchMsg, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified ExecuteBatchMsg message, length delimited. Does not implicitly {@link grafain.ExecuteBatchMsg.verify|verify} messages.
+     * @param message ExecuteBatchMsg message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: grafain.IExecuteBatchMsg, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an ExecuteBatchMsg message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns ExecuteBatchMsg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): grafain.ExecuteBatchMsg;
+
+    /**
+     * Decodes an ExecuteBatchMsg message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns ExecuteBatchMsg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): grafain.ExecuteBatchMsg;
+
+    /**
+     * Verifies an ExecuteBatchMsg message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string | null);
+
+    /**
+     * Creates an ExecuteBatchMsg message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns ExecuteBatchMsg
+     */
+    public static fromObject(object: { [k: string]: any }): grafain.ExecuteBatchMsg;
+
+    /**
+     * Creates a plain object from an ExecuteBatchMsg message. Also converts values to other types if specified.
+     * @param message ExecuteBatchMsg
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: grafain.ExecuteBatchMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this ExecuteBatchMsg to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+  }
+
+  namespace ExecuteBatchMsg {
+
+    /** Properties of an Union. */
+    interface IUnion {
+
+      /** Union cashSendMsg */
+      cashSendMsg?: (cash.ISendMsg | null);
+
+      /** Union escrowCreateMsg */
+      escrowCreateMsg?: (escrow.ICreateMsg | null);
+
+      /** Union escrowReleaseMsg */
+      escrowReleaseMsg?: (escrow.IReleaseMsg | null);
+
+      /** Union escrowReturnMsg */
+      escrowReturnMsg?: (escrow.IReturnMsg | null);
+
+      /** Union escrowUpdatePartiesMsg */
+      escrowUpdatePartiesMsg?: (escrow.IUpdatePartiesMsg | null);
+
+      /** Union multisigCreateMsg */
+      multisigCreateMsg?: (multisig.ICreateMsg | null);
+
+      /** Union multisigUpdateMsg */
+      multisigUpdateMsg?: (multisig.IUpdateMsg | null);
+
+      /** Union validatorsApplyDiffMsg */
+      validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
+
+      /** Union currencyCreateMsg */
+      currencyCreateMsg?: (currency.ICreateMsg | null);
+
+      /** username.ChangeTokenTargetsMsg username_change_token_targets_msg = 63; */
+      distributionCreateMsg?: (distribution.ICreateMsg | null);
+
+      /** Union distributionMsg */
+      distributionMsg?: (distribution.IDistributeMsg | null);
+
+      /** Union distributionResetMsg */
+      distributionResetMsg?: (distribution.IResetMsg | null);
+    }
+
+    /** Represents an Union. */
+    class Union implements IUnion {
+
+      /**
+       * Constructs a new Union.
+       * @param [properties] Properties to set
+       */
+      constructor(properties?: grafain.ExecuteBatchMsg.IUnion);
+
+      /** Union cashSendMsg. */
+      public cashSendMsg?: (cash.ISendMsg | null);
+
+      /** Union escrowCreateMsg. */
+      public escrowCreateMsg?: (escrow.ICreateMsg | null);
+
+      /** Union escrowReleaseMsg. */
+      public escrowReleaseMsg?: (escrow.IReleaseMsg | null);
+
+      /** Union escrowReturnMsg. */
+      public escrowReturnMsg?: (escrow.IReturnMsg | null);
+
+      /** Union escrowUpdatePartiesMsg. */
+      public escrowUpdatePartiesMsg?: (escrow.IUpdatePartiesMsg | null);
+
+      /** Union multisigCreateMsg. */
+      public multisigCreateMsg?: (multisig.ICreateMsg | null);
+
+      /** Union multisigUpdateMsg. */
+      public multisigUpdateMsg?: (multisig.IUpdateMsg | null);
+
+      /** Union validatorsApplyDiffMsg. */
+      public validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
+
+      /** Union currencyCreateMsg. */
+      public currencyCreateMsg?: (currency.ICreateMsg | null);
+
+      /** username.ChangeTokenTargetsMsg username_change_token_targets_msg = 63; */
+      public distributionCreateMsg?: (distribution.ICreateMsg | null);
+
+      /** Union distributionMsg. */
+      public distributionMsg?: (distribution.IDistributeMsg | null);
+
+      /** Union distributionResetMsg. */
+      public distributionResetMsg?: (distribution.IResetMsg | null);
+
+      /** Union sum. */
+      public sum?: ("cashSendMsg" | "escrowCreateMsg" | "escrowReleaseMsg" | "escrowReturnMsg" | "escrowUpdatePartiesMsg" | "multisigCreateMsg" | "multisigUpdateMsg" | "validatorsApplyDiffMsg" | "currencyCreateMsg" | "distributionCreateMsg" | "distributionMsg" | "distributionResetMsg");
+
+      /**
+       * Creates a new Union instance using the specified properties.
+       * @param [properties] Properties to set
+       * @returns Union instance
+       */
+      public static create(properties?: grafain.ExecuteBatchMsg.IUnion): grafain.ExecuteBatchMsg.Union;
+
+      /**
+       * Encodes the specified Union message. Does not implicitly {@link grafain.ExecuteBatchMsg.Union.verify|verify} messages.
+       * @param message Union message or plain object to encode
+       * @param [writer] Writer to encode to
+       * @returns Writer
+       */
+      public static encode(message: grafain.ExecuteBatchMsg.IUnion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+      /**
+       * Encodes the specified Union message, length delimited. Does not implicitly {@link grafain.ExecuteBatchMsg.Union.verify|verify} messages.
+       * @param message Union message or plain object to encode
+       * @param [writer] Writer to encode to
+       * @returns Writer
+       */
+      public static encodeDelimited(message: grafain.ExecuteBatchMsg.IUnion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+      /**
+       * Decodes an Union message from the specified reader or buffer.
+       * @param reader Reader or buffer to decode from
+       * @param [length] Message length if known beforehand
+       * @returns Union
+       * @throws {Error} If the payload is not a reader or valid buffer
+       * @throws {$protobuf.util.ProtocolError} If required fields are missing
+       */
+      public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): grafain.ExecuteBatchMsg.Union;
+
+      /**
+       * Decodes an Union message from the specified reader or buffer, length delimited.
+       * @param reader Reader or buffer to decode from
+       * @returns Union
+       * @throws {Error} If the payload is not a reader or valid buffer
+       * @throws {$protobuf.util.ProtocolError} If required fields are missing
+       */
+      public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): grafain.ExecuteBatchMsg.Union;
+
+      /**
+       * Verifies an Union message.
+       * @param message Plain object to verify
+       * @returns `null` if valid, otherwise the reason why it is not
+       */
+      public static verify(message: { [k: string]: any }): (string | null);
+
+      /**
+       * Creates an Union message from a plain object. Also converts values to their respective internal types.
+       * @param object Plain object
+       * @returns Union
+       */
+      public static fromObject(object: { [k: string]: any }): grafain.ExecuteBatchMsg.Union;
+
+      /**
+       * Creates a plain object from an Union message. Also converts values to other types if specified.
+       * @param message Union
+       * @param [options] Conversion options
+       * @returns Plain object
+       */
+      public static toObject(message: grafain.ExecuteBatchMsg.Union, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+      /**
+       * Converts this Union to JSON.
+       * @returns JSON object
+       */
+      public toJSON(): { [k: string]: any };
+    }
+  }
+
+  /** Properties of a ProposalOptions. */
+  interface IProposalOptions {
+
+    /** ProposalOptions cashSendMsg */
+    cashSendMsg?: (cash.ISendMsg | null);
+
+    /** ProposalOptions escrowReleaseMsg */
+    escrowReleaseMsg?: (escrow.IReleaseMsg | null);
+
+    /** ProposalOptions updateEscrowPartiesMsg */
+    updateEscrowPartiesMsg?: (escrow.IUpdatePartiesMsg | null);
+
+    /** ProposalOptions multisigUpdateMsg */
+    multisigUpdateMsg?: (multisig.IUpdateMsg | null);
+
+    /** ProposalOptions validatorsApplyDiffMsg */
+    validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
+
+    /** ProposalOptions currencyCreateMsg */
+    currencyCreateMsg?: (currency.ICreateMsg | null);
+
+    /** ProposalOptions executeProposalBatchMsg */
+    executeProposalBatchMsg?: (grafain.IExecuteProposalBatchMsg | null);
+
+    /** username.ChangeTokenTargetsMsg username_change_token_targets_msg = 63; */
+    distributionCreateMsg?: (distribution.ICreateMsg | null);
+
+    /** ProposalOptions distributionMsg */
+    distributionMsg?: (distribution.IDistributeMsg | null);
+
+    /** ProposalOptions distributionResetMsg */
+    distributionResetMsg?: (distribution.IResetMsg | null);
+
+    /** ProposalOptions migrationUpgradeSchemaMsg */
+    migrationUpgradeSchemaMsg?: (migration.IUpgradeSchemaMsg | null);
+
+    /** ProposalOptions govUpdateElectorateMsg */
+    govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
+
+    /** ProposalOptions govUpdateElectionRuleMsg */
+    govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
+
+    /** ProposalOptions govCreateTextResolutionMsg */
+    govCreateTextResolutionMsg?: (gov.ICreateTextResolutionMsg | null);
+  }
+
+  /** Trimmed down somewhat arbitrary to what is believed to be reasonable */
+  class ProposalOptions implements IProposalOptions {
+
+    /**
+     * Constructs a new ProposalOptions.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: grafain.IProposalOptions);
+
+    /** ProposalOptions cashSendMsg. */
+    public cashSendMsg?: (cash.ISendMsg | null);
+
+    /** ProposalOptions escrowReleaseMsg. */
+    public escrowReleaseMsg?: (escrow.IReleaseMsg | null);
+
+    /** ProposalOptions updateEscrowPartiesMsg. */
+    public updateEscrowPartiesMsg?: (escrow.IUpdatePartiesMsg | null);
+
+    /** ProposalOptions multisigUpdateMsg. */
+    public multisigUpdateMsg?: (multisig.IUpdateMsg | null);
+
+    /** ProposalOptions validatorsApplyDiffMsg. */
+    public validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
+
+    /** ProposalOptions currencyCreateMsg. */
+    public currencyCreateMsg?: (currency.ICreateMsg | null);
+
+    /** ProposalOptions executeProposalBatchMsg. */
+    public executeProposalBatchMsg?: (grafain.IExecuteProposalBatchMsg | null);
+
+    /** username.ChangeTokenTargetsMsg username_change_token_targets_msg = 63; */
+    public distributionCreateMsg?: (distribution.ICreateMsg | null);
+
+    /** ProposalOptions distributionMsg. */
+    public distributionMsg?: (distribution.IDistributeMsg | null);
+
+    /** ProposalOptions distributionResetMsg. */
+    public distributionResetMsg?: (distribution.IResetMsg | null);
+
+    /** ProposalOptions migrationUpgradeSchemaMsg. */
+    public migrationUpgradeSchemaMsg?: (migration.IUpgradeSchemaMsg | null);
+
+    /** ProposalOptions govUpdateElectorateMsg. */
+    public govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
+
+    /** ProposalOptions govUpdateElectionRuleMsg. */
+    public govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
+
+    /** ProposalOptions govCreateTextResolutionMsg. */
+    public govCreateTextResolutionMsg?: (gov.ICreateTextResolutionMsg | null);
+
+    /** ProposalOptions option. */
+    public option?: ("cashSendMsg" | "escrowReleaseMsg" | "updateEscrowPartiesMsg" | "multisigUpdateMsg" | "validatorsApplyDiffMsg" | "currencyCreateMsg" | "executeProposalBatchMsg" | "distributionCreateMsg" | "distributionMsg" | "distributionResetMsg" | "migrationUpgradeSchemaMsg" | "govUpdateElectorateMsg" | "govUpdateElectionRuleMsg" | "govCreateTextResolutionMsg");
+
+    /**
+     * Creates a new ProposalOptions instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns ProposalOptions instance
+     */
+    public static create(properties?: grafain.IProposalOptions): grafain.ProposalOptions;
+
+    /**
+     * Encodes the specified ProposalOptions message. Does not implicitly {@link grafain.ProposalOptions.verify|verify} messages.
+     * @param message ProposalOptions message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: grafain.IProposalOptions, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified ProposalOptions message, length delimited. Does not implicitly {@link grafain.ProposalOptions.verify|verify} messages.
+     * @param message ProposalOptions message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: grafain.IProposalOptions, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a ProposalOptions message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns ProposalOptions
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): grafain.ProposalOptions;
+
+    /**
+     * Decodes a ProposalOptions message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns ProposalOptions
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): grafain.ProposalOptions;
+
+    /**
+     * Verifies a ProposalOptions message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string | null);
+
+    /**
+     * Creates a ProposalOptions message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns ProposalOptions
+     */
+    public static fromObject(object: { [k: string]: any }): grafain.ProposalOptions;
+
+    /**
+     * Creates a plain object from a ProposalOptions message. Also converts values to other types if specified.
+     * @param message ProposalOptions
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: grafain.ProposalOptions, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this ProposalOptions to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+  }
+
+  /** Properties of an ExecuteProposalBatchMsg. */
+  interface IExecuteProposalBatchMsg {
+
+    /** ExecuteProposalBatchMsg messages */
+    messages?: (grafain.ExecuteProposalBatchMsg.IUnion[] | null);
+  }
+
+  /** Represents an ExecuteProposalBatchMsg. */
+  class ExecuteProposalBatchMsg implements IExecuteProposalBatchMsg {
+
+    /**
+     * Constructs a new ExecuteProposalBatchMsg.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: grafain.IExecuteProposalBatchMsg);
+
+    /** ExecuteProposalBatchMsg messages. */
+    public messages: grafain.ExecuteProposalBatchMsg.IUnion[];
+
+    /**
+     * Creates a new ExecuteProposalBatchMsg instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns ExecuteProposalBatchMsg instance
+     */
+    public static create(properties?: grafain.IExecuteProposalBatchMsg): grafain.ExecuteProposalBatchMsg;
+
+    /**
+     * Encodes the specified ExecuteProposalBatchMsg message. Does not implicitly {@link grafain.ExecuteProposalBatchMsg.verify|verify} messages.
+     * @param message ExecuteProposalBatchMsg message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: grafain.IExecuteProposalBatchMsg, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified ExecuteProposalBatchMsg message, length delimited. Does not implicitly {@link grafain.ExecuteProposalBatchMsg.verify|verify} messages.
+     * @param message ExecuteProposalBatchMsg message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: grafain.IExecuteProposalBatchMsg, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an ExecuteProposalBatchMsg message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns ExecuteProposalBatchMsg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): grafain.ExecuteProposalBatchMsg;
+
+    /**
+     * Decodes an ExecuteProposalBatchMsg message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns ExecuteProposalBatchMsg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): grafain.ExecuteProposalBatchMsg;
+
+    /**
+     * Verifies an ExecuteProposalBatchMsg message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string | null);
+
+    /**
+     * Creates an ExecuteProposalBatchMsg message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns ExecuteProposalBatchMsg
+     */
+    public static fromObject(object: { [k: string]: any }): grafain.ExecuteProposalBatchMsg;
+
+    /**
+     * Creates a plain object from an ExecuteProposalBatchMsg message. Also converts values to other types if specified.
+     * @param message ExecuteProposalBatchMsg
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: grafain.ExecuteProposalBatchMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this ExecuteProposalBatchMsg to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+  }
+
+  namespace ExecuteProposalBatchMsg {
+
+    /** Properties of an Union. */
+    interface IUnion {
+
+      /** Union sendMsg */
+      sendMsg?: (cash.ISendMsg | null);
+
+      /** Union escrowReleaseMsg */
+      escrowReleaseMsg?: (escrow.IReleaseMsg | null);
+
+      /** Union updateEscrowPartiesMsg */
+      updateEscrowPartiesMsg?: (escrow.IUpdatePartiesMsg | null);
+
+      /** Union multisigUpdateMsg */
+      multisigUpdateMsg?: (multisig.IUpdateMsg | null);
+
+      /** Union validatorsApplyDiffMsg */
+      validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
+
+      /** username.ChangeTokenTargetsMsg username_change_token_targets_msg = 63; */
+      distributionCreateMsg?: (distribution.ICreateMsg | null);
+
+      /** Union distributionMsg */
+      distributionMsg?: (distribution.IDistributeMsg | null);
+
+      /** Union distributionResetMsg */
+      distributionResetMsg?: (distribution.IResetMsg | null);
+
+      /** don't allow UpgradeSchema as part of a batch, as effects are too confusing */
+      govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
+
+      /** Union govUpdateElectionRuleMsg */
+      govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
+
+      /** Union govCreateTextResolutionMsg */
+      govCreateTextResolutionMsg?: (gov.ICreateTextResolutionMsg | null);
+    }
+
+    /** Represents an Union. */
+    class Union implements IUnion {
+
+      /**
+       * Constructs a new Union.
+       * @param [properties] Properties to set
+       */
+      constructor(properties?: grafain.ExecuteProposalBatchMsg.IUnion);
+
+      /** Union sendMsg. */
+      public sendMsg?: (cash.ISendMsg | null);
+
+      /** Union escrowReleaseMsg. */
+      public escrowReleaseMsg?: (escrow.IReleaseMsg | null);
+
+      /** Union updateEscrowPartiesMsg. */
+      public updateEscrowPartiesMsg?: (escrow.IUpdatePartiesMsg | null);
+
+      /** Union multisigUpdateMsg. */
+      public multisigUpdateMsg?: (multisig.IUpdateMsg | null);
+
+      /** Union validatorsApplyDiffMsg. */
+      public validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
+
+      /** username.ChangeTokenTargetsMsg username_change_token_targets_msg = 63; */
+      public distributionCreateMsg?: (distribution.ICreateMsg | null);
+
+      /** Union distributionMsg. */
+      public distributionMsg?: (distribution.IDistributeMsg | null);
+
+      /** Union distributionResetMsg. */
+      public distributionResetMsg?: (distribution.IResetMsg | null);
+
+      /** don't allow UpgradeSchema as part of a batch, as effects are too confusing */
+      public govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
+
+      /** Union govUpdateElectionRuleMsg. */
+      public govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
+
+      /** Union govCreateTextResolutionMsg. */
+      public govCreateTextResolutionMsg?: (gov.ICreateTextResolutionMsg | null);
+
+      /** Union sum. */
+      public sum?: ("sendMsg" | "escrowReleaseMsg" | "updateEscrowPartiesMsg" | "multisigUpdateMsg" | "validatorsApplyDiffMsg" | "distributionCreateMsg" | "distributionMsg" | "distributionResetMsg" | "govUpdateElectorateMsg" | "govUpdateElectionRuleMsg" | "govCreateTextResolutionMsg");
+
+      /**
+       * Creates a new Union instance using the specified properties.
+       * @param [properties] Properties to set
+       * @returns Union instance
+       */
+      public static create(properties?: grafain.ExecuteProposalBatchMsg.IUnion): grafain.ExecuteProposalBatchMsg.Union;
+
+      /**
+       * Encodes the specified Union message. Does not implicitly {@link grafain.ExecuteProposalBatchMsg.Union.verify|verify} messages.
+       * @param message Union message or plain object to encode
+       * @param [writer] Writer to encode to
+       * @returns Writer
+       */
+      public static encode(message: grafain.ExecuteProposalBatchMsg.IUnion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+      /**
+       * Encodes the specified Union message, length delimited. Does not implicitly {@link grafain.ExecuteProposalBatchMsg.Union.verify|verify} messages.
+       * @param message Union message or plain object to encode
+       * @param [writer] Writer to encode to
+       * @returns Writer
+       */
+      public static encodeDelimited(message: grafain.ExecuteProposalBatchMsg.IUnion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+      /**
+       * Decodes an Union message from the specified reader or buffer.
+       * @param reader Reader or buffer to decode from
+       * @param [length] Message length if known beforehand
+       * @returns Union
+       * @throws {Error} If the payload is not a reader or valid buffer
+       * @throws {$protobuf.util.ProtocolError} If required fields are missing
+       */
+      public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): grafain.ExecuteProposalBatchMsg.Union;
+
+      /**
+       * Decodes an Union message from the specified reader or buffer, length delimited.
+       * @param reader Reader or buffer to decode from
+       * @returns Union
+       * @throws {Error} If the payload is not a reader or valid buffer
+       * @throws {$protobuf.util.ProtocolError} If required fields are missing
+       */
+      public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): grafain.ExecuteProposalBatchMsg.Union;
+
+      /**
+       * Verifies an Union message.
+       * @param message Plain object to verify
+       * @returns `null` if valid, otherwise the reason why it is not
+       */
+      public static verify(message: { [k: string]: any }): (string | null);
+
+      /**
+       * Creates an Union message from a plain object. Also converts values to their respective internal types.
+       * @param object Plain object
+       * @returns Union
+       */
+      public static fromObject(object: { [k: string]: any }): grafain.ExecuteProposalBatchMsg.Union;
+
+      /**
+       * Creates a plain object from an Union message. Also converts values to other types if specified.
+       * @param message Union
+       * @param [options] Conversion options
+       * @returns Plain object
+       */
+      public static toObject(message: grafain.ExecuteProposalBatchMsg.Union, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+      /**
+       * Converts this Union to JSON.
+       * @returns JSON object
+       */
+      public toJSON(): { [k: string]: any };
+    }
+  }
+
+  /** Properties of a CronTask. */
+  interface ICronTask {
+
+    /** conditions required for execution, that will be inserted into the context. */
+    authenticators?: (Uint8Array[] | null);
+
+    /** CronTask escrowReleaseMsg */
+    escrowReleaseMsg?: (escrow.IReleaseMsg | null);
+
+    /** CronTask escrowReturnMsg */
+    escrowReturnMsg?: (escrow.IReturnMsg | null);
+
+    /** CronTask distributionDistributeMsg */
+    distributionDistributeMsg?: (distribution.IDistributeMsg | null);
+
+    /** CronTask aswapReleaseMsg */
+    aswapReleaseMsg?: (aswap.IReleaseMsg | null);
+
+    /** CronTask govTallyMsg */
+    govTallyMsg?: (gov.ITallyMsg | null);
+  }
+
+  /** old fields got deprecated. This is done to maintain binary compatibility. */
+  class CronTask implements ICronTask {
+
+    /**
+     * Constructs a new CronTask.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: grafain.ICronTask);
+
+    /** conditions required for execution, that will be inserted into the context. */
+    public authenticators: Uint8Array[];
+
+    /** CronTask escrowReleaseMsg. */
+    public escrowReleaseMsg?: (escrow.IReleaseMsg | null);
+
+    /** CronTask escrowReturnMsg. */
+    public escrowReturnMsg?: (escrow.IReturnMsg | null);
+
+    /** CronTask distributionDistributeMsg. */
+    public distributionDistributeMsg?: (distribution.IDistributeMsg | null);
+
+    /** CronTask aswapReleaseMsg. */
+    public aswapReleaseMsg?: (aswap.IReleaseMsg | null);
+
+    /** CronTask govTallyMsg. */
+    public govTallyMsg?: (gov.ITallyMsg | null);
+
+    /** Use the same indexes for the messages as the Tx message. */
+    public sum?: ("escrowReleaseMsg" | "escrowReturnMsg" | "distributionDistributeMsg" | "aswapReleaseMsg" | "govTallyMsg");
+
+    /**
+     * Creates a new CronTask instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns CronTask instance
+     */
+    public static create(properties?: grafain.ICronTask): grafain.CronTask;
+
+    /**
+     * Encodes the specified CronTask message. Does not implicitly {@link grafain.CronTask.verify|verify} messages.
+     * @param message CronTask message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: grafain.ICronTask, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified CronTask message, length delimited. Does not implicitly {@link grafain.CronTask.verify|verify} messages.
+     * @param message CronTask message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: grafain.ICronTask, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a CronTask message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns CronTask
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): grafain.CronTask;
+
+    /**
+     * Decodes a CronTask message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns CronTask
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): grafain.CronTask;
+
+    /**
+     * Verifies a CronTask message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string | null);
+
+    /**
+     * Creates a CronTask message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns CronTask
+     */
+    public static fromObject(object: { [k: string]: any }): grafain.CronTask;
+
+    /**
+     * Creates a plain object from a CronTask message. Also converts values to other types if specified.
+     * @param message CronTask
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: grafain.CronTask, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this CronTask to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+  }
+}
+
+/** Namespace artifact. */
+export namespace artifact {
+
+  /** Properties of an Artifact. */
+  interface IArtifact {
+
+    /** Artifact metadata */
+    metadata?: (weave.IMetadata | null);
+
+    /** Owner is the address that is allowed ot modify or delete this entity. */
+    owner?: (Uint8Array | null);
+
+    /** Container image url like`gcr.io/projectID/imagename@sha256:123456` */
+    image?: (string | null);
+
+    /** Hash or checksum value of a binary, or Docker Registry 2.0 digest of a container. */
+    checksum?: (string | null);
+  }
+
+  /** Represents an Artifact. */
+  class Artifact implements IArtifact {
+
+    /**
+     * Constructs a new Artifact.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: artifact.IArtifact);
+
+    /** Artifact metadata. */
+    public metadata?: (weave.IMetadata | null);
+
+    /** Owner is the address that is allowed ot modify or delete this entity. */
+    public owner: Uint8Array;
+
+    /** Container image url like`gcr.io/projectID/imagename@sha256:123456` */
+    public image: string;
+
+    /** Hash or checksum value of a binary, or Docker Registry 2.0 digest of a container. */
+    public checksum: string;
+
+    /**
+     * Creates a new Artifact instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns Artifact instance
+     */
+    public static create(properties?: artifact.IArtifact): artifact.Artifact;
+
+    /**
+     * Encodes the specified Artifact message. Does not implicitly {@link artifact.Artifact.verify|verify} messages.
+     * @param message Artifact message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: artifact.IArtifact, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified Artifact message, length delimited. Does not implicitly {@link artifact.Artifact.verify|verify} messages.
+     * @param message Artifact message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: artifact.IArtifact, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes an Artifact message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns Artifact
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): artifact.Artifact;
+
+    /**
+     * Decodes an Artifact message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns Artifact
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): artifact.Artifact;
+
+    /**
+     * Verifies an Artifact message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string | null);
+
+    /**
+     * Creates an Artifact message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns Artifact
+     */
+    public static fromObject(object: { [k: string]: any }): artifact.Artifact;
+
+    /**
+     * Creates a plain object from an Artifact message. Also converts values to other types if specified.
+     * @param message Artifact
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: artifact.Artifact, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this Artifact to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+  }
+
+  /** Properties of a CreateArtifactMsg. */
+  interface ICreateArtifactMsg {
+
+    /** CreateArtifactMsg metadata */
+    metadata?: (weave.IMetadata | null);
+
+    /** Container image url like`gcr.io/projectID/imagename@sha256:123456` */
+    image?: (string | null);
+
+    /** Hash or checksum value of a binary, or Docker Registry 2.0 digest of a container. */
+    checksum?: (string | null);
+
+    /** It is an optional field. When empty the main signer becomes owner. */
+    owner?: (Uint8Array | null);
+  }
+
+  /** Represents a CreateArtifactMsg. */
+  class CreateArtifactMsg implements ICreateArtifactMsg {
+
+    /**
+     * Constructs a new CreateArtifactMsg.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: artifact.ICreateArtifactMsg);
+
+    /** CreateArtifactMsg metadata. */
+    public metadata?: (weave.IMetadata | null);
+
+    /** Container image url like`gcr.io/projectID/imagename@sha256:123456` */
+    public image: string;
+
+    /** Hash or checksum value of a binary, or Docker Registry 2.0 digest of a container. */
+    public checksum: string;
+
+    /** It is an optional field. When empty the main signer becomes owner. */
+    public owner: Uint8Array;
+
+    /**
+     * Creates a new CreateArtifactMsg instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns CreateArtifactMsg instance
+     */
+    public static create(properties?: artifact.ICreateArtifactMsg): artifact.CreateArtifactMsg;
+
+    /**
+     * Encodes the specified CreateArtifactMsg message. Does not implicitly {@link artifact.CreateArtifactMsg.verify|verify} messages.
+     * @param message CreateArtifactMsg message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: artifact.ICreateArtifactMsg, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified CreateArtifactMsg message, length delimited. Does not implicitly {@link artifact.CreateArtifactMsg.verify|verify} messages.
+     * @param message CreateArtifactMsg message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: artifact.ICreateArtifactMsg, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a CreateArtifactMsg message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns CreateArtifactMsg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): artifact.CreateArtifactMsg;
+
+    /**
+     * Decodes a CreateArtifactMsg message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns CreateArtifactMsg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): artifact.CreateArtifactMsg;
+
+    /**
+     * Verifies a CreateArtifactMsg message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string | null);
+
+    /**
+     * Creates a CreateArtifactMsg message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns CreateArtifactMsg
+     */
+    public static fromObject(object: { [k: string]: any }): artifact.CreateArtifactMsg;
+
+    /**
+     * Creates a plain object from a CreateArtifactMsg message. Also converts values to other types if specified.
+     * @param message CreateArtifactMsg
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: artifact.CreateArtifactMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this CreateArtifactMsg to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+  }
+
+  /** Properties of a DeleteArtifactMsg. */
+  interface IDeleteArtifactMsg {
+
+    /** DeleteArtifactMsg metadata */
+    metadata?: (weave.IMetadata | null);
+
+    /** Unique identifier of the Artifact */
+    id?: (Uint8Array | null);
+  }
+
+  /** Represents a DeleteArtifactMsg. */
+  class DeleteArtifactMsg implements IDeleteArtifactMsg {
+
+    /**
+     * Constructs a new DeleteArtifactMsg.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: artifact.IDeleteArtifactMsg);
+
+    /** DeleteArtifactMsg metadata. */
+    public metadata?: (weave.IMetadata | null);
+
+    /** Unique identifier of the Artifact */
+    public id: Uint8Array;
+
+    /**
+     * Creates a new DeleteArtifactMsg instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns DeleteArtifactMsg instance
+     */
+    public static create(properties?: artifact.IDeleteArtifactMsg): artifact.DeleteArtifactMsg;
+
+    /**
+     * Encodes the specified DeleteArtifactMsg message. Does not implicitly {@link artifact.DeleteArtifactMsg.verify|verify} messages.
+     * @param message DeleteArtifactMsg message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: artifact.IDeleteArtifactMsg, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified DeleteArtifactMsg message, length delimited. Does not implicitly {@link artifact.DeleteArtifactMsg.verify|verify} messages.
+     * @param message DeleteArtifactMsg message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: artifact.IDeleteArtifactMsg, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a DeleteArtifactMsg message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns DeleteArtifactMsg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): artifact.DeleteArtifactMsg;
+
+    /**
+     * Decodes a DeleteArtifactMsg message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns DeleteArtifactMsg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): artifact.DeleteArtifactMsg;
+
+    /**
+     * Verifies a DeleteArtifactMsg message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string | null);
+
+    /**
+     * Creates a DeleteArtifactMsg message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns DeleteArtifactMsg
+     */
+    public static fromObject(object: { [k: string]: any }): artifact.DeleteArtifactMsg;
+
+    /**
+     * Creates a plain object from a DeleteArtifactMsg message. Also converts values to other types if specified.
+     * @param message DeleteArtifactMsg
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: artifact.DeleteArtifactMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this DeleteArtifactMsg to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+  }
+}
+
 /** Namespace app. */
 export namespace app {
+
   /** Properties of a ResultSet. */
   interface IResultSet {
+
     /** ResultSet results */
-    results?: Uint8Array[] | null;
+    results?: (Uint8Array[] | null);
   }
 
   /** ResultSet contains a list of keys or values */
   class ResultSet implements IResultSet {
+
     /**
      * Constructs a new ResultSet.
      * @param [properties] Properties to set
@@ -49,7 +1414,7 @@ export namespace app {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): app.ResultSet;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): app.ResultSet;
 
     /**
      * Decodes a ResultSet message from the specified reader or buffer, length delimited.
@@ -58,14 +1423,14 @@ export namespace app {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): app.ResultSet;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): app.ResultSet;
 
     /**
      * Verifies a ResultSet message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ResultSet message from a plain object. Also converts values to their respective internal types.
@@ -80,10 +1445,7 @@ export namespace app {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: app.ResultSet,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: app.ResultSet, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ResultSet to JSON.
@@ -95,95 +1457,101 @@ export namespace app {
 
 /** Namespace bnsd. */
 export namespace bnsd {
+
   /** Properties of a Tx. */
   interface ITx {
+
     /** Tx fees */
-    fees?: cash.IFeeInfo | null;
+    fees?: (cash.IFeeInfo | null);
 
     /** Tx signatures */
-    signatures?: sigs.IStdSignature[] | null;
+    signatures?: (sigs.IStdSignature[] | null);
 
     /** ID of a multisig contract. */
-    multisig?: Uint8Array[] | null;
+    multisig?: (Uint8Array[] | null);
 
     /** Tx cashSendMsg */
-    cashSendMsg?: cash.ISendMsg | null;
+    cashSendMsg?: (cash.ISendMsg | null);
 
     /** Tx escrowCreateMsg */
-    escrowCreateMsg?: escrow.ICreateMsg | null;
+    escrowCreateMsg?: (escrow.ICreateMsg | null);
 
     /** Tx escrowReleaseMsg */
-    escrowReleaseMsg?: escrow.IReleaseMsg | null;
+    escrowReleaseMsg?: (escrow.IReleaseMsg | null);
 
     /** Tx escrowReturnMsg */
-    escrowReturnMsg?: escrow.IReturnMsg | null;
+    escrowReturnMsg?: (escrow.IReturnMsg | null);
 
     /** Tx escrowUpdatePartiesMsg */
-    escrowUpdatePartiesMsg?: escrow.IUpdatePartiesMsg | null;
+    escrowUpdatePartiesMsg?: (escrow.IUpdatePartiesMsg | null);
 
     /** Tx multisigCreateMsg */
-    multisigCreateMsg?: multisig.ICreateMsg | null;
+    multisigCreateMsg?: (multisig.ICreateMsg | null);
 
     /** Tx multisigUpdateMsg */
-    multisigUpdateMsg?: multisig.IUpdateMsg | null;
+    multisigUpdateMsg?: (multisig.IUpdateMsg | null);
 
     /** Tx validatorsApplyDiffMsg */
-    validatorsApplyDiffMsg?: validators.IApplyDiffMsg | null;
+    validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
 
     /** Tx currencyCreateMsg */
-    currencyCreateMsg?: currency.ICreateMsg | null;
+    currencyCreateMsg?: (currency.ICreateMsg | null);
 
     /** Tx executeBatchMsg */
-    executeBatchMsg?: bnsd.IExecuteBatchMsg | null;
+    executeBatchMsg?: (bnsd.IExecuteBatchMsg | null);
+
+    createArtifactMsg?: (artifact.ICreateArtifactMsg | null);
+    deleteArtifactMsg?: (artifact.IDeleteArtifactMsg | null);
 
     /** Tx usernameRegisterTokenMsg */
-    usernameRegisterTokenMsg?: username.IRegisterTokenMsg | null;
+    usernameRegisterTokenMsg?: (username.IRegisterTokenMsg | null);
 
     /** Tx usernameTransferTokenMsg */
-    usernameTransferTokenMsg?: username.ITransferTokenMsg | null;
+    usernameTransferTokenMsg?: (username.ITransferTokenMsg | null);
 
     /** Tx usernameChangeTokenTargetsMsg */
-    usernameChangeTokenTargetsMsg?: username.IChangeTokenTargetsMsg | null;
+    usernameChangeTokenTargetsMsg?: (username.IChangeTokenTargetsMsg | null);
 
     /** Tx distributionCreateMsg */
-    distributionCreateMsg?: distribution.ICreateMsg | null;
+    distributionCreateMsg?: (distribution.ICreateMsg | null);
 
     /** Tx distributionMsg */
-    distributionMsg?: distribution.IDistributeMsg | null;
+    distributionMsg?: (distribution.IDistributeMsg | null);
 
     /** Tx distributionResetMsg */
-    distributionResetMsg?: distribution.IResetMsg | null;
+    distributionResetMsg?: (distribution.IResetMsg | null);
 
     /** Tx migrationUpgradeSchemaMsg */
-    migrationUpgradeSchemaMsg?: migration.IUpgradeSchemaMsg | null;
+    migrationUpgradeSchemaMsg?: (migration.IUpgradeSchemaMsg | null);
 
     /** Tx aswapCreateMsg */
-    aswapCreateMsg?: aswap.ICreateMsg | null;
+    aswapCreateMsg?: (aswap.ICreateMsg | null);
 
     /** Tx aswapReleaseMsg */
-    aswapReleaseMsg?: aswap.IReleaseMsg | null;
+    aswapReleaseMsg?: (aswap.IReleaseMsg | null);
 
     /** Tx aswapReturnMsg */
-    aswapReturnMsg?: aswap.IReturnMsg | null;
+    aswapReturnMsg?: (aswap.IReturnMsg | null);
 
     /** Tx govCreateProposalMsg */
-    govCreateProposalMsg?: gov.ICreateProposalMsg | null;
+    govCreateProposalMsg?: (gov.ICreateProposalMsg | null);
 
     /** Tx govDeleteProposalMsg */
-    govDeleteProposalMsg?: gov.IDeleteProposalMsg | null;
+    govDeleteProposalMsg?: (gov.IDeleteProposalMsg | null);
 
     /** Tx govVoteMsg */
-    govVoteMsg?: gov.IVoteMsg | null;
+    govVoteMsg?: (gov.IVoteMsg | null);
 
     /** gov.TallyMsg gov_tally_msg = 76; */
-    govUpdateElectorateMsg?: gov.IUpdateElectorateMsg | null;
+    govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
 
     /** Tx govUpdateElectionRuleMsg */
-    govUpdateElectionRuleMsg?: gov.IUpdateElectionRuleMsg | null;
+    govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
   }
 
   /** old fields got deprecated. This is done to maintain binary compatibility. */
   class Tx implements ITx {
+
     /**
      * Constructs a new Tx.
      * @param [properties] Properties to set
@@ -191,7 +1559,7 @@ export namespace bnsd {
     constructor(properties?: bnsd.ITx);
 
     /** Tx fees. */
-    public fees?: cash.IFeeInfo | null;
+    public fees?: (cash.IFeeInfo | null);
 
     /** Tx signatures. */
     public signatures: sigs.IStdSignature[];
@@ -200,107 +1568,82 @@ export namespace bnsd {
     public multisig: Uint8Array[];
 
     /** Tx cashSendMsg. */
-    public cashSendMsg?: cash.ISendMsg | null;
+    public cashSendMsg?: (cash.ISendMsg | null);
 
     /** Tx escrowCreateMsg. */
-    public escrowCreateMsg?: escrow.ICreateMsg | null;
+    public escrowCreateMsg?: (escrow.ICreateMsg | null);
 
     /** Tx escrowReleaseMsg. */
-    public escrowReleaseMsg?: escrow.IReleaseMsg | null;
+    public escrowReleaseMsg?: (escrow.IReleaseMsg | null);
 
     /** Tx escrowReturnMsg. */
-    public escrowReturnMsg?: escrow.IReturnMsg | null;
+    public escrowReturnMsg?: (escrow.IReturnMsg | null);
 
     /** Tx escrowUpdatePartiesMsg. */
-    public escrowUpdatePartiesMsg?: escrow.IUpdatePartiesMsg | null;
+    public escrowUpdatePartiesMsg?: (escrow.IUpdatePartiesMsg | null);
 
     /** Tx multisigCreateMsg. */
-    public multisigCreateMsg?: multisig.ICreateMsg | null;
+    public multisigCreateMsg?: (multisig.ICreateMsg | null);
 
     /** Tx multisigUpdateMsg. */
-    public multisigUpdateMsg?: multisig.IUpdateMsg | null;
+    public multisigUpdateMsg?: (multisig.IUpdateMsg | null);
 
     /** Tx validatorsApplyDiffMsg. */
-    public validatorsApplyDiffMsg?: validators.IApplyDiffMsg | null;
+    public validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
 
     /** Tx currencyCreateMsg. */
-    public currencyCreateMsg?: currency.ICreateMsg | null;
+    public currencyCreateMsg?: (currency.ICreateMsg | null);
 
     /** Tx executeBatchMsg. */
-    public executeBatchMsg?: bnsd.IExecuteBatchMsg | null;
+    public executeBatchMsg?: (bnsd.IExecuteBatchMsg | null);
 
     /** Tx usernameRegisterTokenMsg. */
-    public usernameRegisterTokenMsg?: username.IRegisterTokenMsg | null;
+    public usernameRegisterTokenMsg?: (username.IRegisterTokenMsg | null);
 
     /** Tx usernameTransferTokenMsg. */
-    public usernameTransferTokenMsg?: username.ITransferTokenMsg | null;
+    public usernameTransferTokenMsg?: (username.ITransferTokenMsg | null);
 
     /** Tx usernameChangeTokenTargetsMsg. */
-    public usernameChangeTokenTargetsMsg?: username.IChangeTokenTargetsMsg | null;
+    public usernameChangeTokenTargetsMsg?: (username.IChangeTokenTargetsMsg | null);
 
     /** Tx distributionCreateMsg. */
-    public distributionCreateMsg?: distribution.ICreateMsg | null;
+    public distributionCreateMsg?: (distribution.ICreateMsg | null);
 
     /** Tx distributionMsg. */
-    public distributionMsg?: distribution.IDistributeMsg | null;
+    public distributionMsg?: (distribution.IDistributeMsg | null);
 
     /** Tx distributionResetMsg. */
-    public distributionResetMsg?: distribution.IResetMsg | null;
+    public distributionResetMsg?: (distribution.IResetMsg | null);
 
     /** Tx migrationUpgradeSchemaMsg. */
-    public migrationUpgradeSchemaMsg?: migration.IUpgradeSchemaMsg | null;
+    public migrationUpgradeSchemaMsg?: (migration.IUpgradeSchemaMsg | null);
 
     /** Tx aswapCreateMsg. */
-    public aswapCreateMsg?: aswap.ICreateMsg | null;
+    public aswapCreateMsg?: (aswap.ICreateMsg | null);
 
     /** Tx aswapReleaseMsg. */
-    public aswapReleaseMsg?: aswap.IReleaseMsg | null;
+    public aswapReleaseMsg?: (aswap.IReleaseMsg | null);
 
     /** Tx aswapReturnMsg. */
-    public aswapReturnMsg?: aswap.IReturnMsg | null;
+    public aswapReturnMsg?: (aswap.IReturnMsg | null);
 
     /** Tx govCreateProposalMsg. */
-    public govCreateProposalMsg?: gov.ICreateProposalMsg | null;
+    public govCreateProposalMsg?: (gov.ICreateProposalMsg | null);
 
     /** Tx govDeleteProposalMsg. */
-    public govDeleteProposalMsg?: gov.IDeleteProposalMsg | null;
+    public govDeleteProposalMsg?: (gov.IDeleteProposalMsg | null);
 
     /** Tx govVoteMsg. */
-    public govVoteMsg?: gov.IVoteMsg | null;
+    public govVoteMsg?: (gov.IVoteMsg | null);
 
     /** gov.TallyMsg gov_tally_msg = 76; */
-    public govUpdateElectorateMsg?: gov.IUpdateElectorateMsg | null;
+    public govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
 
     /** Tx govUpdateElectionRuleMsg. */
-    public govUpdateElectionRuleMsg?: gov.IUpdateElectionRuleMsg | null;
+    public govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
 
     /** msg is a sum type over all allowed messages on this chain. */
-    public sum?:
-      | "cashSendMsg"
-      | "escrowCreateMsg"
-      | "escrowReleaseMsg"
-      | "escrowReturnMsg"
-      | "escrowUpdatePartiesMsg"
-      | "multisigCreateMsg"
-      | "multisigUpdateMsg"
-      | "validatorsApplyDiffMsg"
-      | "currencyCreateMsg"
-      | "executeBatchMsg"
-      | "usernameRegisterTokenMsg"
-      | "usernameTransferTokenMsg"
-      | "usernameChangeTokenTargetsMsg"
-      | "distributionCreateMsg"
-      | "distributionMsg"
-      | "distributionResetMsg"
-      | "migrationUpgradeSchemaMsg"
-      | "aswapCreateMsg"
-      | "aswapReleaseMsg"
-      | "aswapReturnMsg"
-      | "govCreateProposalMsg"
-      | "govDeleteProposalMsg"
-      | "govVoteMsg"
-      | "govUpdateElectorateMsg"
-      | "govUpdateElectionRuleMsg";
+    public sum?: ("cashSendMsg" | "escrowCreateMsg" | "escrowReleaseMsg" | "escrowReturnMsg" | "escrowUpdatePartiesMsg" | "multisigCreateMsg" | "multisigUpdateMsg" | "validatorsApplyDiffMsg" | "currencyCreateMsg" | "executeBatchMsg" | "usernameRegisterTokenMsg" | "usernameTransferTokenMsg" | "usernameChangeTokenTargetsMsg" | "distributionCreateMsg" | "distributionMsg" | "distributionResetMsg" | "migrationUpgradeSchemaMsg" | "aswapCreateMsg" | "aswapReleaseMsg" | "aswapReturnMsg" | "govCreateProposalMsg" | "govDeleteProposalMsg" | "govVoteMsg" | "govUpdateElectorateMsg" | "govUpdateElectionRuleMsg");
 
     /**
      * Creates a new Tx instance using the specified properties.
@@ -333,7 +1676,7 @@ export namespace bnsd {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): bnsd.Tx;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): bnsd.Tx;
 
     /**
      * Decodes a Tx message from the specified reader or buffer, length delimited.
@@ -342,14 +1685,14 @@ export namespace bnsd {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): bnsd.Tx;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): bnsd.Tx;
 
     /**
      * Verifies a Tx message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Tx message from a plain object. Also converts values to their respective internal types.
@@ -375,12 +1718,14 @@ export namespace bnsd {
 
   /** Properties of an ExecuteBatchMsg. */
   interface IExecuteBatchMsg {
+
     /** ExecuteBatchMsg messages */
-    messages?: bnsd.ExecuteBatchMsg.IUnion[] | null;
+    messages?: (bnsd.ExecuteBatchMsg.IUnion[] | null);
   }
 
   /** ExecuteBatchMsg encapsulates multiple messages to support batch transaction */
   class ExecuteBatchMsg implements IExecuteBatchMsg {
+
     /**
      * Constructs a new ExecuteBatchMsg.
      * @param [properties] Properties to set
@@ -411,10 +1756,7 @@ export namespace bnsd {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: bnsd.IExecuteBatchMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: bnsd.IExecuteBatchMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes an ExecuteBatchMsg message from the specified reader or buffer.
@@ -424,7 +1766,7 @@ export namespace bnsd {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): bnsd.ExecuteBatchMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): bnsd.ExecuteBatchMsg;
 
     /**
      * Decodes an ExecuteBatchMsg message from the specified reader or buffer, length delimited.
@@ -433,14 +1775,14 @@ export namespace bnsd {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): bnsd.ExecuteBatchMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): bnsd.ExecuteBatchMsg;
 
     /**
      * Verifies an ExecuteBatchMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an ExecuteBatchMsg message from a plain object. Also converts values to their respective internal types.
@@ -455,10 +1797,7 @@ export namespace bnsd {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: bnsd.ExecuteBatchMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: bnsd.ExecuteBatchMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ExecuteBatchMsg to JSON.
@@ -468,56 +1807,59 @@ export namespace bnsd {
   }
 
   namespace ExecuteBatchMsg {
+
     /** Properties of an Union. */
     interface IUnion {
+
       /** Union cashSendMsg */
-      cashSendMsg?: cash.ISendMsg | null;
+      cashSendMsg?: (cash.ISendMsg | null);
 
       /** Union escrowCreateMsg */
-      escrowCreateMsg?: escrow.ICreateMsg | null;
+      escrowCreateMsg?: (escrow.ICreateMsg | null);
 
       /** Union escrowReleaseMsg */
-      escrowReleaseMsg?: escrow.IReleaseMsg | null;
+      escrowReleaseMsg?: (escrow.IReleaseMsg | null);
 
       /** Union escrowReturnMsg */
-      escrowReturnMsg?: escrow.IReturnMsg | null;
+      escrowReturnMsg?: (escrow.IReturnMsg | null);
 
       /** Union escrowUpdatePartiesMsg */
-      escrowUpdatePartiesMsg?: escrow.IUpdatePartiesMsg | null;
+      escrowUpdatePartiesMsg?: (escrow.IUpdatePartiesMsg | null);
 
       /** Union multisigCreateMsg */
-      multisigCreateMsg?: multisig.ICreateMsg | null;
+      multisigCreateMsg?: (multisig.ICreateMsg | null);
 
       /** Union multisigUpdateMsg */
-      multisigUpdateMsg?: multisig.IUpdateMsg | null;
+      multisigUpdateMsg?: (multisig.IUpdateMsg | null);
 
       /** Union validatorsApplyDiffMsg */
-      validatorsApplyDiffMsg?: validators.IApplyDiffMsg | null;
+      validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
 
       /** Union currencyCreateMsg */
-      currencyCreateMsg?: currency.ICreateMsg | null;
+      currencyCreateMsg?: (currency.ICreateMsg | null);
 
       /** No recursive batches! */
-      usernameRegisterTokenMsg?: username.IRegisterTokenMsg | null;
+      usernameRegisterTokenMsg?: (username.IRegisterTokenMsg | null);
 
       /** Union usernameTransferTokenMsg */
-      usernameTransferTokenMsg?: username.ITransferTokenMsg | null;
+      usernameTransferTokenMsg?: (username.ITransferTokenMsg | null);
 
       /** Union usernameChangeTokenTargetsMsg */
-      usernameChangeTokenTargetsMsg?: username.IChangeTokenTargetsMsg | null;
+      usernameChangeTokenTargetsMsg?: (username.IChangeTokenTargetsMsg | null);
 
       /** Union distributionCreateMsg */
-      distributionCreateMsg?: distribution.ICreateMsg | null;
+      distributionCreateMsg?: (distribution.ICreateMsg | null);
 
       /** Union distributionMsg */
-      distributionMsg?: distribution.IDistributeMsg | null;
+      distributionMsg?: (distribution.IDistributeMsg | null);
 
       /** Union distributionResetMsg */
-      distributionResetMsg?: distribution.IResetMsg | null;
+      distributionResetMsg?: (distribution.IResetMsg | null);
     }
 
     /** Represents an Union. */
     class Union implements IUnion {
+
       /**
        * Constructs a new Union.
        * @param [properties] Properties to set
@@ -525,67 +1867,52 @@ export namespace bnsd {
       constructor(properties?: bnsd.ExecuteBatchMsg.IUnion);
 
       /** Union cashSendMsg. */
-      public cashSendMsg?: cash.ISendMsg | null;
+      public cashSendMsg?: (cash.ISendMsg | null);
 
       /** Union escrowCreateMsg. */
-      public escrowCreateMsg?: escrow.ICreateMsg | null;
+      public escrowCreateMsg?: (escrow.ICreateMsg | null);
 
       /** Union escrowReleaseMsg. */
-      public escrowReleaseMsg?: escrow.IReleaseMsg | null;
+      public escrowReleaseMsg?: (escrow.IReleaseMsg | null);
 
       /** Union escrowReturnMsg. */
-      public escrowReturnMsg?: escrow.IReturnMsg | null;
+      public escrowReturnMsg?: (escrow.IReturnMsg | null);
 
       /** Union escrowUpdatePartiesMsg. */
-      public escrowUpdatePartiesMsg?: escrow.IUpdatePartiesMsg | null;
+      public escrowUpdatePartiesMsg?: (escrow.IUpdatePartiesMsg | null);
 
       /** Union multisigCreateMsg. */
-      public multisigCreateMsg?: multisig.ICreateMsg | null;
+      public multisigCreateMsg?: (multisig.ICreateMsg | null);
 
       /** Union multisigUpdateMsg. */
-      public multisigUpdateMsg?: multisig.IUpdateMsg | null;
+      public multisigUpdateMsg?: (multisig.IUpdateMsg | null);
 
       /** Union validatorsApplyDiffMsg. */
-      public validatorsApplyDiffMsg?: validators.IApplyDiffMsg | null;
+      public validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
 
       /** Union currencyCreateMsg. */
-      public currencyCreateMsg?: currency.ICreateMsg | null;
+      public currencyCreateMsg?: (currency.ICreateMsg | null);
 
       /** No recursive batches! */
-      public usernameRegisterTokenMsg?: username.IRegisterTokenMsg | null;
+      public usernameRegisterTokenMsg?: (username.IRegisterTokenMsg | null);
 
       /** Union usernameTransferTokenMsg. */
-      public usernameTransferTokenMsg?: username.ITransferTokenMsg | null;
+      public usernameTransferTokenMsg?: (username.ITransferTokenMsg | null);
 
       /** Union usernameChangeTokenTargetsMsg. */
-      public usernameChangeTokenTargetsMsg?: username.IChangeTokenTargetsMsg | null;
+      public usernameChangeTokenTargetsMsg?: (username.IChangeTokenTargetsMsg | null);
 
       /** Union distributionCreateMsg. */
-      public distributionCreateMsg?: distribution.ICreateMsg | null;
+      public distributionCreateMsg?: (distribution.ICreateMsg | null);
 
       /** Union distributionMsg. */
-      public distributionMsg?: distribution.IDistributeMsg | null;
+      public distributionMsg?: (distribution.IDistributeMsg | null);
 
       /** Union distributionResetMsg. */
-      public distributionResetMsg?: distribution.IResetMsg | null;
+      public distributionResetMsg?: (distribution.IResetMsg | null);
 
       /** Union sum. */
-      public sum?:
-        | "cashSendMsg"
-        | "escrowCreateMsg"
-        | "escrowReleaseMsg"
-        | "escrowReturnMsg"
-        | "escrowUpdatePartiesMsg"
-        | "multisigCreateMsg"
-        | "multisigUpdateMsg"
-        | "validatorsApplyDiffMsg"
-        | "currencyCreateMsg"
-        | "usernameRegisterTokenMsg"
-        | "usernameTransferTokenMsg"
-        | "usernameChangeTokenTargetsMsg"
-        | "distributionCreateMsg"
-        | "distributionMsg"
-        | "distributionResetMsg";
+      public sum?: ("cashSendMsg" | "escrowCreateMsg" | "escrowReleaseMsg" | "escrowReturnMsg" | "escrowUpdatePartiesMsg" | "multisigCreateMsg" | "multisigUpdateMsg" | "validatorsApplyDiffMsg" | "currencyCreateMsg" | "usernameRegisterTokenMsg" | "usernameTransferTokenMsg" | "usernameChangeTokenTargetsMsg" | "distributionCreateMsg" | "distributionMsg" | "distributionResetMsg");
 
       /**
        * Creates a new Union instance using the specified properties.
@@ -608,10 +1935,7 @@ export namespace bnsd {
        * @param [writer] Writer to encode to
        * @returns Writer
        */
-      public static encodeDelimited(
-        message: bnsd.ExecuteBatchMsg.IUnion,
-        writer?: $protobuf.Writer,
-      ): $protobuf.Writer;
+      public static encodeDelimited(message: bnsd.ExecuteBatchMsg.IUnion, writer?: $protobuf.Writer): $protobuf.Writer;
 
       /**
        * Decodes an Union message from the specified reader or buffer.
@@ -621,10 +1945,7 @@ export namespace bnsd {
        * @throws {Error} If the payload is not a reader or valid buffer
        * @throws {$protobuf.util.ProtocolError} If required fields are missing
        */
-      public static decode(
-        reader: $protobuf.Reader | Uint8Array,
-        length?: number,
-      ): bnsd.ExecuteBatchMsg.Union;
+      public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): bnsd.ExecuteBatchMsg.Union;
 
       /**
        * Decodes an Union message from the specified reader or buffer, length delimited.
@@ -633,14 +1954,14 @@ export namespace bnsd {
        * @throws {Error} If the payload is not a reader or valid buffer
        * @throws {$protobuf.util.ProtocolError} If required fields are missing
        */
-      public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): bnsd.ExecuteBatchMsg.Union;
+      public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): bnsd.ExecuteBatchMsg.Union;
 
       /**
        * Verifies an Union message.
        * @param message Plain object to verify
        * @returns `null` if valid, otherwise the reason why it is not
        */
-      public static verify(message: { [k: string]: any }): string | null;
+      public static verify(message: { [k: string]: any }): (string | null);
 
       /**
        * Creates an Union message from a plain object. Also converts values to their respective internal types.
@@ -655,10 +1976,7 @@ export namespace bnsd {
        * @param [options] Conversion options
        * @returns Plain object
        */
-      public static toObject(
-        message: bnsd.ExecuteBatchMsg.Union,
-        options?: $protobuf.IConversionOptions,
-      ): { [k: string]: any };
+      public static toObject(message: bnsd.ExecuteBatchMsg.Union, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
       /**
        * Converts this Union to JSON.
@@ -670,60 +1988,62 @@ export namespace bnsd {
 
   /** Properties of a ProposalOptions. */
   interface IProposalOptions {
+
     /** ProposalOptions cashSendMsg */
-    cashSendMsg?: cash.ISendMsg | null;
+    cashSendMsg?: (cash.ISendMsg | null);
 
     /** ProposalOptions escrowReleaseMsg */
-    escrowReleaseMsg?: escrow.IReleaseMsg | null;
+    escrowReleaseMsg?: (escrow.IReleaseMsg | null);
 
     /** ProposalOptions updateEscrowPartiesMsg */
-    updateEscrowPartiesMsg?: escrow.IUpdatePartiesMsg | null;
+    updateEscrowPartiesMsg?: (escrow.IUpdatePartiesMsg | null);
 
     /** ProposalOptions multisigUpdateMsg */
-    multisigUpdateMsg?: multisig.IUpdateMsg | null;
+    multisigUpdateMsg?: (multisig.IUpdateMsg | null);
 
     /** ProposalOptions validatorsApplyDiffMsg */
-    validatorsApplyDiffMsg?: validators.IApplyDiffMsg | null;
+    validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
 
     /** ProposalOptions currencyCreateMsg */
-    currencyCreateMsg?: currency.ICreateMsg | null;
+    currencyCreateMsg?: (currency.ICreateMsg | null);
 
     /** ProposalOptions executeProposalBatchMsg */
-    executeProposalBatchMsg?: bnsd.IExecuteProposalBatchMsg | null;
+    executeProposalBatchMsg?: (bnsd.IExecuteProposalBatchMsg | null);
 
     /** ProposalOptions usernameRegisterTokenMsg */
-    usernameRegisterTokenMsg?: username.IRegisterTokenMsg | null;
+    usernameRegisterTokenMsg?: (username.IRegisterTokenMsg | null);
 
     /** ProposalOptions usernameTransferTokenMsg */
-    usernameTransferTokenMsg?: username.ITransferTokenMsg | null;
+    usernameTransferTokenMsg?: (username.ITransferTokenMsg | null);
 
     /** ProposalOptions usernameChangeTokenTargetsMsg */
-    usernameChangeTokenTargetsMsg?: username.IChangeTokenTargetsMsg | null;
+    usernameChangeTokenTargetsMsg?: (username.IChangeTokenTargetsMsg | null);
 
     /** ProposalOptions distributionCreateMsg */
-    distributionCreateMsg?: distribution.ICreateMsg | null;
+    distributionCreateMsg?: (distribution.ICreateMsg | null);
 
     /** ProposalOptions distributionMsg */
-    distributionMsg?: distribution.IDistributeMsg | null;
+    distributionMsg?: (distribution.IDistributeMsg | null);
 
     /** ProposalOptions distributionResetMsg */
-    distributionResetMsg?: distribution.IResetMsg | null;
+    distributionResetMsg?: (distribution.IResetMsg | null);
 
     /** ProposalOptions migrationUpgradeSchemaMsg */
-    migrationUpgradeSchemaMsg?: migration.IUpgradeSchemaMsg | null;
+    migrationUpgradeSchemaMsg?: (migration.IUpgradeSchemaMsg | null);
 
     /** ProposalOptions govUpdateElectorateMsg */
-    govUpdateElectorateMsg?: gov.IUpdateElectorateMsg | null;
+    govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
 
     /** ProposalOptions govUpdateElectionRuleMsg */
-    govUpdateElectionRuleMsg?: gov.IUpdateElectionRuleMsg | null;
+    govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
 
     /** ProposalOptions govCreateTextResolutionMsg */
-    govCreateTextResolutionMsg?: gov.ICreateTextResolutionMsg | null;
+    govCreateTextResolutionMsg?: (gov.ICreateTextResolutionMsg | null);
   }
 
   /** Trimmed down somewhat arbitrary to what is believed to be reasonable */
   class ProposalOptions implements IProposalOptions {
+
     /**
      * Constructs a new ProposalOptions.
      * @param [properties] Properties to set
@@ -731,75 +2051,58 @@ export namespace bnsd {
     constructor(properties?: bnsd.IProposalOptions);
 
     /** ProposalOptions cashSendMsg. */
-    public cashSendMsg?: cash.ISendMsg | null;
+    public cashSendMsg?: (cash.ISendMsg | null);
 
     /** ProposalOptions escrowReleaseMsg. */
-    public escrowReleaseMsg?: escrow.IReleaseMsg | null;
+    public escrowReleaseMsg?: (escrow.IReleaseMsg | null);
 
     /** ProposalOptions updateEscrowPartiesMsg. */
-    public updateEscrowPartiesMsg?: escrow.IUpdatePartiesMsg | null;
+    public updateEscrowPartiesMsg?: (escrow.IUpdatePartiesMsg | null);
 
     /** ProposalOptions multisigUpdateMsg. */
-    public multisigUpdateMsg?: multisig.IUpdateMsg | null;
+    public multisigUpdateMsg?: (multisig.IUpdateMsg | null);
 
     /** ProposalOptions validatorsApplyDiffMsg. */
-    public validatorsApplyDiffMsg?: validators.IApplyDiffMsg | null;
+    public validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
 
     /** ProposalOptions currencyCreateMsg. */
-    public currencyCreateMsg?: currency.ICreateMsg | null;
+    public currencyCreateMsg?: (currency.ICreateMsg | null);
 
     /** ProposalOptions executeProposalBatchMsg. */
-    public executeProposalBatchMsg?: bnsd.IExecuteProposalBatchMsg | null;
+    public executeProposalBatchMsg?: (bnsd.IExecuteProposalBatchMsg | null);
 
     /** ProposalOptions usernameRegisterTokenMsg. */
-    public usernameRegisterTokenMsg?: username.IRegisterTokenMsg | null;
+    public usernameRegisterTokenMsg?: (username.IRegisterTokenMsg | null);
 
     /** ProposalOptions usernameTransferTokenMsg. */
-    public usernameTransferTokenMsg?: username.ITransferTokenMsg | null;
+    public usernameTransferTokenMsg?: (username.ITransferTokenMsg | null);
 
     /** ProposalOptions usernameChangeTokenTargetsMsg. */
-    public usernameChangeTokenTargetsMsg?: username.IChangeTokenTargetsMsg | null;
+    public usernameChangeTokenTargetsMsg?: (username.IChangeTokenTargetsMsg | null);
 
     /** ProposalOptions distributionCreateMsg. */
-    public distributionCreateMsg?: distribution.ICreateMsg | null;
+    public distributionCreateMsg?: (distribution.ICreateMsg | null);
 
     /** ProposalOptions distributionMsg. */
-    public distributionMsg?: distribution.IDistributeMsg | null;
+    public distributionMsg?: (distribution.IDistributeMsg | null);
 
     /** ProposalOptions distributionResetMsg. */
-    public distributionResetMsg?: distribution.IResetMsg | null;
+    public distributionResetMsg?: (distribution.IResetMsg | null);
 
     /** ProposalOptions migrationUpgradeSchemaMsg. */
-    public migrationUpgradeSchemaMsg?: migration.IUpgradeSchemaMsg | null;
+    public migrationUpgradeSchemaMsg?: (migration.IUpgradeSchemaMsg | null);
 
     /** ProposalOptions govUpdateElectorateMsg. */
-    public govUpdateElectorateMsg?: gov.IUpdateElectorateMsg | null;
+    public govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
 
     /** ProposalOptions govUpdateElectionRuleMsg. */
-    public govUpdateElectionRuleMsg?: gov.IUpdateElectionRuleMsg | null;
+    public govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
 
     /** ProposalOptions govCreateTextResolutionMsg. */
-    public govCreateTextResolutionMsg?: gov.ICreateTextResolutionMsg | null;
+    public govCreateTextResolutionMsg?: (gov.ICreateTextResolutionMsg | null);
 
     /** ProposalOptions option. */
-    public option?:
-      | "cashSendMsg"
-      | "escrowReleaseMsg"
-      | "updateEscrowPartiesMsg"
-      | "multisigUpdateMsg"
-      | "validatorsApplyDiffMsg"
-      | "currencyCreateMsg"
-      | "executeProposalBatchMsg"
-      | "usernameRegisterTokenMsg"
-      | "usernameTransferTokenMsg"
-      | "usernameChangeTokenTargetsMsg"
-      | "distributionCreateMsg"
-      | "distributionMsg"
-      | "distributionResetMsg"
-      | "migrationUpgradeSchemaMsg"
-      | "govUpdateElectorateMsg"
-      | "govUpdateElectionRuleMsg"
-      | "govCreateTextResolutionMsg";
+    public option?: ("cashSendMsg" | "escrowReleaseMsg" | "updateEscrowPartiesMsg" | "multisigUpdateMsg" | "validatorsApplyDiffMsg" | "currencyCreateMsg" | "executeProposalBatchMsg" | "usernameRegisterTokenMsg" | "usernameTransferTokenMsg" | "usernameChangeTokenTargetsMsg" | "distributionCreateMsg" | "distributionMsg" | "distributionResetMsg" | "migrationUpgradeSchemaMsg" | "govUpdateElectorateMsg" | "govUpdateElectionRuleMsg" | "govCreateTextResolutionMsg");
 
     /**
      * Creates a new ProposalOptions instance using the specified properties.
@@ -822,10 +2125,7 @@ export namespace bnsd {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: bnsd.IProposalOptions,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: bnsd.IProposalOptions, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a ProposalOptions message from the specified reader or buffer.
@@ -835,7 +2135,7 @@ export namespace bnsd {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): bnsd.ProposalOptions;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): bnsd.ProposalOptions;
 
     /**
      * Decodes a ProposalOptions message from the specified reader or buffer, length delimited.
@@ -844,14 +2144,14 @@ export namespace bnsd {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): bnsd.ProposalOptions;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): bnsd.ProposalOptions;
 
     /**
      * Verifies a ProposalOptions message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ProposalOptions message from a plain object. Also converts values to their respective internal types.
@@ -866,10 +2166,7 @@ export namespace bnsd {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: bnsd.ProposalOptions,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: bnsd.ProposalOptions, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ProposalOptions to JSON.
@@ -880,12 +2177,14 @@ export namespace bnsd {
 
   /** Properties of an ExecuteProposalBatchMsg. */
   interface IExecuteProposalBatchMsg {
+
     /** ExecuteProposalBatchMsg messages */
-    messages?: bnsd.ExecuteProposalBatchMsg.IUnion[] | null;
+    messages?: (bnsd.ExecuteProposalBatchMsg.IUnion[] | null);
   }
 
   /** Represents an ExecuteProposalBatchMsg. */
   class ExecuteProposalBatchMsg implements IExecuteProposalBatchMsg {
+
     /**
      * Constructs a new ExecuteProposalBatchMsg.
      * @param [properties] Properties to set
@@ -916,10 +2215,7 @@ export namespace bnsd {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: bnsd.IExecuteProposalBatchMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: bnsd.IExecuteProposalBatchMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes an ExecuteProposalBatchMsg message from the specified reader or buffer.
@@ -929,10 +2225,7 @@ export namespace bnsd {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(
-      reader: $protobuf.Reader | Uint8Array,
-      length?: number,
-    ): bnsd.ExecuteProposalBatchMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): bnsd.ExecuteProposalBatchMsg;
 
     /**
      * Decodes an ExecuteProposalBatchMsg message from the specified reader or buffer, length delimited.
@@ -941,14 +2234,14 @@ export namespace bnsd {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): bnsd.ExecuteProposalBatchMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): bnsd.ExecuteProposalBatchMsg;
 
     /**
      * Verifies an ExecuteProposalBatchMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an ExecuteProposalBatchMsg message from a plain object. Also converts values to their respective internal types.
@@ -963,10 +2256,7 @@ export namespace bnsd {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: bnsd.ExecuteProposalBatchMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: bnsd.ExecuteProposalBatchMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ExecuteProposalBatchMsg to JSON.
@@ -976,53 +2266,56 @@ export namespace bnsd {
   }
 
   namespace ExecuteProposalBatchMsg {
+
     /** Properties of an Union. */
     interface IUnion {
+
       /** Union sendMsg */
-      sendMsg?: cash.ISendMsg | null;
+      sendMsg?: (cash.ISendMsg | null);
 
       /** Union escrowReleaseMsg */
-      escrowReleaseMsg?: escrow.IReleaseMsg | null;
+      escrowReleaseMsg?: (escrow.IReleaseMsg | null);
 
       /** Union updateEscrowPartiesMsg */
-      updateEscrowPartiesMsg?: escrow.IUpdatePartiesMsg | null;
+      updateEscrowPartiesMsg?: (escrow.IUpdatePartiesMsg | null);
 
       /** Union multisigUpdateMsg */
-      multisigUpdateMsg?: multisig.IUpdateMsg | null;
+      multisigUpdateMsg?: (multisig.IUpdateMsg | null);
 
       /** Union validatorsApplyDiffMsg */
-      validatorsApplyDiffMsg?: validators.IApplyDiffMsg | null;
+      validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
 
       /** no recursive batches */
-      usernameRegisterTokenMsg?: username.IRegisterTokenMsg | null;
+      usernameRegisterTokenMsg?: (username.IRegisterTokenMsg | null);
 
       /** Union usernameTransferTokenMsg */
-      usernameTransferTokenMsg?: username.ITransferTokenMsg | null;
+      usernameTransferTokenMsg?: (username.ITransferTokenMsg | null);
 
       /** Union usernameChangeTokenTargetsMsg */
-      usernameChangeTokenTargetsMsg?: username.IChangeTokenTargetsMsg | null;
+      usernameChangeTokenTargetsMsg?: (username.IChangeTokenTargetsMsg | null);
 
       /** Union distributionCreateMsg */
-      distributionCreateMsg?: distribution.ICreateMsg | null;
+      distributionCreateMsg?: (distribution.ICreateMsg | null);
 
       /** Union distributionMsg */
-      distributionMsg?: distribution.IDistributeMsg | null;
+      distributionMsg?: (distribution.IDistributeMsg | null);
 
       /** Union distributionResetMsg */
-      distributionResetMsg?: distribution.IResetMsg | null;
+      distributionResetMsg?: (distribution.IResetMsg | null);
 
       /** don't allow UpgradeSchema as part of a batch, as effects are too confusing */
-      govUpdateElectorateMsg?: gov.IUpdateElectorateMsg | null;
+      govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
 
       /** Union govUpdateElectionRuleMsg */
-      govUpdateElectionRuleMsg?: gov.IUpdateElectionRuleMsg | null;
+      govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
 
       /** Union govCreateTextResolutionMsg */
-      govCreateTextResolutionMsg?: gov.ICreateTextResolutionMsg | null;
+      govCreateTextResolutionMsg?: (gov.ICreateTextResolutionMsg | null);
     }
 
     /** Represents an Union. */
     class Union implements IUnion {
+
       /**
        * Constructs a new Union.
        * @param [properties] Properties to set
@@ -1030,72 +2323,56 @@ export namespace bnsd {
       constructor(properties?: bnsd.ExecuteProposalBatchMsg.IUnion);
 
       /** Union sendMsg. */
-      public sendMsg?: cash.ISendMsg | null;
+      public sendMsg?: (cash.ISendMsg | null);
 
       /** Union escrowReleaseMsg. */
-      public escrowReleaseMsg?: escrow.IReleaseMsg | null;
+      public escrowReleaseMsg?: (escrow.IReleaseMsg | null);
 
       /** Union updateEscrowPartiesMsg. */
-      public updateEscrowPartiesMsg?: escrow.IUpdatePartiesMsg | null;
+      public updateEscrowPartiesMsg?: (escrow.IUpdatePartiesMsg | null);
 
       /** Union multisigUpdateMsg. */
-      public multisigUpdateMsg?: multisig.IUpdateMsg | null;
+      public multisigUpdateMsg?: (multisig.IUpdateMsg | null);
 
       /** Union validatorsApplyDiffMsg. */
-      public validatorsApplyDiffMsg?: validators.IApplyDiffMsg | null;
+      public validatorsApplyDiffMsg?: (validators.IApplyDiffMsg | null);
 
       /** no recursive batches */
-      public usernameRegisterTokenMsg?: username.IRegisterTokenMsg | null;
+      public usernameRegisterTokenMsg?: (username.IRegisterTokenMsg | null);
 
       /** Union usernameTransferTokenMsg. */
-      public usernameTransferTokenMsg?: username.ITransferTokenMsg | null;
+      public usernameTransferTokenMsg?: (username.ITransferTokenMsg | null);
 
       /** Union usernameChangeTokenTargetsMsg. */
-      public usernameChangeTokenTargetsMsg?: username.IChangeTokenTargetsMsg | null;
+      public usernameChangeTokenTargetsMsg?: (username.IChangeTokenTargetsMsg | null);
 
       /** Union distributionCreateMsg. */
-      public distributionCreateMsg?: distribution.ICreateMsg | null;
+      public distributionCreateMsg?: (distribution.ICreateMsg | null);
 
       /** Union distributionMsg. */
-      public distributionMsg?: distribution.IDistributeMsg | null;
+      public distributionMsg?: (distribution.IDistributeMsg | null);
 
       /** Union distributionResetMsg. */
-      public distributionResetMsg?: distribution.IResetMsg | null;
+      public distributionResetMsg?: (distribution.IResetMsg | null);
 
       /** don't allow UpgradeSchema as part of a batch, as effects are too confusing */
-      public govUpdateElectorateMsg?: gov.IUpdateElectorateMsg | null;
+      public govUpdateElectorateMsg?: (gov.IUpdateElectorateMsg | null);
 
       /** Union govUpdateElectionRuleMsg. */
-      public govUpdateElectionRuleMsg?: gov.IUpdateElectionRuleMsg | null;
+      public govUpdateElectionRuleMsg?: (gov.IUpdateElectionRuleMsg | null);
 
       /** Union govCreateTextResolutionMsg. */
-      public govCreateTextResolutionMsg?: gov.ICreateTextResolutionMsg | null;
+      public govCreateTextResolutionMsg?: (gov.ICreateTextResolutionMsg | null);
 
       /** Union sum. */
-      public sum?:
-        | "sendMsg"
-        | "escrowReleaseMsg"
-        | "updateEscrowPartiesMsg"
-        | "multisigUpdateMsg"
-        | "validatorsApplyDiffMsg"
-        | "usernameRegisterTokenMsg"
-        | "usernameTransferTokenMsg"
-        | "usernameChangeTokenTargetsMsg"
-        | "distributionCreateMsg"
-        | "distributionMsg"
-        | "distributionResetMsg"
-        | "govUpdateElectorateMsg"
-        | "govUpdateElectionRuleMsg"
-        | "govCreateTextResolutionMsg";
+      public sum?: ("sendMsg" | "escrowReleaseMsg" | "updateEscrowPartiesMsg" | "multisigUpdateMsg" | "validatorsApplyDiffMsg" | "usernameRegisterTokenMsg" | "usernameTransferTokenMsg" | "usernameChangeTokenTargetsMsg" | "distributionCreateMsg" | "distributionMsg" | "distributionResetMsg" | "govUpdateElectorateMsg" | "govUpdateElectionRuleMsg" | "govCreateTextResolutionMsg");
 
       /**
        * Creates a new Union instance using the specified properties.
        * @param [properties] Properties to set
        * @returns Union instance
        */
-      public static create(
-        properties?: bnsd.ExecuteProposalBatchMsg.IUnion,
-      ): bnsd.ExecuteProposalBatchMsg.Union;
+      public static create(properties?: bnsd.ExecuteProposalBatchMsg.IUnion): bnsd.ExecuteProposalBatchMsg.Union;
 
       /**
        * Encodes the specified Union message. Does not implicitly {@link bnsd.ExecuteProposalBatchMsg.Union.verify|verify} messages.
@@ -1103,10 +2380,7 @@ export namespace bnsd {
        * @param [writer] Writer to encode to
        * @returns Writer
        */
-      public static encode(
-        message: bnsd.ExecuteProposalBatchMsg.IUnion,
-        writer?: $protobuf.Writer,
-      ): $protobuf.Writer;
+      public static encode(message: bnsd.ExecuteProposalBatchMsg.IUnion, writer?: $protobuf.Writer): $protobuf.Writer;
 
       /**
        * Encodes the specified Union message, length delimited. Does not implicitly {@link bnsd.ExecuteProposalBatchMsg.Union.verify|verify} messages.
@@ -1114,10 +2388,7 @@ export namespace bnsd {
        * @param [writer] Writer to encode to
        * @returns Writer
        */
-      public static encodeDelimited(
-        message: bnsd.ExecuteProposalBatchMsg.IUnion,
-        writer?: $protobuf.Writer,
-      ): $protobuf.Writer;
+      public static encodeDelimited(message: bnsd.ExecuteProposalBatchMsg.IUnion, writer?: $protobuf.Writer): $protobuf.Writer;
 
       /**
        * Decodes an Union message from the specified reader or buffer.
@@ -1127,10 +2398,7 @@ export namespace bnsd {
        * @throws {Error} If the payload is not a reader or valid buffer
        * @throws {$protobuf.util.ProtocolError} If required fields are missing
        */
-      public static decode(
-        reader: $protobuf.Reader | Uint8Array,
-        length?: number,
-      ): bnsd.ExecuteProposalBatchMsg.Union;
+      public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): bnsd.ExecuteProposalBatchMsg.Union;
 
       /**
        * Decodes an Union message from the specified reader or buffer, length delimited.
@@ -1139,16 +2407,14 @@ export namespace bnsd {
        * @throws {Error} If the payload is not a reader or valid buffer
        * @throws {$protobuf.util.ProtocolError} If required fields are missing
        */
-      public static decodeDelimited(
-        reader: $protobuf.Reader | Uint8Array,
-      ): bnsd.ExecuteProposalBatchMsg.Union;
+      public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): bnsd.ExecuteProposalBatchMsg.Union;
 
       /**
        * Verifies an Union message.
        * @param message Plain object to verify
        * @returns `null` if valid, otherwise the reason why it is not
        */
-      public static verify(message: { [k: string]: any }): string | null;
+      public static verify(message: { [k: string]: any }): (string | null);
 
       /**
        * Creates an Union message from a plain object. Also converts values to their respective internal types.
@@ -1163,10 +2429,7 @@ export namespace bnsd {
        * @param [options] Conversion options
        * @returns Plain object
        */
-      public static toObject(
-        message: bnsd.ExecuteProposalBatchMsg.Union,
-        options?: $protobuf.IConversionOptions,
-      ): { [k: string]: any };
+      public static toObject(message: bnsd.ExecuteProposalBatchMsg.Union, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
       /**
        * Converts this Union to JSON.
@@ -1178,27 +2441,29 @@ export namespace bnsd {
 
   /** Properties of a CronTask. */
   interface ICronTask {
+
     /** conditions required for execution, that will be inserted into the context. */
-    authenticators?: Uint8Array[] | null;
+    authenticators?: (Uint8Array[] | null);
 
     /** CronTask escrowReleaseMsg */
-    escrowReleaseMsg?: escrow.IReleaseMsg | null;
+    escrowReleaseMsg?: (escrow.IReleaseMsg | null);
 
     /** CronTask escrowReturnMsg */
-    escrowReturnMsg?: escrow.IReturnMsg | null;
+    escrowReturnMsg?: (escrow.IReturnMsg | null);
 
     /** CronTask distributionDistributeMsg */
-    distributionDistributeMsg?: distribution.IDistributeMsg | null;
+    distributionDistributeMsg?: (distribution.IDistributeMsg | null);
 
     /** CronTask aswapReleaseMsg */
-    aswapReleaseMsg?: aswap.IReleaseMsg | null;
+    aswapReleaseMsg?: (aswap.IReleaseMsg | null);
 
     /** CronTask govTallyMsg */
-    govTallyMsg?: gov.ITallyMsg | null;
+    govTallyMsg?: (gov.ITallyMsg | null);
   }
 
   /** old fields got deprecated. This is done to maintain binary compatibility. */
   class CronTask implements ICronTask {
+
     /**
      * Constructs a new CronTask.
      * @param [properties] Properties to set
@@ -1209,27 +2474,22 @@ export namespace bnsd {
     public authenticators: Uint8Array[];
 
     /** CronTask escrowReleaseMsg. */
-    public escrowReleaseMsg?: escrow.IReleaseMsg | null;
+    public escrowReleaseMsg?: (escrow.IReleaseMsg | null);
 
     /** CronTask escrowReturnMsg. */
-    public escrowReturnMsg?: escrow.IReturnMsg | null;
+    public escrowReturnMsg?: (escrow.IReturnMsg | null);
 
     /** CronTask distributionDistributeMsg. */
-    public distributionDistributeMsg?: distribution.IDistributeMsg | null;
+    public distributionDistributeMsg?: (distribution.IDistributeMsg | null);
 
     /** CronTask aswapReleaseMsg. */
-    public aswapReleaseMsg?: aswap.IReleaseMsg | null;
+    public aswapReleaseMsg?: (aswap.IReleaseMsg | null);
 
     /** CronTask govTallyMsg. */
-    public govTallyMsg?: gov.ITallyMsg | null;
+    public govTallyMsg?: (gov.ITallyMsg | null);
 
     /** Use the same indexes for the messages as the Tx message. */
-    public sum?:
-      | "escrowReleaseMsg"
-      | "escrowReturnMsg"
-      | "distributionDistributeMsg"
-      | "aswapReleaseMsg"
-      | "govTallyMsg";
+    public sum?: ("escrowReleaseMsg" | "escrowReturnMsg" | "distributionDistributeMsg" | "aswapReleaseMsg" | "govTallyMsg");
 
     /**
      * Creates a new CronTask instance using the specified properties.
@@ -1262,7 +2522,7 @@ export namespace bnsd {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): bnsd.CronTask;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): bnsd.CronTask;
 
     /**
      * Decodes a CronTask message from the specified reader or buffer, length delimited.
@@ -1271,14 +2531,14 @@ export namespace bnsd {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): bnsd.CronTask;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): bnsd.CronTask;
 
     /**
      * Verifies a CronTask message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a CronTask message from a plain object. Also converts values to their respective internal types.
@@ -1293,10 +2553,7 @@ export namespace bnsd {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: bnsd.CronTask,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: bnsd.CronTask, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this CronTask to JSON.
@@ -1308,20 +2565,23 @@ export namespace bnsd {
 
 /** Namespace username. */
 export namespace username {
+
   /** Properties of a Token. */
   interface IToken {
+
     /** Token metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** least one blockchain address elemenet. */
-    targets?: username.IBlockchainAddress[] | null;
+    targets?: (username.IBlockchainAddress[] | null);
 
     /** modify a username token. */
-    owner?: Uint8Array | null;
+    owner?: (Uint8Array | null);
   }
 
   /** ourselves to certain patterns. */
   class Token implements IToken {
+
     /**
      * Constructs a new Token.
      * @param [properties] Properties to set
@@ -1329,7 +2589,7 @@ export namespace username {
     constructor(properties?: username.IToken);
 
     /** Token metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** least one blockchain address elemenet. */
     public targets: username.IBlockchainAddress[];
@@ -1368,7 +2628,7 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): username.Token;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): username.Token;
 
     /**
      * Decodes a Token message from the specified reader or buffer, length delimited.
@@ -1377,14 +2637,14 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): username.Token;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): username.Token;
 
     /**
      * Verifies a Token message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Token message from a plain object. Also converts values to their respective internal types.
@@ -1399,10 +2659,7 @@ export namespace username {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: username.Token,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: username.Token, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Token to JSON.
@@ -1413,15 +2670,17 @@ export namespace username {
 
   /** Properties of a BlockchainAddress. */
   interface IBlockchainAddress {
+
     /** An arbitrary blockchain ID. */
-    blockchainId?: string | null;
+    blockchainId?: (string | null);
 
     /** to use. */
-    address?: string | null;
+    address?: (string | null);
   }
 
   /** to an address on any blockchain network. */
   class BlockchainAddress implements IBlockchainAddress {
+
     /**
      * Constructs a new BlockchainAddress.
      * @param [properties] Properties to set
@@ -1455,10 +2714,7 @@ export namespace username {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: username.IBlockchainAddress,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: username.IBlockchainAddress, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a BlockchainAddress message from the specified reader or buffer.
@@ -1468,7 +2724,7 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): username.BlockchainAddress;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): username.BlockchainAddress;
 
     /**
      * Decodes a BlockchainAddress message from the specified reader or buffer, length delimited.
@@ -1477,14 +2733,14 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): username.BlockchainAddress;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): username.BlockchainAddress;
 
     /**
      * Verifies a BlockchainAddress message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a BlockchainAddress message from a plain object. Also converts values to their respective internal types.
@@ -1499,10 +2755,7 @@ export namespace username {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: username.BlockchainAddress,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: username.BlockchainAddress, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this BlockchainAddress to JSON.
@@ -1513,18 +2766,20 @@ export namespace username {
 
   /** Properties of a RegisterTokenMsg. */
   interface IRegisterTokenMsg {
+
     /** RegisterTokenMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Username is the unique name of the token, for example alice*iov */
-    username?: string | null;
+    username?: (string | null);
 
     /** Targets is a blockchain address list that this token should point to. */
-    targets?: username.IBlockchainAddress[] | null;
+    targets?: (username.IBlockchainAddress[] | null);
   }
 
   /** to the main signer. */
   class RegisterTokenMsg implements IRegisterTokenMsg {
+
     /**
      * Constructs a new RegisterTokenMsg.
      * @param [properties] Properties to set
@@ -1532,7 +2787,7 @@ export namespace username {
     constructor(properties?: username.IRegisterTokenMsg);
 
     /** RegisterTokenMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Username is the unique name of the token, for example alice*iov */
     public username: string;
@@ -1561,10 +2816,7 @@ export namespace username {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: username.IRegisterTokenMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: username.IRegisterTokenMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a RegisterTokenMsg message from the specified reader or buffer.
@@ -1574,7 +2826,7 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): username.RegisterTokenMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): username.RegisterTokenMsg;
 
     /**
      * Decodes a RegisterTokenMsg message from the specified reader or buffer, length delimited.
@@ -1583,14 +2835,14 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): username.RegisterTokenMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): username.RegisterTokenMsg;
 
     /**
      * Verifies a RegisterTokenMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a RegisterTokenMsg message from a plain object. Also converts values to their respective internal types.
@@ -1605,10 +2857,7 @@ export namespace username {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: username.RegisterTokenMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: username.RegisterTokenMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this RegisterTokenMsg to JSON.
@@ -1619,18 +2868,20 @@ export namespace username {
 
   /** Properties of a TransferTokenMsg. */
   interface ITransferTokenMsg {
+
     /** TransferTokenMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Username is the unique name of the token, for example alice*iov */
-    username?: string | null;
+    username?: (string | null);
 
     /** Owner is a weave address that will owns this token after the change. */
-    newOwner?: Uint8Array | null;
+    newOwner?: (Uint8Array | null);
   }
 
   /** owner is not required in order to succeed. */
   class TransferTokenMsg implements ITransferTokenMsg {
+
     /**
      * Constructs a new TransferTokenMsg.
      * @param [properties] Properties to set
@@ -1638,7 +2889,7 @@ export namespace username {
     constructor(properties?: username.ITransferTokenMsg);
 
     /** TransferTokenMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Username is the unique name of the token, for example alice*iov */
     public username: string;
@@ -1667,10 +2918,7 @@ export namespace username {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: username.ITransferTokenMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: username.ITransferTokenMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a TransferTokenMsg message from the specified reader or buffer.
@@ -1680,7 +2928,7 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): username.TransferTokenMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): username.TransferTokenMsg;
 
     /**
      * Decodes a TransferTokenMsg message from the specified reader or buffer, length delimited.
@@ -1689,14 +2937,14 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): username.TransferTokenMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): username.TransferTokenMsg;
 
     /**
      * Verifies a TransferTokenMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a TransferTokenMsg message from a plain object. Also converts values to their respective internal types.
@@ -1711,10 +2959,7 @@ export namespace username {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: username.TransferTokenMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: username.TransferTokenMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this TransferTokenMsg to JSON.
@@ -1725,18 +2970,20 @@ export namespace username {
 
   /** Properties of a ChangeTokenTargetsMsg. */
   interface IChangeTokenTargetsMsg {
+
     /** ChangeTokenTargetsMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Username is the unique name of the token, for example alice*iov */
-    username?: string | null;
+    username?: (string | null);
 
     /** to after the change. Old list is overwritten with what is provided. */
-    newTargets?: username.IBlockchainAddress[] | null;
+    newTargets?: (username.IBlockchainAddress[] | null);
   }
 
   /** points to. Only the owner of a token can request this operation. */
   class ChangeTokenTargetsMsg implements IChangeTokenTargetsMsg {
+
     /**
      * Constructs a new ChangeTokenTargetsMsg.
      * @param [properties] Properties to set
@@ -1744,7 +2991,7 @@ export namespace username {
     constructor(properties?: username.IChangeTokenTargetsMsg);
 
     /** ChangeTokenTargetsMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Username is the unique name of the token, for example alice*iov */
     public username: string;
@@ -1765,10 +3012,7 @@ export namespace username {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encode(
-      message: username.IChangeTokenTargetsMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encode(message: username.IChangeTokenTargetsMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Encodes the specified ChangeTokenTargetsMsg message, length delimited. Does not implicitly {@link username.ChangeTokenTargetsMsg.verify|verify} messages.
@@ -1776,10 +3020,7 @@ export namespace username {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: username.IChangeTokenTargetsMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: username.IChangeTokenTargetsMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a ChangeTokenTargetsMsg message from the specified reader or buffer.
@@ -1789,10 +3030,7 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(
-      reader: $protobuf.Reader | Uint8Array,
-      length?: number,
-    ): username.ChangeTokenTargetsMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): username.ChangeTokenTargetsMsg;
 
     /**
      * Decodes a ChangeTokenTargetsMsg message from the specified reader or buffer, length delimited.
@@ -1801,14 +3039,14 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): username.ChangeTokenTargetsMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): username.ChangeTokenTargetsMsg;
 
     /**
      * Verifies a ChangeTokenTargetsMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ChangeTokenTargetsMsg message from a plain object. Also converts values to their respective internal types.
@@ -1823,10 +3061,7 @@ export namespace username {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: username.ChangeTokenTargetsMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: username.ChangeTokenTargetsMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ChangeTokenTargetsMsg to JSON.
@@ -1837,21 +3072,23 @@ export namespace username {
 
   /** Properties of a Configuration. */
   interface IConfiguration {
+
     /** Configuration metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** needed to make use of gconf.NewUpdateConfigurationHandler */
-    owner?: Uint8Array | null;
+    owner?: (Uint8Array | null);
 
-    /** part name must match (a username is <name>*<label>) */
-    validUsernameName?: string | null;
+    /** username part name must match (a username is <name>*<label>) */
+    validUsernameName?: (string | null);
 
     /** namespace label must match (a username is <name>*<label>) */
-    validUsernameLabel?: string | null;
+    validUsernameLabel?: (string | null);
   }
 
   /** the functionality provided by gconf package. */
   class Configuration implements IConfiguration {
+
     /**
      * Constructs a new Configuration.
      * @param [properties] Properties to set
@@ -1859,12 +3096,12 @@ export namespace username {
     constructor(properties?: username.IConfiguration);
 
     /** Configuration metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** needed to make use of gconf.NewUpdateConfigurationHandler */
     public owner: Uint8Array;
 
-    /** part name must match (a username is <name>*<label>) */
+    /** username part name must match (a username is <name>*<label>) */
     public validUsernameName: string;
 
     /** namespace label must match (a username is <name>*<label>) */
@@ -1891,10 +3128,7 @@ export namespace username {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: username.IConfiguration,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: username.IConfiguration, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a Configuration message from the specified reader or buffer.
@@ -1904,7 +3138,7 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): username.Configuration;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): username.Configuration;
 
     /**
      * Decodes a Configuration message from the specified reader or buffer, length delimited.
@@ -1913,14 +3147,14 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): username.Configuration;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): username.Configuration;
 
     /**
      * Verifies a Configuration message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Configuration message from a plain object. Also converts values to their respective internal types.
@@ -1935,10 +3169,7 @@ export namespace username {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: username.Configuration,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: username.Configuration, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Configuration to JSON.
@@ -1949,15 +3180,17 @@ export namespace username {
 
   /** Properties of an UpdateConfigurationMsg. */
   interface IUpdateConfigurationMsg {
+
     /** UpdateConfigurationMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** UpdateConfigurationMsg patch */
-    patch?: username.IConfiguration | null;
+    patch?: (username.IConfiguration | null);
   }
 
   /** configuration. */
   class UpdateConfigurationMsg implements IUpdateConfigurationMsg {
+
     /**
      * Constructs a new UpdateConfigurationMsg.
      * @param [properties] Properties to set
@@ -1965,10 +3198,10 @@ export namespace username {
     constructor(properties?: username.IUpdateConfigurationMsg);
 
     /** UpdateConfigurationMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** UpdateConfigurationMsg patch. */
-    public patch?: username.IConfiguration | null;
+    public patch?: (username.IConfiguration | null);
 
     /**
      * Creates a new UpdateConfigurationMsg instance using the specified properties.
@@ -1983,10 +3216,7 @@ export namespace username {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encode(
-      message: username.IUpdateConfigurationMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encode(message: username.IUpdateConfigurationMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Encodes the specified UpdateConfigurationMsg message, length delimited. Does not implicitly {@link username.UpdateConfigurationMsg.verify|verify} messages.
@@ -1994,10 +3224,7 @@ export namespace username {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: username.IUpdateConfigurationMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: username.IUpdateConfigurationMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes an UpdateConfigurationMsg message from the specified reader or buffer.
@@ -2007,10 +3234,7 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(
-      reader: $protobuf.Reader | Uint8Array,
-      length?: number,
-    ): username.UpdateConfigurationMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): username.UpdateConfigurationMsg;
 
     /**
      * Decodes an UpdateConfigurationMsg message from the specified reader or buffer, length delimited.
@@ -2019,14 +3243,14 @@ export namespace username {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): username.UpdateConfigurationMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): username.UpdateConfigurationMsg;
 
     /**
      * Verifies an UpdateConfigurationMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an UpdateConfigurationMsg message from a plain object. Also converts values to their respective internal types.
@@ -2041,10 +3265,7 @@ export namespace username {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: username.UpdateConfigurationMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: username.UpdateConfigurationMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this UpdateConfigurationMsg to JSON.
@@ -2056,14 +3277,17 @@ export namespace username {
 
 /** Namespace weave. */
 export namespace weave {
+
   /** Properties of a Metadata. */
   interface IMetadata {
+
     /** Metadata schema */
-    schema?: number | null;
+    schema?: (number | null);
   }
 
   /** weave.Metadata metadata = 1; */
   class Metadata implements IMetadata {
+
     /**
      * Constructs a new Metadata.
      * @param [properties] Properties to set
@@ -2104,7 +3328,7 @@ export namespace weave {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): weave.Metadata;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): weave.Metadata;
 
     /**
      * Decodes a Metadata message from the specified reader or buffer, length delimited.
@@ -2113,14 +3337,14 @@ export namespace weave {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): weave.Metadata;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): weave.Metadata;
 
     /**
      * Verifies a Metadata message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Metadata message from a plain object. Also converts values to their respective internal types.
@@ -2135,10 +3359,7 @@ export namespace weave {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: weave.Metadata,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: weave.Metadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Metadata to JSON.
@@ -2149,12 +3370,14 @@ export namespace weave {
 
   /** Properties of a ValidatorUpdates. */
   interface IValidatorUpdates {
+
     /** ValidatorUpdates validatorUpdates */
-    validatorUpdates?: weave.IValidatorUpdate[] | null;
+    validatorUpdates?: (weave.IValidatorUpdate[] | null);
   }
 
   /** ValidatorUpdates represents latest validator state, currently used to validate SetValidatorMsg transactions. */
   class ValidatorUpdates implements IValidatorUpdates {
+
     /**
      * Constructs a new ValidatorUpdates.
      * @param [properties] Properties to set
@@ -2185,10 +3408,7 @@ export namespace weave {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: weave.IValidatorUpdates,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: weave.IValidatorUpdates, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a ValidatorUpdates message from the specified reader or buffer.
@@ -2198,7 +3418,7 @@ export namespace weave {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): weave.ValidatorUpdates;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): weave.ValidatorUpdates;
 
     /**
      * Decodes a ValidatorUpdates message from the specified reader or buffer, length delimited.
@@ -2207,14 +3427,14 @@ export namespace weave {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): weave.ValidatorUpdates;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): weave.ValidatorUpdates;
 
     /**
      * Verifies a ValidatorUpdates message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ValidatorUpdates message from a plain object. Also converts values to their respective internal types.
@@ -2229,10 +3449,7 @@ export namespace weave {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: weave.ValidatorUpdates,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: weave.ValidatorUpdates, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ValidatorUpdates to JSON.
@@ -2243,15 +3460,17 @@ export namespace weave {
 
   /** Properties of a ValidatorUpdate. */
   interface IValidatorUpdate {
+
     /** ValidatorUpdate pubKey */
-    pubKey?: weave.IPubKey | null;
+    pubKey?: (weave.IPubKey | null);
 
     /** ValidatorUpdate power */
-    power?: number | Long | null;
+    power?: (number | Long | null);
   }
 
   /** ValidatorUpdate represents an update to validator set. */
   class ValidatorUpdate implements IValidatorUpdate {
+
     /**
      * Constructs a new ValidatorUpdate.
      * @param [properties] Properties to set
@@ -2259,10 +3478,10 @@ export namespace weave {
     constructor(properties?: weave.IValidatorUpdate);
 
     /** ValidatorUpdate pubKey. */
-    public pubKey?: weave.IPubKey | null;
+    public pubKey?: (weave.IPubKey | null);
 
     /** ValidatorUpdate power. */
-    public power: number | Long;
+    public power: (number | Long);
 
     /**
      * Creates a new ValidatorUpdate instance using the specified properties.
@@ -2285,10 +3504,7 @@ export namespace weave {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: weave.IValidatorUpdate,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: weave.IValidatorUpdate, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a ValidatorUpdate message from the specified reader or buffer.
@@ -2298,7 +3514,7 @@ export namespace weave {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): weave.ValidatorUpdate;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): weave.ValidatorUpdate;
 
     /**
      * Decodes a ValidatorUpdate message from the specified reader or buffer, length delimited.
@@ -2307,14 +3523,14 @@ export namespace weave {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): weave.ValidatorUpdate;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): weave.ValidatorUpdate;
 
     /**
      * Verifies a ValidatorUpdate message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ValidatorUpdate message from a plain object. Also converts values to their respective internal types.
@@ -2329,10 +3545,7 @@ export namespace weave {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: weave.ValidatorUpdate,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: weave.ValidatorUpdate, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ValidatorUpdate to JSON.
@@ -2343,15 +3556,17 @@ export namespace weave {
 
   /** Properties of a PubKey. */
   interface IPubKey {
+
     /** PubKey type */
-    type?: string | null;
+    type?: (string | null);
 
     /** PubKey data */
-    data?: Uint8Array | null;
+    data?: (Uint8Array | null);
   }
 
   /** PubKey represents a validator public key. */
   class PubKey implements IPubKey {
+
     /**
      * Constructs a new PubKey.
      * @param [properties] Properties to set
@@ -2395,7 +3610,7 @@ export namespace weave {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): weave.PubKey;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): weave.PubKey;
 
     /**
      * Decodes a PubKey message from the specified reader or buffer, length delimited.
@@ -2404,14 +3619,14 @@ export namespace weave {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): weave.PubKey;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): weave.PubKey;
 
     /**
      * Verifies a PubKey message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a PubKey message from a plain object. Also converts values to their respective internal types.
@@ -2426,10 +3641,7 @@ export namespace weave {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: weave.PubKey,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: weave.PubKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this PubKey to JSON.
@@ -2441,20 +3653,23 @@ export namespace weave {
 
 /** Namespace coin. */
 export namespace coin {
+
   /** Properties of a Coin. */
   interface ICoin {
+
     /** Whole coins, -10^15 < integer < 10^15 */
-    whole?: number | Long | null;
+    whole?: (number | Long | null);
 
     /** If fractional != 0, must have same sign as integer */
-    fractional?: number | Long | null;
+    fractional?: (number | Long | null);
 
     /** all Coins of the same currency can be combined */
-    ticker?: string | null;
+    ticker?: (string | null);
   }
 
   /** own type, possibly borrowing from this code. */
   class Coin implements ICoin {
+
     /**
      * Constructs a new Coin.
      * @param [properties] Properties to set
@@ -2462,10 +3677,10 @@ export namespace coin {
     constructor(properties?: coin.ICoin);
 
     /** Whole coins, -10^15 < integer < 10^15 */
-    public whole: number | Long;
+    public whole: (number | Long);
 
     /** If fractional != 0, must have same sign as integer */
-    public fractional: number | Long;
+    public fractional: (number | Long);
 
     /** all Coins of the same currency can be combined */
     public ticker: string;
@@ -2501,7 +3716,7 @@ export namespace coin {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): coin.Coin;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): coin.Coin;
 
     /**
      * Decodes a Coin message from the specified reader or buffer, length delimited.
@@ -2510,14 +3725,14 @@ export namespace coin {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): coin.Coin;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): coin.Coin;
 
     /**
      * Verifies a Coin message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Coin message from a plain object. Also converts values to their respective internal types.
@@ -2544,14 +3759,17 @@ export namespace coin {
 
 /** Namespace crypto. */
 export namespace crypto {
+
   /** Properties of a PublicKey. */
   interface IPublicKey {
+
     /** PublicKey ed25519 */
-    ed25519?: Uint8Array | null;
+    ed25519?: (Uint8Array | null);
   }
 
   /** Represents a PublicKey. */
   class PublicKey implements IPublicKey {
+
     /**
      * Constructs a new PublicKey.
      * @param [properties] Properties to set
@@ -2595,7 +3813,7 @@ export namespace crypto {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): crypto.PublicKey;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): crypto.PublicKey;
 
     /**
      * Decodes a PublicKey message from the specified reader or buffer, length delimited.
@@ -2604,14 +3822,14 @@ export namespace crypto {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): crypto.PublicKey;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): crypto.PublicKey;
 
     /**
      * Verifies a PublicKey message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a PublicKey message from a plain object. Also converts values to their respective internal types.
@@ -2626,10 +3844,7 @@ export namespace crypto {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: crypto.PublicKey,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: crypto.PublicKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this PublicKey to JSON.
@@ -2640,12 +3855,14 @@ export namespace crypto {
 
   /** Properties of a PrivateKey. */
   interface IPrivateKey {
+
     /** PrivateKey ed25519 */
-    ed25519?: Uint8Array | null;
+    ed25519?: (Uint8Array | null);
   }
 
   /** Represents a PrivateKey. */
   class PrivateKey implements IPrivateKey {
+
     /**
      * Constructs a new PrivateKey.
      * @param [properties] Properties to set
@@ -2689,7 +3906,7 @@ export namespace crypto {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): crypto.PrivateKey;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): crypto.PrivateKey;
 
     /**
      * Decodes a PrivateKey message from the specified reader or buffer, length delimited.
@@ -2698,14 +3915,14 @@ export namespace crypto {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): crypto.PrivateKey;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): crypto.PrivateKey;
 
     /**
      * Verifies a PrivateKey message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a PrivateKey message from a plain object. Also converts values to their respective internal types.
@@ -2720,10 +3937,7 @@ export namespace crypto {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: crypto.PrivateKey,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: crypto.PrivateKey, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this PrivateKey to JSON.
@@ -2734,12 +3948,14 @@ export namespace crypto {
 
   /** Properties of a Signature. */
   interface ISignature {
+
     /** Signature ed25519 */
-    ed25519?: Uint8Array | null;
+    ed25519?: (Uint8Array | null);
   }
 
   /** Represents a Signature. */
   class Signature implements ISignature {
+
     /**
      * Constructs a new Signature.
      * @param [properties] Properties to set
@@ -2783,7 +3999,7 @@ export namespace crypto {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): crypto.Signature;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): crypto.Signature;
 
     /**
      * Decodes a Signature message from the specified reader or buffer, length delimited.
@@ -2792,14 +4008,14 @@ export namespace crypto {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): crypto.Signature;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): crypto.Signature;
 
     /**
      * Verifies a Signature message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Signature message from a plain object. Also converts values to their respective internal types.
@@ -2814,10 +4030,7 @@ export namespace crypto {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: crypto.Signature,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: crypto.Signature, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Signature to JSON.
@@ -2829,14 +4042,17 @@ export namespace crypto {
 
 /** Namespace migration. */
 export namespace migration {
+
   /** Properties of a Configuration. */
   interface IConfiguration {
+
     /** multisig. */
-    admin?: Uint8Array | null;
+    admin?: (Uint8Array | null);
   }
 
   /** Represents a Configuration. */
   class Configuration implements IConfiguration {
+
     /**
      * Constructs a new Configuration.
      * @param [properties] Properties to set
@@ -2867,10 +4083,7 @@ export namespace migration {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: migration.IConfiguration,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: migration.IConfiguration, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a Configuration message from the specified reader or buffer.
@@ -2880,7 +4093,7 @@ export namespace migration {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): migration.Configuration;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): migration.Configuration;
 
     /**
      * Decodes a Configuration message from the specified reader or buffer, length delimited.
@@ -2889,14 +4102,14 @@ export namespace migration {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): migration.Configuration;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): migration.Configuration;
 
     /**
      * Verifies a Configuration message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Configuration message from a plain object. Also converts values to their respective internal types.
@@ -2911,10 +4124,7 @@ export namespace migration {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: migration.Configuration,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: migration.Configuration, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Configuration to JSON.
@@ -2925,18 +4135,20 @@ export namespace migration {
 
   /** Properties of a Schema. */
   interface ISchema {
+
     /** Schema metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** For example, for extension `x/myext` package value is `myext` */
-    pkg?: string | null;
+    pkg?: (string | null);
 
     /** Version holds the highest supported schema version. */
-    version?: number | null;
+    version?: (number | null);
   }
 
   /** Schema declares the maxiumum supported schema version for a package. */
   class Schema implements ISchema {
+
     /**
      * Constructs a new Schema.
      * @param [properties] Properties to set
@@ -2944,7 +4156,7 @@ export namespace migration {
     constructor(properties?: migration.ISchema);
 
     /** Schema metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** For example, for extension `x/myext` package value is `myext` */
     public pkg: string;
@@ -2983,7 +4195,7 @@ export namespace migration {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): migration.Schema;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): migration.Schema;
 
     /**
      * Decodes a Schema message from the specified reader or buffer, length delimited.
@@ -2992,14 +4204,14 @@ export namespace migration {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): migration.Schema;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): migration.Schema;
 
     /**
      * Verifies a Schema message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Schema message from a plain object. Also converts values to their respective internal types.
@@ -3014,10 +4226,7 @@ export namespace migration {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: migration.Schema,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: migration.Schema, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Schema to JSON.
@@ -3028,15 +4237,17 @@ export namespace migration {
 
   /** Properties of an UpgradeSchemaMsg. */
   interface IUpgradeSchemaMsg {
+
     /** UpgradeSchemaMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Name of the package that schema version upgrade is made for. */
-    pkg?: string | null;
+    pkg?: (string | null);
   }
 
   /** by one version. */
   class UpgradeSchemaMsg implements IUpgradeSchemaMsg {
+
     /**
      * Constructs a new UpgradeSchemaMsg.
      * @param [properties] Properties to set
@@ -3044,7 +4255,7 @@ export namespace migration {
     constructor(properties?: migration.IUpgradeSchemaMsg);
 
     /** UpgradeSchemaMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Name of the package that schema version upgrade is made for. */
     public pkg: string;
@@ -3070,10 +4281,7 @@ export namespace migration {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: migration.IUpgradeSchemaMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: migration.IUpgradeSchemaMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes an UpgradeSchemaMsg message from the specified reader or buffer.
@@ -3083,7 +4291,7 @@ export namespace migration {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): migration.UpgradeSchemaMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): migration.UpgradeSchemaMsg;
 
     /**
      * Decodes an UpgradeSchemaMsg message from the specified reader or buffer, length delimited.
@@ -3092,14 +4300,14 @@ export namespace migration {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): migration.UpgradeSchemaMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): migration.UpgradeSchemaMsg;
 
     /**
      * Verifies an UpgradeSchemaMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an UpgradeSchemaMsg message from a plain object. Also converts values to their respective internal types.
@@ -3114,10 +4322,7 @@ export namespace migration {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: migration.UpgradeSchemaMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: migration.UpgradeSchemaMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this UpgradeSchemaMsg to JSON.
@@ -3129,14 +4334,17 @@ export namespace migration {
 
 /** Namespace orm. */
 export namespace orm {
+
   /** Properties of a MultiRef. */
   interface IMultiRef {
+
     /** MultiRef refs */
-    refs?: Uint8Array[] | null;
+    refs?: (Uint8Array[] | null);
   }
 
   /** MultiRef contains a list of references to pks */
   class MultiRef implements IMultiRef {
+
     /**
      * Constructs a new MultiRef.
      * @param [properties] Properties to set
@@ -3177,7 +4385,7 @@ export namespace orm {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): orm.MultiRef;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): orm.MultiRef;
 
     /**
      * Decodes a MultiRef message from the specified reader or buffer, length delimited.
@@ -3186,14 +4394,14 @@ export namespace orm {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): orm.MultiRef;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): orm.MultiRef;
 
     /**
      * Verifies a MultiRef message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a MultiRef message from a plain object. Also converts values to their respective internal types.
@@ -3208,10 +4416,7 @@ export namespace orm {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: orm.MultiRef,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: orm.MultiRef, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this MultiRef to JSON.
@@ -3222,12 +4427,14 @@ export namespace orm {
 
   /** Properties of a Counter. */
   interface ICounter {
+
     /** Counter count */
-    count?: number | Long | null;
+    count?: (number | Long | null);
   }
 
   /** Counter could be used for sequence, but mainly just for test */
   class Counter implements ICounter {
+
     /**
      * Constructs a new Counter.
      * @param [properties] Properties to set
@@ -3235,7 +4442,7 @@ export namespace orm {
     constructor(properties?: orm.ICounter);
 
     /** Counter count. */
-    public count: number | Long;
+    public count: (number | Long);
 
     /**
      * Creates a new Counter instance using the specified properties.
@@ -3268,7 +4475,7 @@ export namespace orm {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): orm.Counter;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): orm.Counter;
 
     /**
      * Decodes a Counter message from the specified reader or buffer, length delimited.
@@ -3277,14 +4484,14 @@ export namespace orm {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): orm.Counter;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): orm.Counter;
 
     /**
      * Verifies a Counter message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Counter message from a plain object. Also converts values to their respective internal types.
@@ -3299,10 +4506,7 @@ export namespace orm {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: orm.Counter,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: orm.Counter, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Counter to JSON.
@@ -3313,15 +4517,17 @@ export namespace orm {
 
   /** Properties of a VersionedIDRef. */
   interface IVersionedIDRef {
+
     /** Unique identifier */
-    id?: Uint8Array | null;
+    id?: (Uint8Array | null);
 
     /** Document version, starting with 1. */
-    version?: number | null;
+    version?: (number | null);
   }
 
   /** VersionedID is the combination of document ID and version number. */
   class VersionedIDRef implements IVersionedIDRef {
+
     /**
      * Constructs a new VersionedIDRef.
      * @param [properties] Properties to set
@@ -3365,7 +4571,7 @@ export namespace orm {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): orm.VersionedIDRef;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): orm.VersionedIDRef;
 
     /**
      * Decodes a VersionedIDRef message from the specified reader or buffer, length delimited.
@@ -3374,14 +4580,14 @@ export namespace orm {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): orm.VersionedIDRef;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): orm.VersionedIDRef;
 
     /**
      * Verifies a VersionedIDRef message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a VersionedIDRef message from a plain object. Also converts values to their respective internal types.
@@ -3396,10 +4602,7 @@ export namespace orm {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: orm.VersionedIDRef,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: orm.VersionedIDRef, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this VersionedIDRef to JSON.
@@ -3411,32 +4614,35 @@ export namespace orm {
 
 /** Namespace aswap. */
 export namespace aswap {
+
   /** Properties of a Swap. */
   interface ISwap {
+
     /** metadata is used for schema versioning support */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** sha256 hash of preimage, 32 bytes long */
-    preimageHash?: Uint8Array | null;
+    preimageHash?: (Uint8Array | null);
 
     /** source is a sender address */
-    source?: Uint8Array | null;
+    source?: (Uint8Array | null);
 
     /** destination is an address of destination */
-    destination?: Uint8Array | null;
+    destination?: (Uint8Array | null);
 
     /** expired: [timeout, infinity) */
-    timeout?: number | Long | null;
+    timeout?: (number | Long | null);
 
     /** max length 128 characters */
-    memo?: string | null;
+    memo?: (string | null);
 
     /** Address of this entity. Set during creation and does not change. */
-    address?: Uint8Array | null;
+    address?: (Uint8Array | null);
   }
 
   /** Swap is designed to hold some coins for atomic swap, locked by preimage_hash */
   class Swap implements ISwap {
+
     /**
      * Constructs a new Swap.
      * @param [properties] Properties to set
@@ -3444,7 +4650,7 @@ export namespace aswap {
     constructor(properties?: aswap.ISwap);
 
     /** metadata is used for schema versioning support */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** sha256 hash of preimage, 32 bytes long */
     public preimageHash: Uint8Array;
@@ -3456,7 +4662,7 @@ export namespace aswap {
     public destination: Uint8Array;
 
     /** expired: [timeout, infinity) */
-    public timeout: number | Long;
+    public timeout: (number | Long);
 
     /** max length 128 characters */
     public memo: string;
@@ -3495,7 +4701,7 @@ export namespace aswap {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): aswap.Swap;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): aswap.Swap;
 
     /**
      * Decodes a Swap message from the specified reader or buffer, length delimited.
@@ -3504,14 +4710,14 @@ export namespace aswap {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): aswap.Swap;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): aswap.Swap;
 
     /**
      * Verifies a Swap message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Swap message from a plain object. Also converts values to their respective internal types.
@@ -3537,30 +4743,32 @@ export namespace aswap {
 
   /** Properties of a CreateMsg. */
   interface ICreateMsg {
+
     /** CreateMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** CreateMsg source */
-    source?: Uint8Array | null;
+    source?: (Uint8Array | null);
 
     /** sha256 hash of preimage, 32 bytes long */
-    preimageHash?: Uint8Array | null;
+    preimageHash?: (Uint8Array | null);
 
     /** CreateMsg destination */
-    destination?: Uint8Array | null;
+    destination?: (Uint8Array | null);
 
     /** amount may contain multiple token types */
-    amount?: coin.ICoin[] | null;
+    amount?: (coin.ICoin[] | null);
 
     /** Timeout represents wall clock time. */
-    timeout?: number | Long | null;
+    timeout?: (number | Long | null);
 
     /** max length 128 character */
-    memo?: string | null;
+    memo?: (string | null);
   }
 
   /** CreateMsg creates a Swap with some coins. */
   class CreateMsg implements ICreateMsg {
+
     /**
      * Constructs a new CreateMsg.
      * @param [properties] Properties to set
@@ -3568,7 +4776,7 @@ export namespace aswap {
     constructor(properties?: aswap.ICreateMsg);
 
     /** CreateMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** CreateMsg source. */
     public source: Uint8Array;
@@ -3583,7 +4791,7 @@ export namespace aswap {
     public amount: coin.ICoin[];
 
     /** Timeout represents wall clock time. */
-    public timeout: number | Long;
+    public timeout: (number | Long);
 
     /** max length 128 character */
     public memo: string;
@@ -3619,7 +4827,7 @@ export namespace aswap {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): aswap.CreateMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): aswap.CreateMsg;
 
     /**
      * Decodes a CreateMsg message from the specified reader or buffer, length delimited.
@@ -3628,14 +4836,14 @@ export namespace aswap {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): aswap.CreateMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): aswap.CreateMsg;
 
     /**
      * Verifies a CreateMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a CreateMsg message from a plain object. Also converts values to their respective internal types.
@@ -3650,10 +4858,7 @@ export namespace aswap {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: aswap.CreateMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: aswap.CreateMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this CreateMsg to JSON.
@@ -3664,18 +4869,20 @@ export namespace aswap {
 
   /** Properties of a ReleaseMsg. */
   interface IReleaseMsg {
+
     /** ReleaseMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** swap_id to release */
-    swapId?: Uint8Array | null;
+    swapId?: (Uint8Array | null);
 
     /** must be exactly 32 bytes long */
-    preimage?: Uint8Array | null;
+    preimage?: (Uint8Array | null);
   }
 
   /** This operation is authorized by preimage, which is sent raw and then hashed on the backend. */
   class ReleaseMsg implements IReleaseMsg {
+
     /**
      * Constructs a new ReleaseMsg.
      * @param [properties] Properties to set
@@ -3683,7 +4890,7 @@ export namespace aswap {
     constructor(properties?: aswap.IReleaseMsg);
 
     /** ReleaseMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** swap_id to release */
     public swapId: Uint8Array;
@@ -3722,7 +4929,7 @@ export namespace aswap {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): aswap.ReleaseMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): aswap.ReleaseMsg;
 
     /**
      * Decodes a ReleaseMsg message from the specified reader or buffer, length delimited.
@@ -3731,14 +4938,14 @@ export namespace aswap {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): aswap.ReleaseMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): aswap.ReleaseMsg;
 
     /**
      * Verifies a ReleaseMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ReleaseMsg message from a plain object. Also converts values to their respective internal types.
@@ -3753,10 +4960,7 @@ export namespace aswap {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: aswap.ReleaseMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: aswap.ReleaseMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ReleaseMsg to JSON.
@@ -3767,15 +4971,17 @@ export namespace aswap {
 
   /** Properties of a ReturnMsg. */
   interface IReturnMsg {
+
     /** ReturnMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** swap_id to return */
-    swapId?: Uint8Array | null;
+    swapId?: (Uint8Array | null);
   }
 
   /** This operation only works if the Swap is expired. */
   class ReturnMsg implements IReturnMsg {
+
     /**
      * Constructs a new ReturnMsg.
      * @param [properties] Properties to set
@@ -3783,7 +4989,7 @@ export namespace aswap {
     constructor(properties?: aswap.IReturnMsg);
 
     /** ReturnMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** swap_id to return */
     public swapId: Uint8Array;
@@ -3819,7 +5025,7 @@ export namespace aswap {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): aswap.ReturnMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): aswap.ReturnMsg;
 
     /**
      * Decodes a ReturnMsg message from the specified reader or buffer, length delimited.
@@ -3828,14 +5034,14 @@ export namespace aswap {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): aswap.ReturnMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): aswap.ReturnMsg;
 
     /**
      * Verifies a ReturnMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ReturnMsg message from a plain object. Also converts values to their respective internal types.
@@ -3850,10 +5056,7 @@ export namespace aswap {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: aswap.ReturnMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: aswap.ReturnMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ReturnMsg to JSON.
@@ -3865,14 +5068,17 @@ export namespace aswap {
 
 /** Namespace batch. */
 export namespace batch {
+
   /** Properties of a ByteArrayList. */
   interface IByteArrayList {
+
     /** ByteArrayList elements */
-    elements?: Uint8Array[] | null;
+    elements?: (Uint8Array[] | null);
   }
 
   /** Represents a ByteArrayList. */
   class ByteArrayList implements IByteArrayList {
+
     /**
      * Constructs a new ByteArrayList.
      * @param [properties] Properties to set
@@ -3913,7 +5119,7 @@ export namespace batch {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): batch.ByteArrayList;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): batch.ByteArrayList;
 
     /**
      * Decodes a ByteArrayList message from the specified reader or buffer, length delimited.
@@ -3922,14 +5128,14 @@ export namespace batch {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): batch.ByteArrayList;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): batch.ByteArrayList;
 
     /**
      * Verifies a ByteArrayList message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ByteArrayList message from a plain object. Also converts values to their respective internal types.
@@ -3944,10 +5150,7 @@ export namespace batch {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: batch.ByteArrayList,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: batch.ByteArrayList, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ByteArrayList to JSON.
@@ -3959,17 +5162,20 @@ export namespace batch {
 
 /** Namespace cash. */
 export namespace cash {
+
   /** Properties of a Set. */
   interface ISet {
+
     /** Set metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Set coins */
-    coins?: coin.ICoin[] | null;
+    coins?: (coin.ICoin[] | null);
   }
 
   /** It handles adding and subtracting sets of currencies. */
   class Set implements ISet {
+
     /**
      * Constructs a new Set.
      * @param [properties] Properties to set
@@ -3977,7 +5183,7 @@ export namespace cash {
     constructor(properties?: cash.ISet);
 
     /** Set metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Set coins. */
     public coins: coin.ICoin[];
@@ -4013,7 +5219,7 @@ export namespace cash {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): cash.Set;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): cash.Set;
 
     /**
      * Decodes a Set message from the specified reader or buffer, length delimited.
@@ -4022,14 +5228,14 @@ export namespace cash {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): cash.Set;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): cash.Set;
 
     /**
      * Verifies a Set message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Set message from a plain object. Also converts values to their respective internal types.
@@ -4055,27 +5261,29 @@ export namespace cash {
 
   /** Properties of a SendMsg. */
   interface ISendMsg {
+
     /** SendMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** SendMsg source */
-    source?: Uint8Array | null;
+    source?: (Uint8Array | null);
 
     /** SendMsg destination */
-    destination?: Uint8Array | null;
+    destination?: (Uint8Array | null);
 
     /** SendMsg amount */
-    amount?: coin.ICoin | null;
+    amount?: (coin.ICoin | null);
 
     /** max length 128 character */
-    memo?: string | null;
+    memo?: (string | null);
 
     /** max length 64 bytes */
-    ref?: Uint8Array | null;
+    ref?: (Uint8Array | null);
   }
 
   /** eg. tx hash */
   class SendMsg implements ISendMsg {
+
     /**
      * Constructs a new SendMsg.
      * @param [properties] Properties to set
@@ -4083,7 +5291,7 @@ export namespace cash {
     constructor(properties?: cash.ISendMsg);
 
     /** SendMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** SendMsg source. */
     public source: Uint8Array;
@@ -4092,7 +5300,7 @@ export namespace cash {
     public destination: Uint8Array;
 
     /** SendMsg amount. */
-    public amount?: coin.ICoin | null;
+    public amount?: (coin.ICoin | null);
 
     /** max length 128 character */
     public memo: string;
@@ -4131,7 +5339,7 @@ export namespace cash {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): cash.SendMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): cash.SendMsg;
 
     /**
      * Decodes a SendMsg message from the specified reader or buffer, length delimited.
@@ -4140,14 +5348,14 @@ export namespace cash {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): cash.SendMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): cash.SendMsg;
 
     /**
      * Verifies a SendMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a SendMsg message from a plain object. Also converts values to their respective internal types.
@@ -4162,10 +5370,7 @@ export namespace cash {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: cash.SendMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: cash.SendMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this SendMsg to JSON.
@@ -4176,15 +5381,17 @@ export namespace cash {
 
   /** Properties of a FeeInfo. */
   interface IFeeInfo {
+
     /** FeeInfo payer */
-    payer?: Uint8Array | null;
+    payer?: (Uint8Array | null);
 
     /** FeeInfo fees */
-    fees?: coin.ICoin | null;
+    fees?: (coin.ICoin | null);
   }
 
   /** message processed */
   class FeeInfo implements IFeeInfo {
+
     /**
      * Constructs a new FeeInfo.
      * @param [properties] Properties to set
@@ -4195,7 +5402,7 @@ export namespace cash {
     public payer: Uint8Array;
 
     /** FeeInfo fees. */
-    public fees?: coin.ICoin | null;
+    public fees?: (coin.ICoin | null);
 
     /**
      * Creates a new FeeInfo instance using the specified properties.
@@ -4228,7 +5435,7 @@ export namespace cash {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): cash.FeeInfo;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): cash.FeeInfo;
 
     /**
      * Decodes a FeeInfo message from the specified reader or buffer, length delimited.
@@ -4237,14 +5444,14 @@ export namespace cash {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): cash.FeeInfo;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): cash.FeeInfo;
 
     /**
      * Verifies a FeeInfo message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a FeeInfo message from a plain object. Also converts values to their respective internal types.
@@ -4259,10 +5466,7 @@ export namespace cash {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: cash.FeeInfo,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: cash.FeeInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this FeeInfo to JSON.
@@ -4273,21 +5477,23 @@ export namespace cash {
 
   /** Properties of a Configuration. */
   interface IConfiguration {
+
     /** Configuration metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** needed to make use of gconf.NewUpdateConfigurationHandler */
-    owner?: Uint8Array | null;
+    owner?: (Uint8Array | null);
 
     /** Configuration collectorAddress */
-    collectorAddress?: Uint8Array | null;
+    collectorAddress?: (Uint8Array | null);
 
     /** Configuration minimalFee */
-    minimalFee?: coin.ICoin | null;
+    minimalFee?: (coin.ICoin | null);
   }
 
   /** Represents a Configuration. */
   class Configuration implements IConfiguration {
+
     /**
      * Constructs a new Configuration.
      * @param [properties] Properties to set
@@ -4295,7 +5501,7 @@ export namespace cash {
     constructor(properties?: cash.IConfiguration);
 
     /** Configuration metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** needed to make use of gconf.NewUpdateConfigurationHandler */
     public owner: Uint8Array;
@@ -4304,7 +5510,7 @@ export namespace cash {
     public collectorAddress: Uint8Array;
 
     /** Configuration minimalFee. */
-    public minimalFee?: coin.ICoin | null;
+    public minimalFee?: (coin.ICoin | null);
 
     /**
      * Creates a new Configuration instance using the specified properties.
@@ -4337,7 +5543,7 @@ export namespace cash {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): cash.Configuration;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): cash.Configuration;
 
     /**
      * Decodes a Configuration message from the specified reader or buffer, length delimited.
@@ -4346,14 +5552,14 @@ export namespace cash {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): cash.Configuration;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): cash.Configuration;
 
     /**
      * Verifies a Configuration message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Configuration message from a plain object. Also converts values to their respective internal types.
@@ -4368,10 +5574,7 @@ export namespace cash {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: cash.Configuration,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: cash.Configuration, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Configuration to JSON.
@@ -4382,15 +5585,17 @@ export namespace cash {
 
   /** Properties of an UpdateConfigurationMsg. */
   interface IUpdateConfigurationMsg {
+
     /** UpdateConfigurationMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** UpdateConfigurationMsg patch */
-    patch?: cash.IConfiguration | null;
+    patch?: (cash.IConfiguration | null);
   }
 
   /** Represents an UpdateConfigurationMsg. */
   class UpdateConfigurationMsg implements IUpdateConfigurationMsg {
+
     /**
      * Constructs a new UpdateConfigurationMsg.
      * @param [properties] Properties to set
@@ -4398,10 +5603,10 @@ export namespace cash {
     constructor(properties?: cash.IUpdateConfigurationMsg);
 
     /** UpdateConfigurationMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** UpdateConfigurationMsg patch. */
-    public patch?: cash.IConfiguration | null;
+    public patch?: (cash.IConfiguration | null);
 
     /**
      * Creates a new UpdateConfigurationMsg instance using the specified properties.
@@ -4424,10 +5629,7 @@ export namespace cash {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: cash.IUpdateConfigurationMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: cash.IUpdateConfigurationMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes an UpdateConfigurationMsg message from the specified reader or buffer.
@@ -4437,7 +5639,7 @@ export namespace cash {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): cash.UpdateConfigurationMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): cash.UpdateConfigurationMsg;
 
     /**
      * Decodes an UpdateConfigurationMsg message from the specified reader or buffer, length delimited.
@@ -4446,14 +5648,14 @@ export namespace cash {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): cash.UpdateConfigurationMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): cash.UpdateConfigurationMsg;
 
     /**
      * Verifies an UpdateConfigurationMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an UpdateConfigurationMsg message from a plain object. Also converts values to their respective internal types.
@@ -4468,10 +5670,7 @@ export namespace cash {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: cash.UpdateConfigurationMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: cash.UpdateConfigurationMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this UpdateConfigurationMsg to JSON.
@@ -4483,26 +5682,29 @@ export namespace cash {
 
 /** Namespace cron. */
 export namespace cron {
+
   /** Properties of a TaskResult. */
   interface ITaskResult {
+
     /** TaskResult metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Successful is set to true if the task was successfully executed. */
-    successful?: boolean | null;
+    successful?: (boolean | null);
 
     /** about the task execution. */
-    info?: string | null;
+    info?: (string | null);
 
     /** Exec time hold the information of when the task was executed. */
-    execTime?: number | Long | null;
+    execTime?: (number | Long | null);
 
     /** Exec height holds the block height value at the time the task was executed. */
-    execHeight?: number | Long | null;
+    execHeight?: (number | Long | null);
   }
 
   /** https://github.com/tendermint/tendermint/issues/3665 */
   class TaskResult implements ITaskResult {
+
     /**
      * Constructs a new TaskResult.
      * @param [properties] Properties to set
@@ -4510,7 +5712,7 @@ export namespace cron {
     constructor(properties?: cron.ITaskResult);
 
     /** TaskResult metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Successful is set to true if the task was successfully executed. */
     public successful: boolean;
@@ -4519,10 +5721,10 @@ export namespace cron {
     public info: string;
 
     /** Exec time hold the information of when the task was executed. */
-    public execTime: number | Long;
+    public execTime: (number | Long);
 
     /** Exec height holds the block height value at the time the task was executed. */
-    public execHeight: number | Long;
+    public execHeight: (number | Long);
 
     /**
      * Creates a new TaskResult instance using the specified properties.
@@ -4555,7 +5757,7 @@ export namespace cron {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): cron.TaskResult;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): cron.TaskResult;
 
     /**
      * Decodes a TaskResult message from the specified reader or buffer, length delimited.
@@ -4564,14 +5766,14 @@ export namespace cron {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): cron.TaskResult;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): cron.TaskResult;
 
     /**
      * Verifies a TaskResult message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a TaskResult message from a plain object. Also converts values to their respective internal types.
@@ -4586,10 +5788,7 @@ export namespace cron {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: cron.TaskResult,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: cron.TaskResult, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this TaskResult to JSON.
@@ -4601,17 +5800,20 @@ export namespace cron {
 
 /** Namespace currency. */
 export namespace currency {
+
   /** Properties of a TokenInfo. */
   interface ITokenInfo {
+
     /** TokenInfo metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** TokenInfo name */
-    name?: string | null;
+    name?: (string | null);
   }
 
   /** alternative solution to hardcoding supported currencies information. */
   class TokenInfo implements ITokenInfo {
+
     /**
      * Constructs a new TokenInfo.
      * @param [properties] Properties to set
@@ -4619,7 +5821,7 @@ export namespace currency {
     constructor(properties?: currency.ITokenInfo);
 
     /** TokenInfo metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** TokenInfo name. */
     public name: string;
@@ -4655,7 +5857,7 @@ export namespace currency {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): currency.TokenInfo;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): currency.TokenInfo;
 
     /**
      * Decodes a TokenInfo message from the specified reader or buffer, length delimited.
@@ -4664,14 +5866,14 @@ export namespace currency {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): currency.TokenInfo;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): currency.TokenInfo;
 
     /**
      * Verifies a TokenInfo message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a TokenInfo message from a plain object. Also converts values to their respective internal types.
@@ -4686,10 +5888,7 @@ export namespace currency {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: currency.TokenInfo,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: currency.TokenInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this TokenInfo to JSON.
@@ -4700,18 +5899,20 @@ export namespace currency {
 
   /** Properties of a CreateMsg. */
   interface ICreateMsg {
+
     /** CreateMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** CreateMsg ticker */
-    ticker?: string | null;
+    ticker?: (string | null);
 
     /** CreateMsg name */
-    name?: string | null;
+    name?: (string | null);
   }
 
   /** be registered only once. */
   class CreateMsg implements ICreateMsg {
+
     /**
      * Constructs a new CreateMsg.
      * @param [properties] Properties to set
@@ -4719,7 +5920,7 @@ export namespace currency {
     constructor(properties?: currency.ICreateMsg);
 
     /** CreateMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** CreateMsg ticker. */
     public ticker: string;
@@ -4758,7 +5959,7 @@ export namespace currency {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): currency.CreateMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): currency.CreateMsg;
 
     /**
      * Decodes a CreateMsg message from the specified reader or buffer, length delimited.
@@ -4767,14 +5968,14 @@ export namespace currency {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): currency.CreateMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): currency.CreateMsg;
 
     /**
      * Verifies a CreateMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a CreateMsg message from a plain object. Also converts values to their respective internal types.
@@ -4789,10 +5990,7 @@ export namespace currency {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: currency.CreateMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: currency.CreateMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this CreateMsg to JSON.
@@ -4804,23 +6002,26 @@ export namespace currency {
 
 /** Namespace distribution. */
 export namespace distribution {
+
   /** Properties of a Revenue. */
   interface IRevenue {
+
     /** Revenue metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** While not enforced it is best to use a multisig contract here. */
-    admin?: Uint8Array | null;
+    admin?: (Uint8Array | null);
 
     /** distributed to. Must be at least one. */
-    destinations?: distribution.IDestination[] | null;
+    destinations?: (distribution.IDestination[] | null);
 
     /** Address of this entity. Set during creation and does not change. */
-    address?: Uint8Array | null;
+    address?: (Uint8Array | null);
   }
 
   /** the owners. */
   class Revenue implements IRevenue {
+
     /**
      * Constructs a new Revenue.
      * @param [properties] Properties to set
@@ -4828,7 +6029,7 @@ export namespace distribution {
     constructor(properties?: distribution.IRevenue);
 
     /** Revenue metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** While not enforced it is best to use a multisig contract here. */
     public admin: Uint8Array;
@@ -4860,10 +6061,7 @@ export namespace distribution {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: distribution.IRevenue,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: distribution.IRevenue, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a Revenue message from the specified reader or buffer.
@@ -4873,7 +6071,7 @@ export namespace distribution {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): distribution.Revenue;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): distribution.Revenue;
 
     /**
      * Decodes a Revenue message from the specified reader or buffer, length delimited.
@@ -4882,14 +6080,14 @@ export namespace distribution {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): distribution.Revenue;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): distribution.Revenue;
 
     /**
      * Verifies a Revenue message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Revenue message from a plain object. Also converts values to their respective internal types.
@@ -4904,10 +6102,7 @@ export namespace distribution {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: distribution.Revenue,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: distribution.Revenue, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Revenue to JSON.
@@ -4918,15 +6113,17 @@ export namespace distribution {
 
   /** Properties of a Destination. */
   interface IDestination {
+
     /** of the validators. */
-    address?: Uint8Array | null;
+    address?: (Uint8Array | null);
 
     /** second one. */
-    weight?: number | null;
+    weight?: (number | null);
   }
 
   /** Represents a Destination. */
   class Destination implements IDestination {
+
     /**
      * Constructs a new Destination.
      * @param [properties] Properties to set
@@ -4960,10 +6157,7 @@ export namespace distribution {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: distribution.IDestination,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: distribution.IDestination, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a Destination message from the specified reader or buffer.
@@ -4973,7 +6167,7 @@ export namespace distribution {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): distribution.Destination;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): distribution.Destination;
 
     /**
      * Decodes a Destination message from the specified reader or buffer, length delimited.
@@ -4982,14 +6176,14 @@ export namespace distribution {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): distribution.Destination;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): distribution.Destination;
 
     /**
      * Verifies a Destination message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Destination message from a plain object. Also converts values to their respective internal types.
@@ -5004,10 +6198,7 @@ export namespace distribution {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: distribution.Destination,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: distribution.Destination, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Destination to JSON.
@@ -5018,18 +6209,20 @@ export namespace distribution {
 
   /** Properties of a CreateMsg. */
   interface ICreateMsg {
+
     /** CreateMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** While not enforced it is best to use a multisig contract here. */
-    admin?: Uint8Array | null;
+    admin?: (Uint8Array | null);
 
     /** distributed to. Must be at least one. */
-    destinations?: distribution.IDestination[] | null;
+    destinations?: (distribution.IDestination[] | null);
   }
 
   /** CreateMsg is issuing the creation of a new revenue stream instance. */
   class CreateMsg implements ICreateMsg {
+
     /**
      * Constructs a new CreateMsg.
      * @param [properties] Properties to set
@@ -5037,7 +6230,7 @@ export namespace distribution {
     constructor(properties?: distribution.ICreateMsg);
 
     /** CreateMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** While not enforced it is best to use a multisig contract here. */
     public admin: Uint8Array;
@@ -5066,10 +6259,7 @@ export namespace distribution {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: distribution.ICreateMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: distribution.ICreateMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a CreateMsg message from the specified reader or buffer.
@@ -5079,7 +6269,7 @@ export namespace distribution {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): distribution.CreateMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): distribution.CreateMsg;
 
     /**
      * Decodes a CreateMsg message from the specified reader or buffer, length delimited.
@@ -5088,14 +6278,14 @@ export namespace distribution {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): distribution.CreateMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): distribution.CreateMsg;
 
     /**
      * Verifies a CreateMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a CreateMsg message from a plain object. Also converts values to their respective internal types.
@@ -5110,10 +6300,7 @@ export namespace distribution {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: distribution.CreateMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: distribution.CreateMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this CreateMsg to JSON.
@@ -5124,15 +6311,17 @@ export namespace distribution {
 
   /** Properties of a DistributeMsg. */
   interface IDistributeMsg {
+
     /** DistributeMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** should be distributed between destinations. */
-    revenueId?: Uint8Array | null;
+    revenueId?: (Uint8Array | null);
   }
 
   /** signed using admin key. */
   class DistributeMsg implements IDistributeMsg {
+
     /**
      * Constructs a new DistributeMsg.
      * @param [properties] Properties to set
@@ -5140,7 +6329,7 @@ export namespace distribution {
     constructor(properties?: distribution.IDistributeMsg);
 
     /** DistributeMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** should be distributed between destinations. */
     public revenueId: Uint8Array;
@@ -5166,10 +6355,7 @@ export namespace distribution {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: distribution.IDistributeMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: distribution.IDistributeMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a DistributeMsg message from the specified reader or buffer.
@@ -5179,7 +6365,7 @@ export namespace distribution {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): distribution.DistributeMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): distribution.DistributeMsg;
 
     /**
      * Decodes a DistributeMsg message from the specified reader or buffer, length delimited.
@@ -5188,14 +6374,14 @@ export namespace distribution {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): distribution.DistributeMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): distribution.DistributeMsg;
 
     /**
      * Verifies a DistributeMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a DistributeMsg message from a plain object. Also converts values to their respective internal types.
@@ -5210,10 +6396,7 @@ export namespace distribution {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: distribution.DistributeMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: distribution.DistributeMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this DistributeMsg to JSON.
@@ -5224,18 +6407,20 @@ export namespace distribution {
 
   /** Properties of a ResetMsg. */
   interface IResetMsg {
+
     /** ResetMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Revenue ID reference an ID of a revenue instance that is updated. */
-    revenueId?: Uint8Array | null;
+    revenueId?: (Uint8Array | null);
 
     /** distributed to. Must be at least one. */
-    destinations?: distribution.IDestination[] | null;
+    destinations?: (distribution.IDestination[] | null);
   }
 
   /** collected revenue amount is equal to zero the change is applied. */
   class ResetMsg implements IResetMsg {
+
     /**
      * Constructs a new ResetMsg.
      * @param [properties] Properties to set
@@ -5243,7 +6428,7 @@ export namespace distribution {
     constructor(properties?: distribution.IResetMsg);
 
     /** ResetMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Revenue ID reference an ID of a revenue instance that is updated. */
     public revenueId: Uint8Array;
@@ -5272,10 +6457,7 @@ export namespace distribution {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: distribution.IResetMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: distribution.IResetMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a ResetMsg message from the specified reader or buffer.
@@ -5285,7 +6467,7 @@ export namespace distribution {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): distribution.ResetMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): distribution.ResetMsg;
 
     /**
      * Decodes a ResetMsg message from the specified reader or buffer, length delimited.
@@ -5294,14 +6476,14 @@ export namespace distribution {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): distribution.ResetMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): distribution.ResetMsg;
 
     /**
      * Verifies a ResetMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ResetMsg message from a plain object. Also converts values to their respective internal types.
@@ -5316,10 +6498,7 @@ export namespace distribution {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: distribution.ResetMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: distribution.ResetMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ResetMsg to JSON.
@@ -5331,32 +6510,35 @@ export namespace distribution {
 
 /** Namespace escrow. */
 export namespace escrow {
+
   /** Properties of an Escrow. */
   interface IEscrow {
+
     /** Escrow metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Escrow source */
-    source?: Uint8Array | null;
+    source?: (Uint8Array | null);
 
     /** Escrow arbiter */
-    arbiter?: Uint8Array | null;
+    arbiter?: (Uint8Array | null);
 
     /** Escrow destination */
-    destination?: Uint8Array | null;
+    destination?: (Uint8Array | null);
 
     /** expired: [timeout, infinity) */
-    timeout?: number | Long | null;
+    timeout?: (number | Long | null);
 
     /** max length 128 character */
-    memo?: string | null;
+    memo?: (string | null);
 
     /** Address of this entity. Set during creation and does not change. */
-    address?: Uint8Array | null;
+    address?: (Uint8Array | null);
   }
 
   /** Upon timeout, they will be returned to the source. */
   class Escrow implements IEscrow {
+
     /**
      * Constructs a new Escrow.
      * @param [properties] Properties to set
@@ -5364,7 +6546,7 @@ export namespace escrow {
     constructor(properties?: escrow.IEscrow);
 
     /** Escrow metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Escrow source. */
     public source: Uint8Array;
@@ -5376,7 +6558,7 @@ export namespace escrow {
     public destination: Uint8Array;
 
     /** expired: [timeout, infinity) */
-    public timeout: number | Long;
+    public timeout: (number | Long);
 
     /** max length 128 character */
     public memo: string;
@@ -5415,7 +6597,7 @@ export namespace escrow {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): escrow.Escrow;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): escrow.Escrow;
 
     /**
      * Decodes an Escrow message from the specified reader or buffer, length delimited.
@@ -5424,14 +6606,14 @@ export namespace escrow {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): escrow.Escrow;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): escrow.Escrow;
 
     /**
      * Verifies an Escrow message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an Escrow message from a plain object. Also converts values to their respective internal types.
@@ -5446,10 +6628,7 @@ export namespace escrow {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: escrow.Escrow,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: escrow.Escrow, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Escrow to JSON.
@@ -5460,30 +6639,32 @@ export namespace escrow {
 
   /** Properties of a CreateMsg. */
   interface ICreateMsg {
+
     /** CreateMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** CreateMsg source */
-    source?: Uint8Array | null;
+    source?: (Uint8Array | null);
 
     /** CreateMsg arbiter */
-    arbiter?: Uint8Array | null;
+    arbiter?: (Uint8Array | null);
 
     /** CreateMsg destination */
-    destination?: Uint8Array | null;
+    destination?: (Uint8Array | null);
 
     /** amount may contain multiple token types */
-    amount?: coin.ICoin[] | null;
+    amount?: (coin.ICoin[] | null);
 
     /** Timeout represents wall clock time. */
-    timeout?: number | Long | null;
+    timeout?: (number | Long | null);
 
     /** max length 128 character */
-    memo?: string | null;
+    memo?: (string | null);
   }
 
   /** The rest must be defined */
   class CreateMsg implements ICreateMsg {
+
     /**
      * Constructs a new CreateMsg.
      * @param [properties] Properties to set
@@ -5491,7 +6672,7 @@ export namespace escrow {
     constructor(properties?: escrow.ICreateMsg);
 
     /** CreateMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** CreateMsg source. */
     public source: Uint8Array;
@@ -5506,7 +6687,7 @@ export namespace escrow {
     public amount: coin.ICoin[];
 
     /** Timeout represents wall clock time. */
-    public timeout: number | Long;
+    public timeout: (number | Long);
 
     /** max length 128 character */
     public memo: string;
@@ -5542,7 +6723,7 @@ export namespace escrow {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): escrow.CreateMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): escrow.CreateMsg;
 
     /**
      * Decodes a CreateMsg message from the specified reader or buffer, length delimited.
@@ -5551,14 +6732,14 @@ export namespace escrow {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): escrow.CreateMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): escrow.CreateMsg;
 
     /**
      * Verifies a CreateMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a CreateMsg message from a plain object. Also converts values to their respective internal types.
@@ -5573,10 +6754,7 @@ export namespace escrow {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: escrow.CreateMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: escrow.CreateMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this CreateMsg to JSON.
@@ -5587,18 +6765,20 @@ export namespace escrow {
 
   /** Properties of a ReleaseMsg. */
   interface IReleaseMsg {
+
     /** ReleaseMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** ReleaseMsg escrowId */
-    escrowId?: Uint8Array | null;
+    escrowId?: (Uint8Array | null);
 
     /** ReleaseMsg amount */
-    amount?: coin.ICoin[] | null;
+    amount?: (coin.ICoin[] | null);
   }
 
   /** May be a subset of the current balance. */
   class ReleaseMsg implements IReleaseMsg {
+
     /**
      * Constructs a new ReleaseMsg.
      * @param [properties] Properties to set
@@ -5606,7 +6786,7 @@ export namespace escrow {
     constructor(properties?: escrow.IReleaseMsg);
 
     /** ReleaseMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** ReleaseMsg escrowId. */
     public escrowId: Uint8Array;
@@ -5645,7 +6825,7 @@ export namespace escrow {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): escrow.ReleaseMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): escrow.ReleaseMsg;
 
     /**
      * Decodes a ReleaseMsg message from the specified reader or buffer, length delimited.
@@ -5654,14 +6834,14 @@ export namespace escrow {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): escrow.ReleaseMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): escrow.ReleaseMsg;
 
     /**
      * Verifies a ReleaseMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ReleaseMsg message from a plain object. Also converts values to their respective internal types.
@@ -5676,10 +6856,7 @@ export namespace escrow {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: escrow.ReleaseMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: escrow.ReleaseMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ReleaseMsg to JSON.
@@ -5690,15 +6867,17 @@ export namespace escrow {
 
   /** Properties of a ReturnMsg. */
   interface IReturnMsg {
+
     /** ReturnMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** ReturnMsg escrowId */
-    escrowId?: Uint8Array | null;
+    escrowId?: (Uint8Array | null);
   }
 
   /** Must be authorized by the source or an expired timeout */
   class ReturnMsg implements IReturnMsg {
+
     /**
      * Constructs a new ReturnMsg.
      * @param [properties] Properties to set
@@ -5706,7 +6885,7 @@ export namespace escrow {
     constructor(properties?: escrow.IReturnMsg);
 
     /** ReturnMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** ReturnMsg escrowId. */
     public escrowId: Uint8Array;
@@ -5742,7 +6921,7 @@ export namespace escrow {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): escrow.ReturnMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): escrow.ReturnMsg;
 
     /**
      * Decodes a ReturnMsg message from the specified reader or buffer, length delimited.
@@ -5751,14 +6930,14 @@ export namespace escrow {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): escrow.ReturnMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): escrow.ReturnMsg;
 
     /**
      * Verifies a ReturnMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ReturnMsg message from a plain object. Also converts values to their respective internal types.
@@ -5773,10 +6952,7 @@ export namespace escrow {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: escrow.ReturnMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: escrow.ReturnMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ReturnMsg to JSON.
@@ -5787,24 +6963,26 @@ export namespace escrow {
 
   /** Properties of an UpdatePartiesMsg. */
   interface IUpdatePartiesMsg {
+
     /** UpdatePartiesMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** UpdatePartiesMsg escrowId */
-    escrowId?: Uint8Array | null;
+    escrowId?: (Uint8Array | null);
 
     /** UpdatePartiesMsg source */
-    source?: Uint8Array | null;
+    source?: (Uint8Array | null);
 
     /** UpdatePartiesMsg arbiter */
-    arbiter?: Uint8Array | null;
+    arbiter?: (Uint8Array | null);
 
     /** UpdatePartiesMsg destination */
-    destination?: Uint8Array | null;
+    destination?: (Uint8Array | null);
   }
 
   /** Represents delegating responsibility */
   class UpdatePartiesMsg implements IUpdatePartiesMsg {
+
     /**
      * Constructs a new UpdatePartiesMsg.
      * @param [properties] Properties to set
@@ -5812,7 +6990,7 @@ export namespace escrow {
     constructor(properties?: escrow.IUpdatePartiesMsg);
 
     /** UpdatePartiesMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** UpdatePartiesMsg escrowId. */
     public escrowId: Uint8Array;
@@ -5847,10 +7025,7 @@ export namespace escrow {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: escrow.IUpdatePartiesMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: escrow.IUpdatePartiesMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes an UpdatePartiesMsg message from the specified reader or buffer.
@@ -5860,7 +7035,7 @@ export namespace escrow {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): escrow.UpdatePartiesMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): escrow.UpdatePartiesMsg;
 
     /**
      * Decodes an UpdatePartiesMsg message from the specified reader or buffer, length delimited.
@@ -5869,14 +7044,14 @@ export namespace escrow {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): escrow.UpdatePartiesMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): escrow.UpdatePartiesMsg;
 
     /**
      * Verifies an UpdatePartiesMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an UpdatePartiesMsg message from a plain object. Also converts values to their respective internal types.
@@ -5891,10 +7066,7 @@ export namespace escrow {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: escrow.UpdatePartiesMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: escrow.UpdatePartiesMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this UpdatePartiesMsg to JSON.
@@ -5906,29 +7078,32 @@ export namespace escrow {
 
 /** Namespace gov. */
 export namespace gov {
+
   /** Properties of an Electorate. */
   interface IElectorate {
+
     /** Electorate metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Document version */
-    version?: number | null;
+    version?: (number | null);
 
     /** Admin is the address that is allowed ot modify an existing electorate. */
-    admin?: Uint8Array | null;
+    admin?: (Uint8Array | null);
 
     /** Human readable title. */
-    title?: string | null;
+    title?: (string | null);
 
     /** Elector defines a list of all signatures that are allowed to participate in a vote */
-    electors?: gov.IElector[] | null;
+    electors?: (gov.IElector[] | null);
 
     /** TotalElectorateWeight is the sum of all electors weights. */
-    totalElectorateWeight?: number | Long | null;
+    totalElectorateWeight?: (number | Long | null);
   }
 
   /** and is stored for re-use */
   class Electorate implements IElectorate {
+
     /**
      * Constructs a new Electorate.
      * @param [properties] Properties to set
@@ -5936,7 +7111,7 @@ export namespace gov {
     constructor(properties?: gov.IElectorate);
 
     /** Electorate metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Document version */
     public version: number;
@@ -5951,7 +7126,7 @@ export namespace gov {
     public electors: gov.IElector[];
 
     /** TotalElectorateWeight is the sum of all electors weights. */
-    public totalElectorateWeight: number | Long;
+    public totalElectorateWeight: (number | Long);
 
     /**
      * Creates a new Electorate instance using the specified properties.
@@ -5984,7 +7159,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.Electorate;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.Electorate;
 
     /**
      * Decodes an Electorate message from the specified reader or buffer, length delimited.
@@ -5993,14 +7168,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.Electorate;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.Electorate;
 
     /**
      * Verifies an Electorate message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an Electorate message from a plain object. Also converts values to their respective internal types.
@@ -6015,10 +7190,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.Electorate,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.Electorate, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Electorate to JSON.
@@ -6029,15 +7201,17 @@ export namespace gov {
 
   /** Properties of an Elector. */
   interface IElector {
+
     /** The address of the voter. */
-    address?: Uint8Array | null;
+    address?: (Uint8Array | null);
 
     /** Weight defines the power of the participants vote. max value is 65535 (2^16-1). */
-    weight?: number | null;
+    weight?: (number | null);
   }
 
   /** the greater the power of a participant. */
   class Elector implements IElector {
+
     /**
      * Constructs a new Elector.
      * @param [properties] Properties to set
@@ -6081,7 +7255,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.Elector;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.Elector;
 
     /**
      * Decodes an Elector message from the specified reader or buffer, length delimited.
@@ -6090,14 +7264,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.Elector;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.Elector;
 
     /**
      * Verifies an Elector message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an Elector message from a plain object. Also converts values to their respective internal types.
@@ -6112,10 +7286,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.Elector,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.Elector, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Elector to JSON.
@@ -6126,36 +7297,38 @@ export namespace gov {
 
   /** Properties of an ElectionRule. */
   interface IElectionRule {
+
     /** ElectionRule metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Document version. */
-    version?: number | null;
+    version?: (number | null);
 
     /** Admin is the address that is allowed to modify an existing election rule. */
-    admin?: Uint8Array | null;
+    admin?: (Uint8Array | null);
 
     /** ElectorateID references the electorate using this rule (without version, as changing electorate changes the rule). */
-    electorateId?: Uint8Array | null;
+    electorateId?: (Uint8Array | null);
 
     /** Human readable title. */
-    title?: string | null;
+    title?: (string | null);
 
     /** Duration in seconds of how long the voting period will take place. */
-    votingPeriod?: number | null;
+    votingPeriod?: (number | null);
 
     /** of the eligible voters. */
-    threshold?: gov.IFraction | null;
+    threshold?: (gov.IFraction | null);
 
     /** of the eligible voters. */
-    quorum?: gov.IFraction | null;
+    quorum?: (gov.IFraction | null);
 
     /** Address of this entity. Set during creation and does not change. */
-    address?: Uint8Array | null;
+    address?: (Uint8Array | null);
   }
 
   /** Election Rule defines how an election is run. A proposal must be voted upon via a pre-defined ruleset. */
   class ElectionRule implements IElectionRule {
+
     /**
      * Constructs a new ElectionRule.
      * @param [properties] Properties to set
@@ -6163,7 +7336,7 @@ export namespace gov {
     constructor(properties?: gov.IElectionRule);
 
     /** ElectionRule metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Document version. */
     public version: number;
@@ -6181,10 +7354,10 @@ export namespace gov {
     public votingPeriod: number;
 
     /** of the eligible voters. */
-    public threshold?: gov.IFraction | null;
+    public threshold?: (gov.IFraction | null);
 
     /** of the eligible voters. */
-    public quorum?: gov.IFraction | null;
+    public quorum?: (gov.IFraction | null);
 
     /** Address of this entity. Set during creation and does not change. */
     public address: Uint8Array;
@@ -6220,7 +7393,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.ElectionRule;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.ElectionRule;
 
     /**
      * Decodes an ElectionRule message from the specified reader or buffer, length delimited.
@@ -6229,14 +7402,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.ElectionRule;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.ElectionRule;
 
     /**
      * Verifies an ElectionRule message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an ElectionRule message from a plain object. Also converts values to their respective internal types.
@@ -6251,10 +7424,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.ElectionRule,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.ElectionRule, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ElectionRule to JSON.
@@ -6265,15 +7435,17 @@ export namespace gov {
 
   /** Properties of a Fraction. */
   interface IFraction {
+
     /** The top number in a fraction. */
-    numerator?: number | null;
+    numerator?: (number | null);
 
     /** The bottom number */
-    denominator?: number | null;
+    denominator?: (number | null);
   }
 
   /** Valid range of the fraction is 0.5 to 1. */
   class Fraction implements IFraction {
+
     /**
      * Constructs a new Fraction.
      * @param [properties] Properties to set
@@ -6317,7 +7489,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.Fraction;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.Fraction;
 
     /**
      * Decodes a Fraction message from the specified reader or buffer, length delimited.
@@ -6326,14 +7498,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.Fraction;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.Fraction;
 
     /**
      * Verifies a Fraction message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Fraction message from a plain object. Also converts values to their respective internal types.
@@ -6348,10 +7520,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.Fraction,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.Fraction, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Fraction to JSON.
@@ -6362,54 +7531,56 @@ export namespace gov {
 
   /** Properties of a Proposal. */
   interface IProposal {
+
     /** Proposal metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Human readable title. */
-    title?: string | null;
+    title?: (string | null);
 
     /** Content of the proposal. Protobuf encoded, app-specific decoded must be passed in constructor */
-    rawOption?: Uint8Array | null;
+    rawOption?: (Uint8Array | null);
 
     /** Description of the proposal in text form. */
-    description?: string | null;
+    description?: (string | null);
 
     /** ElectionRuleRef is a reference to the election rule */
-    electionRuleRef?: orm.IVersionedIDRef | null;
+    electionRuleRef?: (orm.IVersionedIDRef | null);
 
     /** Reference to the electorate to define the group of possible voters. */
-    electorateRef?: orm.IVersionedIDRef | null;
+    electorateRef?: (orm.IVersionedIDRef | null);
 
     /** to this start time. */
-    votingStartTime?: number | Long | null;
+    votingStartTime?: (number | Long | null);
 
     /** to be included in the election. */
-    votingEndTime?: number | Long | null;
+    votingEndTime?: (number | Long | null);
 
     /** Unix timestamp of the block where the proposal was added to the chain. */
-    submissionTime?: number | Long | null;
+    submissionTime?: (number | Long | null);
 
     /** Address of the author who created the proposal. If not set explicit on creation it will default to the main signer. */
-    author?: Uint8Array | null;
+    author?: (Uint8Array | null);
 
     /** Result of the election. Contains intermediate tally results while voting period is open. */
-    voteState?: gov.ITallyResult | null;
+    voteState?: (gov.ITallyResult | null);
 
     /** Status represents the high level position in the life cycle of the proposal. Initial value is Submitted. */
-    status?: gov.Proposal.Status | null;
+    status?: (gov.Proposal.Status | null);
 
     /** Result is the final result based on the votes and election rule. Initial value is Undefined. */
-    result?: gov.Proposal.Result | null;
+    result?: (gov.Proposal.Result | null);
 
     /** Result is the final result based on the votes and election rule. Initial value is NotRun. */
-    executorResult?: gov.Proposal.ExecutorResult | null;
+    executorResult?: (gov.Proposal.ExecutorResult | null);
 
     /** create the tally once the voting period is over. */
-    tallyTaskId?: Uint8Array | null;
+    tallyTaskId?: (Uint8Array | null);
   }
 
   /** (what is being voted on) */
   class Proposal implements IProposal {
+
     /**
      * Constructs a new Proposal.
      * @param [properties] Properties to set
@@ -6417,7 +7588,7 @@ export namespace gov {
     constructor(properties?: gov.IProposal);
 
     /** Proposal metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Human readable title. */
     public title: string;
@@ -6429,25 +7600,25 @@ export namespace gov {
     public description: string;
 
     /** ElectionRuleRef is a reference to the election rule */
-    public electionRuleRef?: orm.IVersionedIDRef | null;
+    public electionRuleRef?: (orm.IVersionedIDRef | null);
 
     /** Reference to the electorate to define the group of possible voters. */
-    public electorateRef?: orm.IVersionedIDRef | null;
+    public electorateRef?: (orm.IVersionedIDRef | null);
 
     /** to this start time. */
-    public votingStartTime: number | Long;
+    public votingStartTime: (number | Long);
 
     /** to be included in the election. */
-    public votingEndTime: number | Long;
+    public votingEndTime: (number | Long);
 
     /** Unix timestamp of the block where the proposal was added to the chain. */
-    public submissionTime: number | Long;
+    public submissionTime: (number | Long);
 
     /** Address of the author who created the proposal. If not set explicit on creation it will default to the main signer. */
     public author: Uint8Array;
 
     /** Result of the election. Contains intermediate tally results while voting period is open. */
-    public voteState?: gov.ITallyResult | null;
+    public voteState?: (gov.ITallyResult | null);
 
     /** Status represents the high level position in the life cycle of the proposal. Initial value is Submitted. */
     public status: gov.Proposal.Status;
@@ -6492,7 +7663,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.Proposal;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.Proposal;
 
     /**
      * Decodes a Proposal message from the specified reader or buffer, length delimited.
@@ -6501,14 +7672,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.Proposal;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.Proposal;
 
     /**
      * Verifies a Proposal message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Proposal message from a plain object. Also converts values to their respective internal types.
@@ -6523,10 +7694,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.Proposal,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.Proposal, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Proposal to JSON.
@@ -6536,12 +7704,13 @@ export namespace gov {
   }
 
   namespace Proposal {
+
     /** Status enum. */
     enum Status {
       PROPOSAL_STATUS_INVALID = 0,
       PROPOSAL_STATUS_SUBMITTED = 1,
       PROPOSAL_STATUS_CLOSED = 2,
-      PROPOSAL_STATUS_WITHDRAWN = 3,
+      PROPOSAL_STATUS_WITHDRAWN = 3
     }
 
     /** Result enum. */
@@ -6549,7 +7718,7 @@ export namespace gov {
       PROPOSAL_RESULT_INVALID = 0,
       PROPOSAL_RESULT_UNDEFINED = 1,
       PROPOSAL_RESULT_ACCEPTED = 2,
-      PROPOSAL_RESULT_REJECTED = 3,
+      PROPOSAL_RESULT_REJECTED = 3
     }
 
     /** ExecutorResult enum. */
@@ -6557,27 +7726,29 @@ export namespace gov {
       PROPOSAL_EXECUTOR_RESULT_INVALID = 0,
       PROPOSAL_EXECUTOR_RESULT_NOT_RUN = 1,
       PROPOSAL_EXECUTOR_RESULT_SUCCESS = 2,
-      PROPOSAL_EXECUTOR_RESULT_FAILURE = 3,
+      PROPOSAL_EXECUTOR_RESULT_FAILURE = 3
     }
   }
 
   /** Properties of a Resolution. */
   interface IResolution {
+
     /** Resolution metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Resolution proposalId */
-    proposalId?: Uint8Array | null;
+    proposalId?: (Uint8Array | null);
 
     /** Resolution electorateRef */
-    electorateRef?: orm.IVersionedIDRef | null;
+    electorateRef?: (orm.IVersionedIDRef | null);
 
     /** Resolution resolution */
-    resolution?: string | null;
+    resolution?: (string | null);
   }
 
   /** Resolution contains TextResolution and an electorate reference. */
   class Resolution implements IResolution {
+
     /**
      * Constructs a new Resolution.
      * @param [properties] Properties to set
@@ -6585,13 +7756,13 @@ export namespace gov {
     constructor(properties?: gov.IResolution);
 
     /** Resolution metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Resolution proposalId. */
     public proposalId: Uint8Array;
 
     /** Resolution electorateRef. */
-    public electorateRef?: orm.IVersionedIDRef | null;
+    public electorateRef?: (orm.IVersionedIDRef | null);
 
     /** Resolution resolution. */
     public resolution: string;
@@ -6627,7 +7798,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.Resolution;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.Resolution;
 
     /**
      * Decodes a Resolution message from the specified reader or buffer, length delimited.
@@ -6636,14 +7807,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.Resolution;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.Resolution;
 
     /**
      * Verifies a Resolution message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Resolution message from a plain object. Also converts values to their respective internal types.
@@ -6658,10 +7829,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.Resolution,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.Resolution, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Resolution to JSON.
@@ -6672,27 +7840,29 @@ export namespace gov {
 
   /** Properties of a TallyResult. */
   interface ITallyResult {
+
     /** TotalYes is the sum of weights of all the voters that approved the proposal */
-    totalYes?: number | Long | null;
+    totalYes?: (number | Long | null);
 
     /** TotalNo is the sum of weights of all the voters that rejected the proposal */
-    totalNo?: number | Long | null;
+    totalNo?: (number | Long | null);
 
     /** TotalAbstain is the sum of weights of all the voters that voted abstain */
-    totalAbstain?: number | Long | null;
+    totalAbstain?: (number | Long | null);
 
     /** TotalElectorateWeight is the sum of all weights in the electorate. */
-    totalElectorateWeight?: number | Long | null;
+    totalElectorateWeight?: (number | Long | null);
 
     /** Quorum when set is the fraction of the total electorate weight that must be exceeded by total votes weight. */
-    quorum?: gov.IFraction | null;
+    quorum?: (gov.IFraction | null);
 
     /** The base value is either the total electorate weight or the sum of Yes/No weights when a quorum is defined. */
-    threshold?: gov.IFraction | null;
+    threshold?: (gov.IFraction | null);
   }
 
   /** TallyResult contains sums of the votes and all data for the final result. */
   class TallyResult implements ITallyResult {
+
     /**
      * Constructs a new TallyResult.
      * @param [properties] Properties to set
@@ -6700,22 +7870,22 @@ export namespace gov {
     constructor(properties?: gov.ITallyResult);
 
     /** TotalYes is the sum of weights of all the voters that approved the proposal */
-    public totalYes: number | Long;
+    public totalYes: (number | Long);
 
     /** TotalNo is the sum of weights of all the voters that rejected the proposal */
-    public totalNo: number | Long;
+    public totalNo: (number | Long);
 
     /** TotalAbstain is the sum of weights of all the voters that voted abstain */
-    public totalAbstain: number | Long;
+    public totalAbstain: (number | Long);
 
     /** TotalElectorateWeight is the sum of all weights in the electorate. */
-    public totalElectorateWeight: number | Long;
+    public totalElectorateWeight: (number | Long);
 
     /** Quorum when set is the fraction of the total electorate weight that must be exceeded by total votes weight. */
-    public quorum?: gov.IFraction | null;
+    public quorum?: (gov.IFraction | null);
 
     /** The base value is either the total electorate weight or the sum of Yes/No weights when a quorum is defined. */
-    public threshold?: gov.IFraction | null;
+    public threshold?: (gov.IFraction | null);
 
     /**
      * Creates a new TallyResult instance using the specified properties.
@@ -6748,7 +7918,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.TallyResult;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.TallyResult;
 
     /**
      * Decodes a TallyResult message from the specified reader or buffer, length delimited.
@@ -6757,14 +7927,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.TallyResult;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.TallyResult;
 
     /**
      * Verifies a TallyResult message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a TallyResult message from a plain object. Also converts values to their respective internal types.
@@ -6779,10 +7949,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.TallyResult,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.TallyResult, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this TallyResult to JSON.
@@ -6793,18 +7960,20 @@ export namespace gov {
 
   /** Properties of a Vote. */
   interface IVote {
+
     /** Vote metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Elector is who voted */
-    elector?: gov.IElector | null;
+    elector?: (gov.IElector | null);
 
     /** VoteOption is what they voted */
-    voted?: gov.VoteOption | null;
+    voted?: (gov.VoteOption | null);
   }
 
   /** The proposalID and address is stored within the key. */
   class Vote implements IVote {
+
     /**
      * Constructs a new Vote.
      * @param [properties] Properties to set
@@ -6812,10 +7981,10 @@ export namespace gov {
     constructor(properties?: gov.IVote);
 
     /** Vote metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Elector is who voted */
-    public elector?: gov.IElector | null;
+    public elector?: (gov.IElector | null);
 
     /** VoteOption is what they voted */
     public voted: gov.VoteOption;
@@ -6851,7 +8020,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.Vote;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.Vote;
 
     /**
      * Decodes a Vote message from the specified reader or buffer, length delimited.
@@ -6860,14 +8029,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.Vote;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.Vote;
 
     /**
      * Verifies a Vote message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Vote message from a plain object. Also converts values to their respective internal types.
@@ -6893,30 +8062,32 @@ export namespace gov {
 
   /** Properties of a CreateProposalMsg. */
   interface ICreateProposalMsg {
+
     /** CreateProposalMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Human readable title. Must match `^[a-zA-Z0-9 _.-]{4,128}$` */
-    title?: string | null;
+    title?: (string | null);
 
     /** Content of the proposal. Protobuf encoded, app-specific decoded must be passed in handler constructor */
-    rawOption?: Uint8Array | null;
+    rawOption?: (Uint8Array | null);
 
     /** Human readable description with 3 to 5000 chars. */
-    description?: string | null;
+    description?: (string | null);
 
     /** ElectionRuleID is a reference to the election rule */
-    electionRuleId?: Uint8Array | null;
+    electionRuleId?: (Uint8Array | null);
 
     /** Unix timestamp when the proposal starts. Must be in the future. */
-    startTime?: number | Long | null;
+    startTime?: (number | Long | null);
 
     /** When not set it will default to the main signer. */
-    author?: Uint8Array | null;
+    author?: (Uint8Array | null);
   }
 
   /** (what is being voted on) */
   class CreateProposalMsg implements ICreateProposalMsg {
+
     /**
      * Constructs a new CreateProposalMsg.
      * @param [properties] Properties to set
@@ -6924,7 +8095,7 @@ export namespace gov {
     constructor(properties?: gov.ICreateProposalMsg);
 
     /** CreateProposalMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Human readable title. Must match `^[a-zA-Z0-9 _.-]{4,128}$` */
     public title: string;
@@ -6939,7 +8110,7 @@ export namespace gov {
     public electionRuleId: Uint8Array;
 
     /** Unix timestamp when the proposal starts. Must be in the future. */
-    public startTime: number | Long;
+    public startTime: (number | Long);
 
     /** When not set it will default to the main signer. */
     public author: Uint8Array;
@@ -6965,10 +8136,7 @@ export namespace gov {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: gov.ICreateProposalMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: gov.ICreateProposalMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a CreateProposalMsg message from the specified reader or buffer.
@@ -6978,7 +8146,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.CreateProposalMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.CreateProposalMsg;
 
     /**
      * Decodes a CreateProposalMsg message from the specified reader or buffer, length delimited.
@@ -6987,14 +8155,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.CreateProposalMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.CreateProposalMsg;
 
     /**
      * Verifies a CreateProposalMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a CreateProposalMsg message from a plain object. Also converts values to their respective internal types.
@@ -7009,10 +8177,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.CreateProposalMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.CreateProposalMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this CreateProposalMsg to JSON.
@@ -7023,15 +8188,17 @@ export namespace gov {
 
   /** Properties of a DeleteProposalMsg. */
   interface IDeleteProposalMsg {
+
     /** DeleteProposalMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** ProposalID is the unique identifier of the proposal to delete */
-    proposalId?: Uint8Array | null;
+    proposalId?: (Uint8Array | null);
   }
 
   /** DeleteProposalMsg deletes a governance proposal. */
   class DeleteProposalMsg implements IDeleteProposalMsg {
+
     /**
      * Constructs a new DeleteProposalMsg.
      * @param [properties] Properties to set
@@ -7039,7 +8206,7 @@ export namespace gov {
     constructor(properties?: gov.IDeleteProposalMsg);
 
     /** DeleteProposalMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** ProposalID is the unique identifier of the proposal to delete */
     public proposalId: Uint8Array;
@@ -7065,10 +8232,7 @@ export namespace gov {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: gov.IDeleteProposalMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: gov.IDeleteProposalMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a DeleteProposalMsg message from the specified reader or buffer.
@@ -7078,7 +8242,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.DeleteProposalMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.DeleteProposalMsg;
 
     /**
      * Decodes a DeleteProposalMsg message from the specified reader or buffer, length delimited.
@@ -7087,14 +8251,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.DeleteProposalMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.DeleteProposalMsg;
 
     /**
      * Verifies a DeleteProposalMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a DeleteProposalMsg message from a plain object. Also converts values to their respective internal types.
@@ -7109,10 +8273,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.DeleteProposalMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.DeleteProposalMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this DeleteProposalMsg to JSON.
@@ -7126,26 +8287,28 @@ export namespace gov {
     VOTE_OPTION_INVALID = 0,
     VOTE_OPTION_YES = 1,
     VOTE_OPTION_NO = 2,
-    VOTE_OPTION_ABSTAIN = 3,
+    VOTE_OPTION_ABSTAIN = 3
   }
 
   /** Properties of a VoteMsg. */
   interface IVoteMsg {
+
     /** VoteMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** The unique id of the proposal. */
-    proposalId?: Uint8Array | null;
+    proposalId?: (Uint8Array | null);
 
     /** must be included in the electorate for a valid vote. */
-    voter?: Uint8Array | null;
+    voter?: (Uint8Array | null);
 
     /** Option for the vote. Must be Yes, No or Abstain for a valid vote. */
-    selected?: gov.VoteOption | null;
+    selected?: (gov.VoteOption | null);
   }
 
   /** VoteMsg is the way to express a voice and participate in an election of a proposal on chain. */
   class VoteMsg implements IVoteMsg {
+
     /**
      * Constructs a new VoteMsg.
      * @param [properties] Properties to set
@@ -7153,7 +8316,7 @@ export namespace gov {
     constructor(properties?: gov.IVoteMsg);
 
     /** VoteMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** The unique id of the proposal. */
     public proposalId: Uint8Array;
@@ -7195,7 +8358,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.VoteMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.VoteMsg;
 
     /**
      * Decodes a VoteMsg message from the specified reader or buffer, length delimited.
@@ -7204,14 +8367,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.VoteMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.VoteMsg;
 
     /**
      * Verifies a VoteMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a VoteMsg message from a plain object. Also converts values to their respective internal types.
@@ -7226,10 +8389,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.VoteMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.VoteMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this VoteMsg to JSON.
@@ -7240,15 +8400,17 @@ export namespace gov {
 
   /** Properties of a TallyMsg. */
   interface ITallyMsg {
+
     /** TallyMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** ProposalID is UUID of the proposal to close. */
-    proposalId?: Uint8Array | null;
+    proposalId?: (Uint8Array | null);
   }
 
   /** A final tally can be execute only once. A second submission will fail with an invalid state error. */
   class TallyMsg implements ITallyMsg {
+
     /**
      * Constructs a new TallyMsg.
      * @param [properties] Properties to set
@@ -7256,7 +8418,7 @@ export namespace gov {
     constructor(properties?: gov.ITallyMsg);
 
     /** TallyMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** ProposalID is UUID of the proposal to close. */
     public proposalId: Uint8Array;
@@ -7292,7 +8454,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.TallyMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.TallyMsg;
 
     /**
      * Decodes a TallyMsg message from the specified reader or buffer, length delimited.
@@ -7301,14 +8463,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.TallyMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.TallyMsg;
 
     /**
      * Verifies a TallyMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a TallyMsg message from a plain object. Also converts values to their respective internal types.
@@ -7323,10 +8485,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.TallyMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.TallyMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this TallyMsg to JSON.
@@ -7337,15 +8496,17 @@ export namespace gov {
 
   /** Properties of a CreateTextResolutionMsg. */
   interface ICreateTextResolutionMsg {
+
     /** CreateTextResolutionMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** CreateTextResolutionMsg resolution */
-    resolution?: string | null;
+    resolution?: (string | null);
   }
 
   /** with a reference to the electorate that approved it */
   class CreateTextResolutionMsg implements ICreateTextResolutionMsg {
+
     /**
      * Constructs a new CreateTextResolutionMsg.
      * @param [properties] Properties to set
@@ -7353,7 +8514,7 @@ export namespace gov {
     constructor(properties?: gov.ICreateTextResolutionMsg);
 
     /** CreateTextResolutionMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** CreateTextResolutionMsg resolution. */
     public resolution: string;
@@ -7379,10 +8540,7 @@ export namespace gov {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: gov.ICreateTextResolutionMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: gov.ICreateTextResolutionMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a CreateTextResolutionMsg message from the specified reader or buffer.
@@ -7392,7 +8550,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.CreateTextResolutionMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.CreateTextResolutionMsg;
 
     /**
      * Decodes a CreateTextResolutionMsg message from the specified reader or buffer, length delimited.
@@ -7401,14 +8559,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.CreateTextResolutionMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.CreateTextResolutionMsg;
 
     /**
      * Verifies a CreateTextResolutionMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a CreateTextResolutionMsg message from a plain object. Also converts values to their respective internal types.
@@ -7423,10 +8581,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.CreateTextResolutionMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.CreateTextResolutionMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this CreateTextResolutionMsg to JSON.
@@ -7437,18 +8592,20 @@ export namespace gov {
 
   /** Properties of an UpdateElectorateMsg. */
   interface IUpdateElectorateMsg {
+
     /** UpdateElectorateMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** ElectorateID is the reference to the electorate that defines the group of possible voters. */
-    electorateId?: Uint8Array | null;
+    electorateId?: (Uint8Array | null);
 
     /** with weight=0. */
-    diffElectors?: gov.IElector[] | null;
+    diffElectors?: (gov.IElector[] | null);
   }
 
   /** Represents an UpdateElectorateMsg. */
   class UpdateElectorateMsg implements IUpdateElectorateMsg {
+
     /**
      * Constructs a new UpdateElectorateMsg.
      * @param [properties] Properties to set
@@ -7456,7 +8613,7 @@ export namespace gov {
     constructor(properties?: gov.IUpdateElectorateMsg);
 
     /** UpdateElectorateMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** ElectorateID is the reference to the electorate that defines the group of possible voters. */
     public electorateId: Uint8Array;
@@ -7485,10 +8642,7 @@ export namespace gov {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: gov.IUpdateElectorateMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: gov.IUpdateElectorateMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes an UpdateElectorateMsg message from the specified reader or buffer.
@@ -7498,7 +8652,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.UpdateElectorateMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.UpdateElectorateMsg;
 
     /**
      * Decodes an UpdateElectorateMsg message from the specified reader or buffer, length delimited.
@@ -7507,14 +8661,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.UpdateElectorateMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.UpdateElectorateMsg;
 
     /**
      * Verifies an UpdateElectorateMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an UpdateElectorateMsg message from a plain object. Also converts values to their respective internal types.
@@ -7529,10 +8683,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.UpdateElectorateMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.UpdateElectorateMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this UpdateElectorateMsg to JSON.
@@ -7543,24 +8694,26 @@ export namespace gov {
 
   /** Properties of an UpdateElectionRuleMsg. */
   interface IUpdateElectionRuleMsg {
+
     /** UpdateElectionRuleMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** ElectionRuleID is a reference to the election rule */
-    electionRuleId?: Uint8Array | null;
+    electionRuleId?: (Uint8Array | null);
 
     /** Duration in seconds of how long the voting period will take place. */
-    votingPeriod?: number | null;
+    votingPeriod?: (number | null);
 
     /** of the eligible voters. */
-    threshold?: gov.IFraction | null;
+    threshold?: (gov.IFraction | null);
 
     /** allows any value between half and all of the eligible voters. */
-    quorum?: gov.IFraction | null;
+    quorum?: (gov.IFraction | null);
   }
 
   /** Represents an UpdateElectionRuleMsg. */
   class UpdateElectionRuleMsg implements IUpdateElectionRuleMsg {
+
     /**
      * Constructs a new UpdateElectionRuleMsg.
      * @param [properties] Properties to set
@@ -7568,7 +8721,7 @@ export namespace gov {
     constructor(properties?: gov.IUpdateElectionRuleMsg);
 
     /** UpdateElectionRuleMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** ElectionRuleID is a reference to the election rule */
     public electionRuleId: Uint8Array;
@@ -7577,10 +8730,10 @@ export namespace gov {
     public votingPeriod: number;
 
     /** of the eligible voters. */
-    public threshold?: gov.IFraction | null;
+    public threshold?: (gov.IFraction | null);
 
     /** allows any value between half and all of the eligible voters. */
-    public quorum?: gov.IFraction | null;
+    public quorum?: (gov.IFraction | null);
 
     /**
      * Creates a new UpdateElectionRuleMsg instance using the specified properties.
@@ -7603,10 +8756,7 @@ export namespace gov {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: gov.IUpdateElectionRuleMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: gov.IUpdateElectionRuleMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes an UpdateElectionRuleMsg message from the specified reader or buffer.
@@ -7616,7 +8766,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.UpdateElectionRuleMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.UpdateElectionRuleMsg;
 
     /**
      * Decodes an UpdateElectionRuleMsg message from the specified reader or buffer, length delimited.
@@ -7625,14 +8775,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.UpdateElectionRuleMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.UpdateElectionRuleMsg;
 
     /**
      * Verifies an UpdateElectionRuleMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an UpdateElectionRuleMsg message from a plain object. Also converts values to their respective internal types.
@@ -7647,10 +8797,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.UpdateElectionRuleMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.UpdateElectionRuleMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this UpdateElectionRuleMsg to JSON.
@@ -7661,18 +8808,20 @@ export namespace gov {
 
   /** Properties of a ProposalOptions. */
   interface IProposalOptions {
+
     /** ProposalOptions text */
-    text?: gov.ICreateTextResolutionMsg | null;
+    text?: (gov.ICreateTextResolutionMsg | null);
 
     /** ProposalOptions electorate */
-    electorate?: gov.IUpdateElectorateMsg | null;
+    electorate?: (gov.IUpdateElectorateMsg | null);
 
     /** ProposalOptions rule */
-    rule?: gov.IUpdateElectionRuleMsg | null;
+    rule?: (gov.IUpdateElectionRuleMsg | null);
   }
 
   /** and handlers, but an application can reference messages from any package. */
   class ProposalOptions implements IProposalOptions {
+
     /**
      * Constructs a new ProposalOptions.
      * @param [properties] Properties to set
@@ -7680,16 +8829,16 @@ export namespace gov {
     constructor(properties?: gov.IProposalOptions);
 
     /** ProposalOptions text. */
-    public text?: gov.ICreateTextResolutionMsg | null;
+    public text?: (gov.ICreateTextResolutionMsg | null);
 
     /** ProposalOptions electorate. */
-    public electorate?: gov.IUpdateElectorateMsg | null;
+    public electorate?: (gov.IUpdateElectorateMsg | null);
 
     /** ProposalOptions rule. */
-    public rule?: gov.IUpdateElectionRuleMsg | null;
+    public rule?: (gov.IUpdateElectionRuleMsg | null);
 
     /** ProposalOptions option. */
-    public option?: "text" | "electorate" | "rule";
+    public option?: ("text" | "electorate" | "rule");
 
     /**
      * Creates a new ProposalOptions instance using the specified properties.
@@ -7722,7 +8871,7 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): gov.ProposalOptions;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): gov.ProposalOptions;
 
     /**
      * Decodes a ProposalOptions message from the specified reader or buffer, length delimited.
@@ -7731,14 +8880,14 @@ export namespace gov {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): gov.ProposalOptions;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): gov.ProposalOptions;
 
     /**
      * Verifies a ProposalOptions message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a ProposalOptions message from a plain object. Also converts values to their respective internal types.
@@ -7753,10 +8902,7 @@ export namespace gov {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: gov.ProposalOptions,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: gov.ProposalOptions, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ProposalOptions to JSON.
@@ -7768,20 +8914,23 @@ export namespace gov {
 
 /** Namespace msgfee. */
 export namespace msgfee {
+
   /** Properties of a MsgFee. */
   interface IMsgFee {
+
     /** MsgFee metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** MsgFee msgPath */
-    msgPath?: string | null;
+    msgPath?: (string | null);
 
     /** MsgFee fee */
-    fee?: coin.ICoin | null;
+    fee?: (coin.ICoin | null);
   }
 
   /** the message to be processed. */
   class MsgFee implements IMsgFee {
+
     /**
      * Constructs a new MsgFee.
      * @param [properties] Properties to set
@@ -7789,13 +8938,13 @@ export namespace msgfee {
     constructor(properties?: msgfee.IMsgFee);
 
     /** MsgFee metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** MsgFee msgPath. */
     public msgPath: string;
 
     /** MsgFee fee. */
-    public fee?: coin.ICoin | null;
+    public fee?: (coin.ICoin | null);
 
     /**
      * Creates a new MsgFee instance using the specified properties.
@@ -7828,7 +8977,7 @@ export namespace msgfee {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): msgfee.MsgFee;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): msgfee.MsgFee;
 
     /**
      * Decodes a MsgFee message from the specified reader or buffer, length delimited.
@@ -7837,14 +8986,14 @@ export namespace msgfee {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): msgfee.MsgFee;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): msgfee.MsgFee;
 
     /**
      * Verifies a MsgFee message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a MsgFee message from a plain object. Also converts values to their respective internal types.
@@ -7859,10 +9008,7 @@ export namespace msgfee {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: msgfee.MsgFee,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: msgfee.MsgFee, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this MsgFee to JSON.
@@ -7874,26 +9020,29 @@ export namespace msgfee {
 
 /** Namespace multisig. */
 export namespace multisig {
+
   /** Properties of a Contract. */
   interface IContract {
+
     /** Contract metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** contract. */
-    participants?: multisig.IParticipant[] | null;
+    participants?: (multisig.IParticipant[] | null);
 
     /** computed as the sum of weights of all participating signatures. */
-    activationThreshold?: number | null;
+    activationThreshold?: (number | null);
 
     /** computed as the sum of weights of all participating signatures. */
-    adminThreshold?: number | null;
+    adminThreshold?: (number | null);
 
     /** Address of this entity. Set during creation and does not change. */
-    address?: Uint8Array | null;
+    address?: (Uint8Array | null);
   }
 
   /** Represents a Contract. */
   class Contract implements IContract {
+
     /**
      * Constructs a new Contract.
      * @param [properties] Properties to set
@@ -7901,7 +9050,7 @@ export namespace multisig {
     constructor(properties?: multisig.IContract);
 
     /** Contract metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** contract. */
     public participants: multisig.IParticipant[];
@@ -7946,7 +9095,7 @@ export namespace multisig {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): multisig.Contract;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): multisig.Contract;
 
     /**
      * Decodes a Contract message from the specified reader or buffer, length delimited.
@@ -7955,14 +9104,14 @@ export namespace multisig {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): multisig.Contract;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): multisig.Contract;
 
     /**
      * Verifies a Contract message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Contract message from a plain object. Also converts values to their respective internal types.
@@ -7977,10 +9126,7 @@ export namespace multisig {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: multisig.Contract,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: multisig.Contract, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Contract to JSON.
@@ -7991,15 +9137,17 @@ export namespace multisig {
 
   /** Properties of a Participant. */
   interface IParticipant {
+
     /** Participant signature */
-    signature?: Uint8Array | null;
+    signature?: (Uint8Array | null);
 
     /** Participant weight */
-    weight?: number | null;
+    weight?: (number | null);
   }
 
   /** the greater the power of a signature. */
   class Participant implements IParticipant {
+
     /**
      * Constructs a new Participant.
      * @param [properties] Properties to set
@@ -8033,10 +9181,7 @@ export namespace multisig {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: multisig.IParticipant,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: multisig.IParticipant, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a Participant message from the specified reader or buffer.
@@ -8046,7 +9191,7 @@ export namespace multisig {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): multisig.Participant;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): multisig.Participant;
 
     /**
      * Decodes a Participant message from the specified reader or buffer, length delimited.
@@ -8055,14 +9200,14 @@ export namespace multisig {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): multisig.Participant;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): multisig.Participant;
 
     /**
      * Verifies a Participant message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Participant message from a plain object. Also converts values to their respective internal types.
@@ -8077,10 +9222,7 @@ export namespace multisig {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: multisig.Participant,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: multisig.Participant, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Participant to JSON.
@@ -8091,21 +9233,23 @@ export namespace multisig {
 
   /** Properties of a CreateMsg. */
   interface ICreateMsg {
+
     /** CreateMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** CreateMsg participants */
-    participants?: multisig.IParticipant[] | null;
+    participants?: (multisig.IParticipant[] | null);
 
     /** CreateMsg activationThreshold */
-    activationThreshold?: number | null;
+    activationThreshold?: (number | null);
 
     /** CreateMsg adminThreshold */
-    adminThreshold?: number | null;
+    adminThreshold?: (number | null);
   }
 
   /** Represents a CreateMsg. */
   class CreateMsg implements ICreateMsg {
+
     /**
      * Constructs a new CreateMsg.
      * @param [properties] Properties to set
@@ -8113,7 +9257,7 @@ export namespace multisig {
     constructor(properties?: multisig.ICreateMsg);
 
     /** CreateMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** CreateMsg participants. */
     public participants: multisig.IParticipant[];
@@ -8155,7 +9299,7 @@ export namespace multisig {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): multisig.CreateMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): multisig.CreateMsg;
 
     /**
      * Decodes a CreateMsg message from the specified reader or buffer, length delimited.
@@ -8164,14 +9308,14 @@ export namespace multisig {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): multisig.CreateMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): multisig.CreateMsg;
 
     /**
      * Verifies a CreateMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a CreateMsg message from a plain object. Also converts values to their respective internal types.
@@ -8186,10 +9330,7 @@ export namespace multisig {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: multisig.CreateMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: multisig.CreateMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this CreateMsg to JSON.
@@ -8200,24 +9341,26 @@ export namespace multisig {
 
   /** Properties of an UpdateMsg. */
   interface IUpdateMsg {
+
     /** UpdateMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** UpdateMsg contractId */
-    contractId?: Uint8Array | null;
+    contractId?: (Uint8Array | null);
 
     /** UpdateMsg participants */
-    participants?: multisig.IParticipant[] | null;
+    participants?: (multisig.IParticipant[] | null);
 
     /** UpdateMsg activationThreshold */
-    activationThreshold?: number | null;
+    activationThreshold?: (number | null);
 
     /** UpdateMsg adminThreshold */
-    adminThreshold?: number | null;
+    adminThreshold?: (number | null);
   }
 
   /** Represents an UpdateMsg. */
   class UpdateMsg implements IUpdateMsg {
+
     /**
      * Constructs a new UpdateMsg.
      * @param [properties] Properties to set
@@ -8225,7 +9368,7 @@ export namespace multisig {
     constructor(properties?: multisig.IUpdateMsg);
 
     /** UpdateMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** UpdateMsg contractId. */
     public contractId: Uint8Array;
@@ -8270,7 +9413,7 @@ export namespace multisig {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): multisig.UpdateMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): multisig.UpdateMsg;
 
     /**
      * Decodes an UpdateMsg message from the specified reader or buffer, length delimited.
@@ -8279,14 +9422,14 @@ export namespace multisig {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): multisig.UpdateMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): multisig.UpdateMsg;
 
     /**
      * Verifies an UpdateMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an UpdateMsg message from a plain object. Also converts values to their respective internal types.
@@ -8301,10 +9444,7 @@ export namespace multisig {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: multisig.UpdateMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: multisig.UpdateMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this UpdateMsg to JSON.
@@ -8316,38 +9456,41 @@ export namespace multisig {
 
 /** Namespace paychan. */
 export namespace paychan {
+
   /** Properties of a PaymentChannel. */
   interface IPaymentChannel {
+
     /** PaymentChannel metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Source is the source that the founds are allocated from. */
-    source?: Uint8Array | null;
+    source?: (Uint8Array | null);
 
     /** to the destination. Signature prevents from altering transfer message. */
-    sourcePubkey?: crypto.IPublicKey | null;
+    sourcePubkey?: (crypto.IPublicKey | null);
 
     /** Destination is the party that receives payments through this channel */
-    destination?: Uint8Array | null;
+    destination?: (Uint8Array | null);
 
     /** payment channel. */
-    total?: coin.ICoin | null;
+    total?: (coin.ICoin | null);
 
     /** expired: [timeout, infinity) */
-    timeout?: number | Long | null;
+    timeout?: (number | Long | null);
 
     /** Max length 128 character. */
-    memo?: string | null;
+    memo?: (string | null);
 
     /** (total) value. Transferred must never exceed total value. */
-    transferred?: coin.ICoin | null;
+    transferred?: (coin.ICoin | null);
 
     /** Address of this entity. Set during creation and does not change. */
-    address?: Uint8Array | null;
+    address?: (Uint8Array | null);
   }
 
   /** PaymentChannel holds the state of a payment channel during its lifetime. */
   class PaymentChannel implements IPaymentChannel {
+
     /**
      * Constructs a new PaymentChannel.
      * @param [properties] Properties to set
@@ -8355,28 +9498,28 @@ export namespace paychan {
     constructor(properties?: paychan.IPaymentChannel);
 
     /** PaymentChannel metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Source is the source that the founds are allocated from. */
     public source: Uint8Array;
 
     /** to the destination. Signature prevents from altering transfer message. */
-    public sourcePubkey?: crypto.IPublicKey | null;
+    public sourcePubkey?: (crypto.IPublicKey | null);
 
     /** Destination is the party that receives payments through this channel */
     public destination: Uint8Array;
 
     /** payment channel. */
-    public total?: coin.ICoin | null;
+    public total?: (coin.ICoin | null);
 
     /** expired: [timeout, infinity) */
-    public timeout: number | Long;
+    public timeout: (number | Long);
 
     /** Max length 128 character. */
     public memo: string;
 
     /** (total) value. Transferred must never exceed total value. */
-    public transferred?: coin.ICoin | null;
+    public transferred?: (coin.ICoin | null);
 
     /** Address of this entity. Set during creation and does not change. */
     public address: Uint8Array;
@@ -8402,10 +9545,7 @@ export namespace paychan {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: paychan.IPaymentChannel,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: paychan.IPaymentChannel, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a PaymentChannel message from the specified reader or buffer.
@@ -8415,7 +9555,7 @@ export namespace paychan {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): paychan.PaymentChannel;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): paychan.PaymentChannel;
 
     /**
      * Decodes a PaymentChannel message from the specified reader or buffer, length delimited.
@@ -8424,14 +9564,14 @@ export namespace paychan {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): paychan.PaymentChannel;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): paychan.PaymentChannel;
 
     /**
      * Verifies a PaymentChannel message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a PaymentChannel message from a plain object. Also converts values to their respective internal types.
@@ -8446,10 +9586,7 @@ export namespace paychan {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: paychan.PaymentChannel,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: paychan.PaymentChannel, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this PaymentChannel to JSON.
@@ -8460,30 +9597,32 @@ export namespace paychan {
 
   /** Properties of a CreateMsg. */
   interface ICreateMsg {
+
     /** CreateMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Source address (weave.Address). */
-    source?: Uint8Array | null;
+    source?: (Uint8Array | null);
 
     /** Source public key is for validating transfer message signature. */
-    sourcePubkey?: crypto.IPublicKey | null;
+    sourcePubkey?: (crypto.IPublicKey | null);
 
     /** Destination address  (weave.Address). */
-    destination?: Uint8Array | null;
+    destination?: (Uint8Array | null);
 
     /** Maximum amount that can be transferred via this channel. */
-    total?: coin.ICoin | null;
+    total?: (coin.ICoin | null);
 
     /** If reached, channel can be closed by anyone. */
-    timeout?: number | Long | null;
+    timeout?: (number | Long | null);
 
     /** Max length 128 character. */
-    memo?: string | null;
+    memo?: (string | null);
   }
 
   /** in the transactions done via created payment channel. */
   class CreateMsg implements ICreateMsg {
+
     /**
      * Constructs a new CreateMsg.
      * @param [properties] Properties to set
@@ -8491,22 +9630,22 @@ export namespace paychan {
     constructor(properties?: paychan.ICreateMsg);
 
     /** CreateMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Source address (weave.Address). */
     public source: Uint8Array;
 
     /** Source public key is for validating transfer message signature. */
-    public sourcePubkey?: crypto.IPublicKey | null;
+    public sourcePubkey?: (crypto.IPublicKey | null);
 
     /** Destination address  (weave.Address). */
     public destination: Uint8Array;
 
     /** Maximum amount that can be transferred via this channel. */
-    public total?: coin.ICoin | null;
+    public total?: (coin.ICoin | null);
 
     /** If reached, channel can be closed by anyone. */
-    public timeout: number | Long;
+    public timeout: (number | Long);
 
     /** Max length 128 character. */
     public memo: string;
@@ -8542,7 +9681,7 @@ export namespace paychan {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): paychan.CreateMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): paychan.CreateMsg;
 
     /**
      * Decodes a CreateMsg message from the specified reader or buffer, length delimited.
@@ -8551,14 +9690,14 @@ export namespace paychan {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): paychan.CreateMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): paychan.CreateMsg;
 
     /**
      * Verifies a CreateMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a CreateMsg message from a plain object. Also converts values to their respective internal types.
@@ -8573,10 +9712,7 @@ export namespace paychan {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: paychan.CreateMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: paychan.CreateMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this CreateMsg to JSON.
@@ -8587,21 +9723,23 @@ export namespace paychan {
 
   /** Properties of a Payment. */
   interface IPayment {
+
     /** Payment chainId */
-    chainId?: string | null;
+    chainId?: (string | null);
 
     /** Payment channelId */
-    channelId?: Uint8Array | null;
+    channelId?: (Uint8Array | null);
 
     /** Payment amount */
-    amount?: coin.ICoin | null;
+    amount?: (coin.ICoin | null);
 
     /** Max length 128 character. */
-    memo?: string | null;
+    memo?: (string | null);
   }
 
   /** Each Payment should be created with amount greater than the previous one. */
   class Payment implements IPayment {
+
     /**
      * Constructs a new Payment.
      * @param [properties] Properties to set
@@ -8615,7 +9753,7 @@ export namespace paychan {
     public channelId: Uint8Array;
 
     /** Payment amount. */
-    public amount?: coin.ICoin | null;
+    public amount?: (coin.ICoin | null);
 
     /** Max length 128 character. */
     public memo: string;
@@ -8651,7 +9789,7 @@ export namespace paychan {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): paychan.Payment;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): paychan.Payment;
 
     /**
      * Decodes a Payment message from the specified reader or buffer, length delimited.
@@ -8660,14 +9798,14 @@ export namespace paychan {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): paychan.Payment;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): paychan.Payment;
 
     /**
      * Verifies a Payment message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a Payment message from a plain object. Also converts values to their respective internal types.
@@ -8682,10 +9820,7 @@ export namespace paychan {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: paychan.Payment,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: paychan.Payment, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Payment to JSON.
@@ -8696,18 +9831,20 @@ export namespace paychan {
 
   /** Properties of a TransferMsg. */
   interface ITransferMsg {
+
     /** TransferMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** TransferMsg payment */
-    payment?: paychan.IPayment | null;
+    payment?: (paychan.IPayment | null);
 
     /** TransferMsg signature */
-    signature?: crypto.ISignature | null;
+    signature?: (crypto.ISignature | null);
   }
 
   /** Signature is there to ensure that payment message was not altered. */
   class TransferMsg implements ITransferMsg {
+
     /**
      * Constructs a new TransferMsg.
      * @param [properties] Properties to set
@@ -8715,13 +9852,13 @@ export namespace paychan {
     constructor(properties?: paychan.ITransferMsg);
 
     /** TransferMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** TransferMsg payment. */
-    public payment?: paychan.IPayment | null;
+    public payment?: (paychan.IPayment | null);
 
     /** TransferMsg signature. */
-    public signature?: crypto.ISignature | null;
+    public signature?: (crypto.ISignature | null);
 
     /**
      * Creates a new TransferMsg instance using the specified properties.
@@ -8754,7 +9891,7 @@ export namespace paychan {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): paychan.TransferMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): paychan.TransferMsg;
 
     /**
      * Decodes a TransferMsg message from the specified reader or buffer, length delimited.
@@ -8763,14 +9900,14 @@ export namespace paychan {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): paychan.TransferMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): paychan.TransferMsg;
 
     /**
      * Verifies a TransferMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a TransferMsg message from a plain object. Also converts values to their respective internal types.
@@ -8785,10 +9922,7 @@ export namespace paychan {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: paychan.TransferMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: paychan.TransferMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this TransferMsg to JSON.
@@ -8799,18 +9933,20 @@ export namespace paychan {
 
   /** Properties of a CloseMsg. */
   interface ICloseMsg {
+
     /** CloseMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** CloseMsg channelId */
-    channelId?: Uint8Array | null;
+    channelId?: (Uint8Array | null);
 
     /** Max length 128 character. */
-    memo?: string | null;
+    memo?: (string | null);
   }
 
   /** Source can close channel only if the timeout was reached. */
   class CloseMsg implements ICloseMsg {
+
     /**
      * Constructs a new CloseMsg.
      * @param [properties] Properties to set
@@ -8818,7 +9954,7 @@ export namespace paychan {
     constructor(properties?: paychan.ICloseMsg);
 
     /** CloseMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** CloseMsg channelId. */
     public channelId: Uint8Array;
@@ -8857,7 +9993,7 @@ export namespace paychan {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): paychan.CloseMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): paychan.CloseMsg;
 
     /**
      * Decodes a CloseMsg message from the specified reader or buffer, length delimited.
@@ -8866,14 +10002,14 @@ export namespace paychan {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): paychan.CloseMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): paychan.CloseMsg;
 
     /**
      * Verifies a CloseMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a CloseMsg message from a plain object. Also converts values to their respective internal types.
@@ -8888,10 +10024,7 @@ export namespace paychan {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: paychan.CloseMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: paychan.CloseMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this CloseMsg to JSON.
@@ -8903,20 +10036,23 @@ export namespace paychan {
 
 /** Namespace sigs. */
 export namespace sigs {
+
   /** Properties of a UserData. */
   interface IUserData {
+
     /** UserData metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** UserData pubkey */
-    pubkey?: crypto.IPublicKey | null;
+    pubkey?: (crypto.IPublicKey | null);
 
     /** UserData sequence */
-    sequence?: number | Long | null;
+    sequence?: (number | Long | null);
   }
 
   /** User is the entry point you want */
   class UserData implements IUserData {
+
     /**
      * Constructs a new UserData.
      * @param [properties] Properties to set
@@ -8924,13 +10060,13 @@ export namespace sigs {
     constructor(properties?: sigs.IUserData);
 
     /** UserData metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** UserData pubkey. */
-    public pubkey?: crypto.IPublicKey | null;
+    public pubkey?: (crypto.IPublicKey | null);
 
     /** UserData sequence. */
-    public sequence: number | Long;
+    public sequence: (number | Long);
 
     /**
      * Creates a new UserData instance using the specified properties.
@@ -8963,7 +10099,7 @@ export namespace sigs {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): sigs.UserData;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): sigs.UserData;
 
     /**
      * Decodes a UserData message from the specified reader or buffer, length delimited.
@@ -8972,14 +10108,14 @@ export namespace sigs {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): sigs.UserData;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): sigs.UserData;
 
     /**
      * Verifies a UserData message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a UserData message from a plain object. Also converts values to their respective internal types.
@@ -8994,10 +10130,7 @@ export namespace sigs {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: sigs.UserData,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: sigs.UserData, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this UserData to JSON.
@@ -9008,18 +10141,20 @@ export namespace sigs {
 
   /** Properties of a StdSignature. */
   interface IStdSignature {
+
     /** StdSignature sequence */
-    sequence?: number | Long | null;
+    sequence?: (number | Long | null);
 
     /** StdSignature pubkey */
-    pubkey?: crypto.IPublicKey | null;
+    pubkey?: (crypto.IPublicKey | null);
 
     /** Removed Address, Pubkey is more powerful */
-    signature?: crypto.ISignature | null;
+    signature?: (crypto.ISignature | null);
   }
 
   /** increasing by 1 each time (starting at 0) */
   class StdSignature implements IStdSignature {
+
     /**
      * Constructs a new StdSignature.
      * @param [properties] Properties to set
@@ -9027,13 +10162,13 @@ export namespace sigs {
     constructor(properties?: sigs.IStdSignature);
 
     /** StdSignature sequence. */
-    public sequence: number | Long;
+    public sequence: (number | Long);
 
     /** StdSignature pubkey. */
-    public pubkey?: crypto.IPublicKey | null;
+    public pubkey?: (crypto.IPublicKey | null);
 
     /** Removed Address, Pubkey is more powerful */
-    public signature?: crypto.ISignature | null;
+    public signature?: (crypto.ISignature | null);
 
     /**
      * Creates a new StdSignature instance using the specified properties.
@@ -9066,7 +10201,7 @@ export namespace sigs {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): sigs.StdSignature;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): sigs.StdSignature;
 
     /**
      * Decodes a StdSignature message from the specified reader or buffer, length delimited.
@@ -9075,14 +10210,14 @@ export namespace sigs {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): sigs.StdSignature;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): sigs.StdSignature;
 
     /**
      * Verifies a StdSignature message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a StdSignature message from a plain object. Also converts values to their respective internal types.
@@ -9097,10 +10232,7 @@ export namespace sigs {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: sigs.StdSignature,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: sigs.StdSignature, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this StdSignature to JSON.
@@ -9111,15 +10243,17 @@ export namespace sigs {
 
   /** Properties of a BumpSequenceMsg. */
   interface IBumpSequenceMsg {
+
     /** BumpSequenceMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** total increment value, including the default increment. */
-    increment?: number | null;
+    increment?: (number | null);
   }
 
   /** that signed the transaction. */
   class BumpSequenceMsg implements IBumpSequenceMsg {
+
     /**
      * Constructs a new BumpSequenceMsg.
      * @param [properties] Properties to set
@@ -9127,7 +10261,7 @@ export namespace sigs {
     constructor(properties?: sigs.IBumpSequenceMsg);
 
     /** BumpSequenceMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** total increment value, including the default increment. */
     public increment: number;
@@ -9153,10 +10287,7 @@ export namespace sigs {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: sigs.IBumpSequenceMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: sigs.IBumpSequenceMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes a BumpSequenceMsg message from the specified reader or buffer.
@@ -9166,7 +10297,7 @@ export namespace sigs {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): sigs.BumpSequenceMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): sigs.BumpSequenceMsg;
 
     /**
      * Decodes a BumpSequenceMsg message from the specified reader or buffer, length delimited.
@@ -9175,14 +10306,14 @@ export namespace sigs {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): sigs.BumpSequenceMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): sigs.BumpSequenceMsg;
 
     /**
      * Verifies a BumpSequenceMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates a BumpSequenceMsg message from a plain object. Also converts values to their respective internal types.
@@ -9197,10 +10328,7 @@ export namespace sigs {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: sigs.BumpSequenceMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: sigs.BumpSequenceMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this BumpSequenceMsg to JSON.
@@ -9212,17 +10340,20 @@ export namespace sigs {
 
 /** Namespace validators. */
 export namespace validators {
+
   /** Properties of an ApplyDiffMsg. */
   interface IApplyDiffMsg {
+
     /** ApplyDiffMsg metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** ApplyDiffMsg validatorUpdates */
-    validatorUpdates?: weave.IValidatorUpdate[] | null;
+    validatorUpdates?: (weave.IValidatorUpdate[] | null);
   }
 
   /** ApplyDiffMsg is designed to update validator power */
   class ApplyDiffMsg implements IApplyDiffMsg {
+
     /**
      * Constructs a new ApplyDiffMsg.
      * @param [properties] Properties to set
@@ -9230,7 +10361,7 @@ export namespace validators {
     constructor(properties?: validators.IApplyDiffMsg);
 
     /** ApplyDiffMsg metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** ApplyDiffMsg validatorUpdates. */
     public validatorUpdates: weave.IValidatorUpdate[];
@@ -9256,10 +10387,7 @@ export namespace validators {
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(
-      message: validators.IApplyDiffMsg,
-      writer?: $protobuf.Writer,
-    ): $protobuf.Writer;
+    public static encodeDelimited(message: validators.IApplyDiffMsg, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
      * Decodes an ApplyDiffMsg message from the specified reader or buffer.
@@ -9269,7 +10397,7 @@ export namespace validators {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): validators.ApplyDiffMsg;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): validators.ApplyDiffMsg;
 
     /**
      * Decodes an ApplyDiffMsg message from the specified reader or buffer, length delimited.
@@ -9278,14 +10406,14 @@ export namespace validators {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): validators.ApplyDiffMsg;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): validators.ApplyDiffMsg;
 
     /**
      * Verifies an ApplyDiffMsg message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an ApplyDiffMsg message from a plain object. Also converts values to their respective internal types.
@@ -9300,10 +10428,7 @@ export namespace validators {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: validators.ApplyDiffMsg,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: validators.ApplyDiffMsg, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this ApplyDiffMsg to JSON.
@@ -9314,15 +10439,17 @@ export namespace validators {
 
   /** Properties of an Accounts. */
   interface IAccounts {
+
     /** Accounts metadata */
-    metadata?: weave.IMetadata | null;
+    metadata?: (weave.IMetadata | null);
 
     /** Accounts addresses */
-    addresses?: Uint8Array[] | null;
+    addresses?: (Uint8Array[] | null);
   }
 
   /** Accounts is a list of accounts allowed to update validators */
   class Accounts implements IAccounts {
+
     /**
      * Constructs a new Accounts.
      * @param [properties] Properties to set
@@ -9330,7 +10457,7 @@ export namespace validators {
     constructor(properties?: validators.IAccounts);
 
     /** Accounts metadata. */
-    public metadata?: weave.IMetadata | null;
+    public metadata?: (weave.IMetadata | null);
 
     /** Accounts addresses. */
     public addresses: Uint8Array[];
@@ -9366,7 +10493,7 @@ export namespace validators {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: $protobuf.Reader | Uint8Array, length?: number): validators.Accounts;
+    public static decode(reader: ($protobuf.Reader | Uint8Array), length?: number): validators.Accounts;
 
     /**
      * Decodes an Accounts message from the specified reader or buffer, length delimited.
@@ -9375,14 +10502,14 @@ export namespace validators {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: $protobuf.Reader | Uint8Array): validators.Accounts;
+    public static decodeDelimited(reader: ($protobuf.Reader | Uint8Array)): validators.Accounts;
 
     /**
      * Verifies an Accounts message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
-    public static verify(message: { [k: string]: any }): string | null;
+    public static verify(message: { [k: string]: any }): (string | null);
 
     /**
      * Creates an Accounts message from a plain object. Also converts values to their respective internal types.
@@ -9397,10 +10524,7 @@ export namespace validators {
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(
-      message: validators.Accounts,
-      options?: $protobuf.IConversionOptions,
-    ): { [k: string]: any };
+    public static toObject(message: validators.Accounts, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
      * Converts this Accounts to JSON.

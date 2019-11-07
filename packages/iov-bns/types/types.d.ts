@@ -200,6 +200,14 @@ export interface Vote {
   readonly elector: Elector;
   readonly selection: VoteOption;
 }
+export interface Artifact {
+  readonly owner: Address;
+  readonly image: string;
+  readonly checksum: string;
+}
+export interface ArtifactByOwnerQuery {
+  readonly owner: Address;
+}
 export interface ChainAddressPair {
   readonly chainId: ChainId;
   readonly address: Address;
@@ -243,6 +251,12 @@ export interface RegisterUsernameTx extends LightTransaction {
   readonly targets: readonly ChainAddressPair[];
 }
 export declare function isRegisterUsernameTx(tx: LightTransaction): tx is RegisterUsernameTx;
+export interface CreateArtifactTX extends LightTransaction {
+  readonly kind: "bns/create_artifact";
+  readonly image: string;
+  readonly checksum: string;
+}
+export declare function isCreateArtifactTX(tx: LightTransaction): tx is CreateArtifactTX;
 export interface UpdateTargetsOfUsernameTx extends LightTransaction {
   readonly kind: "bns/update_targets_of_username";
   /** the username to be updated, must exist on chain */
@@ -334,6 +348,7 @@ export declare type BnsTx =
   | SwapOfferTransaction
   | SwapClaimTransaction
   | SwapAbortTransaction
+  | CreateArtifactTX
   | RegisterUsernameTx
   | UpdateTargetsOfUsernameTx
   | TransferUsernameTx

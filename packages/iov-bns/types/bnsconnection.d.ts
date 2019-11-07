@@ -29,6 +29,8 @@ import {
   BnsTx,
   BnsUsernameNft,
   BnsUsernamesQuery,
+  Artifact,
+  ArtifactByOwnerQuery,
   ElectionRule,
   Electorate,
   Proposal,
@@ -118,6 +120,8 @@ export declare class BnsConnection implements AtomicSwapConnection {
   getProposals(): Promise<readonly Proposal[]>;
   getVotes(voter: Address): Promise<readonly Vote[]>;
   getUsernames(query: BnsUsernamesQuery): Promise<readonly BnsUsernameNft[]>;
+  getArtifacts(query: ArtifactByOwnerQuery): Promise<readonly Artifact[]>;
+  getAllArtifacts(): Promise<readonly Artifact[]>;
   getFeeQuote(transaction: UnsignedTransaction): Promise<Fee>;
   withDefaultFee<T extends UnsignedTransaction>(transaction: T): Promise<T>;
   protected query(path: string, data: Uint8Array): Promise<QueryResponse>;
