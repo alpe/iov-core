@@ -50,10 +50,13 @@ import {
   CreateProposalTx,
   MultisignatureTx,
   Participant,
+  RegisterUsernameTx,
   ReleaseEscrowTx,
   ReturnEscrowTx,
+  TransferUsernameTx,
   UpdateEscrowPartiesTx,
   UpdateMultisignatureTx,
+  UpdateTargetsOfUsernameTx,
   VoteOption,
   VoteTx,
 } from "./types";
@@ -344,67 +347,67 @@ describe("Encode", () => {
 
     // Usernames
 
-    // xit("works for UpdateTargetsOfUsernameTx", () => {
-    //   const addAddress: UpdateTargetsOfUsernameTx & WithCreator = {
-    //     kind: "bns/update_targets_of_username",
-    //     creator: defaultCreator,
-    //     username: "alice*iov",
-    //     targets: [
-    //       {
-    //         chainId: "other-land" as ChainId,
-    //         address: "865765858O" as Address,
-    //       },
-    //     ],
-    //   };
-    //   const msg = buildMsg(addAddress).usernameChangeTokenTargetsMsg!;
-    //   expect(msg.username).toEqual("alice*iov");
-    //   expect(msg.newTargets![0].blockchainId).toEqual("other-land");
-    //   expect(msg.newTargets![0].address).toEqual("865765858O");
-    // });
+    it("works for UpdateTargetsOfUsernameTx", () => {
+      const addAddress: UpdateTargetsOfUsernameTx & WithCreator = {
+        kind: "bns/update_targets_of_username",
+        creator: defaultCreator,
+        username: "alice*iov",
+        targets: [
+          {
+            chainId: "other-land" as ChainId,
+            address: "865765858O" as Address,
+          },
+        ],
+      };
+      const msg = buildMsg(addAddress).usernameChangeTokenTargetsMsg!;
+      expect(msg.username).toEqual("alice*iov");
+      expect(msg.newTargets![0].blockchainId).toEqual("other-land");
+      expect(msg.newTargets![0].address).toEqual("865765858O");
+    });
 
-    // xit("works for RegisterUsernameTx", () => {
-    //   const registerUsername: RegisterUsernameTx & WithCreator = {
-    //     kind: "bns/register_username",
-    //     creator: defaultCreator,
-    //     username: "alice*iov",
-    //     targets: [
-    //       {
-    //         chainId: "chain1" as ChainId,
-    //         address: "367X" as Address,
-    //       },
-    //       {
-    //         chainId: "chain3" as ChainId,
-    //         address: "0xddffeeffddaa44" as Address,
-    //       },
-    //       {
-    //         chainId: "chain2" as ChainId,
-    //         address: "0x00aabbddccffee" as Address,
-    //       },
-    //     ],
-    //   };
-    //   const msg = buildMsg(registerUsername).usernameRegisterTokenMsg!;
-    //   expect(msg.username).toEqual("alice*iov");
-    //   expect(msg.targets).toBeDefined();
-    //   expect(msg.targets!.length).toEqual(3);
-    //   expect(msg.targets![0].blockchainId).toEqual("chain1");
-    //   expect(msg.targets![0].address).toEqual("367X");
-    //   expect(msg.targets![1].blockchainId).toEqual("chain3");
-    //   expect(msg.targets![1].address).toEqual("0xddffeeffddaa44");
-    //   expect(msg.targets![2].blockchainId).toEqual("chain2");
-    //   expect(msg.targets![2].address).toEqual("0x00aabbddccffee");
-    // });
+    it("works for RegisterUsernameTx", () => {
+      const registerUsername: RegisterUsernameTx & WithCreator = {
+        kind: "bns/register_username",
+        creator: defaultCreator,
+        username: "alice*iov",
+        targets: [
+          {
+            chainId: "chain1" as ChainId,
+            address: "367X" as Address,
+          },
+          {
+            chainId: "chain3" as ChainId,
+            address: "0xddffeeffddaa44" as Address,
+          },
+          {
+            chainId: "chain2" as ChainId,
+            address: "0x00aabbddccffee" as Address,
+          },
+        ],
+      };
+      const msg = buildMsg(registerUsername).usernameRegisterTokenMsg!;
+      expect(msg.username).toEqual("alice*iov");
+      expect(msg.targets).toBeDefined();
+      expect(msg.targets!.length).toEqual(3);
+      expect(msg.targets![0].blockchainId).toEqual("chain1");
+      expect(msg.targets![0].address).toEqual("367X");
+      expect(msg.targets![1].blockchainId).toEqual("chain3");
+      expect(msg.targets![1].address).toEqual("0xddffeeffddaa44");
+      expect(msg.targets![2].blockchainId).toEqual("chain2");
+      expect(msg.targets![2].address).toEqual("0x00aabbddccffee");
+    });
 
-    // xit("works for TransferUsernameTx", () => {
-    //   const transfer: TransferUsernameTx & WithCreator = {
-    //     kind: "bns/transfer_username",
-    //     creator: defaultCreator,
-    //     username: "alice*iov",
-    //     newOwner: defaultRecipient,
-    //   };
-    //   const msg = buildMsg(transfer).usernameTransferTokenMsg!;
-    //   expect(msg.username).toEqual("alice*iov");
-    //   expect(msg.newOwner).toEqual(fromHex("b1ca7e78f74423ae01da3b51e676934d9105f282"));
-    // });
+    it("works for TransferUsernameTx", () => {
+      const transfer: TransferUsernameTx & WithCreator = {
+        kind: "bns/transfer_username",
+        creator: defaultCreator,
+        username: "alice*iov",
+        newOwner: defaultRecipient,
+      };
+      const msg = buildMsg(transfer).usernameTransferTokenMsg!;
+      expect(msg.username).toEqual("alice*iov");
+      expect(msg.newOwner).toEqual(fromHex("b1ca7e78f74423ae01da3b51e676934d9105f282"));
+    });
 
     // Multisignature contracts
 
@@ -975,19 +978,19 @@ describe("Encode", () => {
 describe("Encode transactions", () => {
   it("encodes unsigned message", () => {
     const tx = buildMsg(sendTxJson);
-    const encoded = codecImpl.grafain.Tx.encode(tx).finish();
+    const encoded = codecImpl.bnsd.Tx.encode(tx).finish();
     expect(Uint8Array.from(encoded)).toEqual(sendTxBin);
   });
 
   it("encodes unsigned transaction", () => {
     const tx = buildUnsignedTx(sendTxJson);
-    const encoded = codecImpl.grafain.Tx.encode(tx).finish();
+    const encoded = codecImpl.bnsd.Tx.encode(tx).finish();
     expect(Uint8Array.from(encoded)).toEqual(sendTxBin);
   });
 
   it("encodes signed transaction", () => {
     const tx = buildSignedTx(signedTxJson);
-    const encoded = codecImpl.grafain.Tx.encode(tx).finish();
+    const encoded = codecImpl.bnsd.Tx.encode(tx).finish();
     expect(Uint8Array.from(encoded)).toEqual(signedTxBin);
   });
 });
@@ -1009,7 +1012,7 @@ describe("Ensure crypto", () => {
     const pubKey = pubJson.data;
 
     const tx = buildUnsignedTx(sendTxJson);
-    const encoded = codecImpl.grafain.Tx.encode(tx).finish();
+    const encoded = codecImpl.bnsd.Tx.encode(tx).finish();
     const toSign = appendSignBytes(encoded, sendTxJson.creator.chainId, signedTxSig.nonce);
     // testvector output already has the sha-512 digest applied
     const prehash = new Sha512(toSign).digest();

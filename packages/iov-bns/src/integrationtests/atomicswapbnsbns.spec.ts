@@ -25,8 +25,8 @@ import { Slip10RawIndex } from "@iov/crypto";
 import { Ed25519HdWallet, HdPaths, UserProfile } from "@iov/keycontrol";
 import BN from "bn.js";
 
-import { grafainCodec } from "../grafainCodec";
-import { GrafainConnection } from "../grafainConnection";
+import { bnsCodec } from "../bnscodec";
+import { BnsConnection } from "../bnsconnection";
 
 const CASH = "CASH" as TokenTicker;
 const BASH = "BASH" as TokenTicker;
@@ -57,7 +57,7 @@ class Actor {
     const profile = new UserProfile();
     const wallet = profile.addWallet(Ed25519HdWallet.fromMnemonic(mnemonic));
 
-    const bnsConnection = await GrafainConnection.establish("ws://localhost:23456");
+    const bnsConnection = await BnsConnection.establish("ws://localhost:23456");
 
     const bnsIdentity = await profile.createIdentity(wallet.id, bnsConnection.chainId(), hdPath);
 
@@ -70,7 +70,7 @@ class Actor {
 
   public readonly bnsIdentity: Identity;
   public get bnsAddress(): Address {
-    return grafainCodec.identityToAddress(this.bnsIdentity);
+    return bnsCodec.identityToAddress(this.bnsIdentity);
   }
 
   private readonly profile: UserProfile;
@@ -113,8 +113,8 @@ class Actor {
   public async signAndPost(transaction: UnsignedTransaction): Promise<PostTxResponse> {
     const nonce = await this.bnsConnection.getNonce({ pubkey: transaction.creator.pubkey });
 
-    const signed = await this.profile.signTransaction(transaction, grafainCodec, nonce);
-    const txBytes = grafainCodec.bytesToPost(signed);
+    const signed = await this.profile.signTransaction(transaction, bnsCodec, nonce);
+    const txBytes = bnsCodec.bytesToPost(signed);
     const post = await this.bnsConnection.postTx(txBytes);
     return post;
   }

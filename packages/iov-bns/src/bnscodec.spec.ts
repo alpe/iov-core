@@ -1,7 +1,7 @@
 import { PostableBytes, PrehashType, SignedTransaction } from "@iov/bcp";
 import { Ed25519, Sha512 } from "@iov/crypto";
 
-import { grafainCodec } from "./grafainCodec";
+import { bnsCodec } from "./bnscodec";
 import {
   chainId,
   randomTxJson,
@@ -15,19 +15,19 @@ import {
   swapOfferTxJson,
 } from "./testdata.spec";
 
-describe("grafainCodec", () => {
+describe("bnscodec", () => {
   it("properly encodes transactions", () => {
-    const encoded = grafainCodec.bytesToPost(signedTxJson);
+    const encoded = bnsCodec.bytesToPost(signedTxJson);
     expect(encoded).toEqual(signedTxBin);
   });
 
   it("properly decodes transactions", () => {
-    const decoded = grafainCodec.parseBytes(signedTxBin as PostableBytes, chainId);
+    const decoded = bnsCodec.parseBytes(signedTxBin as PostableBytes, chainId);
     expect(decoded).toEqual(signedTxJson);
   });
 
   it("properly generates signbytes", async () => {
-    const { bytes, prehashType } = grafainCodec.bytesToSign(sendTxJson, signedTxSig.nonce);
+    const { bytes, prehashType } = bnsCodec.bytesToSign(sendTxJson, signedTxSig.nonce);
 
     // it should validate
     switch (prehashType) {
@@ -46,7 +46,7 @@ describe("grafainCodec", () => {
   });
 
   it("generates transaction id", () => {
-    const id = grafainCodec.identifier(signedTxJson);
+    const id = bnsCodec.identifier(signedTxJson);
     expect(id).toMatch(/^[0-9A-F]{64}$/);
   });
 
@@ -60,8 +60,8 @@ describe("grafainCodec", () => {
     ];
 
     for (const trial of transactionsToBeVerified) {
-      const encoded = grafainCodec.bytesToPost(trial);
-      const decoded = grafainCodec.parseBytes(encoded, trial.transaction.creator.chainId);
+      const encoded = bnsCodec.bytesToPost(trial);
+      const decoded = bnsCodec.parseBytes(encoded, trial.transaction.creator.chainId);
       expect(decoded)
         .withContext(trial.transaction.kind)
         .toEqual(trial);

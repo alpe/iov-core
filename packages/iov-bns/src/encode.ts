@@ -21,11 +21,10 @@ import { buildMultisignatureCondition, conditionToWeaveAddress } from "./conditi
 import * as codecImpl from "./generated/codecimpl";
 import {
   ChainAddressPair,
-  CreateArtifactTX,
   CreateEscrowTx,
   CreateMultisignatureTx,
   CreateProposalTx,
-  isGrafainTx,
+  isBnsTx,
   isCreateTextResolutionAction,
   isExecuteProposalBatchAction,
   isMultisignatureTx,
@@ -190,17 +189,6 @@ function buildSwapAbortTransaction(tx: SwapAbortTransaction): codecImpl.bnsd.ITx
       metadata: { schema: 1 },
       swapId: tx.swapId.data,
     }),
-  };
-}
-
-// Artifact
-function buildCreateArtifactTx(tx: CreateArtifactTX): codecImpl.grafain.ITx {
-  return {
-    createArtifactMsg: {
-      metadata: { schema: 1 },
-      image: tx.image,
-      checksum: tx.checksum,
-    },
   };
 }
 
@@ -445,10 +433,11 @@ function buildVoteTx(tx: VoteTx): codecImpl.bnsd.ITx {
   };
 }
 
-export function buildMsg(tx: UnsignedTransaction): codecImpl.grafain.ITx {
-  if (!isGrafainTx(tx)) {
+export function buildMsg(tx: UnsignedTransaction): codecImpl.bnsd.ITx {
+  if (!isBnsTx(tx)) {
     throw new Error("Transaction is not a BNS transaction");
   }
+
   switch (tx.kind) {
     // BCP: Token sends
     case "bcp/send":
@@ -462,16 +451,13 @@ export function buildMsg(tx: UnsignedTransaction): codecImpl.grafain.ITx {
     case "bcp/swap_abort":
       return buildSwapAbortTransaction(tx);
 
-    // Artifact
-    case "grafain/create_artifact":
-      return buildCreateArtifactTx(tx);
     // BNS: Usernames
-    // case "bns/register_username":
-    //   return buildRegisterUsernameTx(tx);
-    // case "bns/update_targets_of_username":
-    //   return buildUpdateTargetsOfUsernameTx(tx);
-    // case "bns/transfer_username":
-    //   return buildTransferUsernameTx(tx);
+    case "bns/register_username":
+      return buildRegisterUsernameTx(tx);
+    case "bns/update_targets_of_username":
+      return buildUpdateTargetsOfUsernameTx(tx);
+    case "bns/transfer_username":
+      return buildTransferUsernameTx(tx);
 
     // BNS: Multisignature contracts
     case "bns/create_multisignature_contract":
@@ -500,7 +486,7 @@ export function buildMsg(tx: UnsignedTransaction): codecImpl.grafain.ITx {
   }
 }
 
-export function buildUnsignedTx(tx: UnsignedTransaction): codecImpl.grafain.ITx {
+export function buildUnsignedTx(tx: UnsignedTransaction): codecImpl.bnsd.ITx {
   const msg = buildMsg(tx);
 
   let feePayer: Uint8Array;
@@ -512,7 +498,7 @@ export function buildUnsignedTx(tx: UnsignedTransaction): codecImpl.grafain.ITx 
     feePayer = decodeBnsAddress(identityToAddress(tx.creator)).data;
   }
 
-  return codecImpl.grafain.Tx.create({
+  return codecImpl.bnsd.Tx.create({
     ...msg,
     fees:
       tx.fee && tx.fee.tokens
@@ -525,7 +511,7 @@ export function buildUnsignedTx(tx: UnsignedTransaction): codecImpl.grafain.ITx 
   });
 }
 
-export function buildSignedTx(tx: SignedTransaction): codecImpl.grafain.ITx {
+export function buildSignedTx(tx: SignedTransaction): codecImpl.bnsd.ITx {
   const sigs: readonly FullSignature[] = [tx.primarySignature, ...tx.otherSignatures];
   const built = buildUnsignedTx(tx.transaction);
   return { ...built, signatures: sigs.map(encodeFullSignature) };

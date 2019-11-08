@@ -46,8 +46,8 @@ import { asArray, firstEvent, lastValue, toListPromise } from "@iov/stream";
 import BN from "bn.js";
 import Long from "long";
 
-import { grafainCodec } from "./grafainCodec";
-import { GrafainConnection } from "./grafainConnection";
+import { bnsCodec } from "./bnscodec";
+import { BnsConnection } from "./bnsconnection";
 import { decodeNumericId } from "./decode";
 import { bnsSwapQueryTag } from "./tags";
 import {
@@ -56,7 +56,6 @@ import {
   CreateMultisignatureTx,
   CreateProposalTx,
   CreateTextResolutionAction,
-  isCreateArtifactTX,
   isCreateEscrowTx,
   isCreateMultisignatureTx,
   isRegisterUsernameTx,
@@ -157,8 +156,8 @@ describe("BnsConnection", () => {
   // This account has money in the genesis file (see scripts/bnsd/README.md).
   const adminPath = HdPaths.iov(0);
 
-  const bnsdTendermintUrl = "wss://rpc-chilinet.grafain.net:443";
-  const bnsdTendermintHttpUrl = "ws://rpc-chilinet.grafain.net:80";;
+  const bnsdTendermintUrl = "ws://localhost:23456";
+  const bnsdTendermintHttpUrl = "http://localhost:23456";
 
   async function userProfileWithFaucet(
     chainId: ChainId,
@@ -176,25 +175,25 @@ describe("BnsConnection", () => {
   }
 
   async function ensureNonceNonZero(
-    connection: GrafainConnection,
+    connection: BnsConnection,
     profile: UserProfile,
     identity: Identity,
   ): Promise<void> {
     const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
       kind: "bcp/send",
       creator: identity,
-      sender: grafainCodec.identityToAddress(identity),
+      sender: bnsCodec.identityToAddress(identity),
       recipient: await randomBnsAddress(),
       amount: defaultAmount,
     });
     const nonce = await connection.getNonce({ pubkey: identity.pubkey });
-    const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-    const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+    const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+    const response = await connection.postTx(bnsCodec.bytesToPost(signed));
     await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
   }
 
   async function sendTokensFromFaucet(
-    connection: GrafainConnection,
+    connection: BnsConnection,
     recipient: Address,
     amount: Amount = defaultAmount,
   ): Promise<void> {
@@ -203,19 +202,19 @@ describe("BnsConnection", () => {
     const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
       kind: "bcp/send",
       creator: faucet,
-      sender: grafainCodec.identityToAddress(faucet),
+      sender: bnsCodec.identityToAddress(faucet),
       recipient: recipient,
       amount: amount,
     });
     const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-    const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-    const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+    const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+    const response = await connection.postTx(bnsCodec.bytesToPost(signed));
     await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
   }
 
   it("can connect to tendermint via WS", async () => {
     pendingWithoutBnsd();
-    const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+    const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
     const chainId = await connection.chainId();
     expect(chainId).toMatch(/^[a-zA-Z0-9-]{7,25}$/);
@@ -228,7 +227,7 @@ describe("BnsConnection", () => {
 
   it("can connect to tendermint via HTTP", async () => {
     pendingWithoutBnsd();
-    const connection = await GrafainConnection.establish(bnsdTendermintHttpUrl);
+    const connection = await BnsConnection.establish(bnsdTendermintHttpUrl);
 
     const chainId = await connection.chainId();
     expect(chainId).toMatch(/^[a-zA-Z0-9-]{7,25}$/);
@@ -242,7 +241,7 @@ describe("BnsConnection", () => {
   describe("getToken", () => {
     it("can get existing token", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       const token = await connection.getToken("MASH" as TokenTicker);
       expect(token).toEqual({
@@ -256,7 +255,7 @@ describe("BnsConnection", () => {
 
     it("produces empty result for non-existing token", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       const token = await connection.getToken("ETH" as TokenTicker);
       expect(token).toBeUndefined();
@@ -268,7 +267,7 @@ describe("BnsConnection", () => {
   describe("getAllTokens", () => {
     it("can query all tokens", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       const tokens = await connection.getAllTokens();
       expect(tokens).toEqual([
@@ -296,7 +295,7 @@ describe("BnsConnection", () => {
   describe("getAccount", () => {
     it("can get account by address and pubkey", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const { profile, faucet } = await userProfileWithFaucet(connection.chainId());
       await ensureNonceNonZero(connection, profile, faucet);
       const faucetAddress = identityToAddress(faucet);
@@ -338,7 +337,7 @@ describe("BnsConnection", () => {
 
     it("returns empty pubkey and name when getting an account with no outgoing transactions", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const newAddress = await randomBnsAddress();
       await sendTokensFromFaucet(connection, newAddress);
 
@@ -355,7 +354,7 @@ describe("BnsConnection", () => {
 
     it("returns empty list when getting an unused account", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       // by address
       const response1 = await connection.getAccount({ address: unusedAddress });
@@ -372,7 +371,7 @@ describe("BnsConnection", () => {
   describe("getNonce", () => {
     it("can query empty nonce from unused account by address and pubkey", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       // by address
       const nonce1 = await connection.getNonce({ address: unusedAddress });
@@ -387,7 +386,7 @@ describe("BnsConnection", () => {
 
     it("can query nonce from faucet by address and pubkey", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const { profile, faucet } = await userProfileWithFaucet(connection.chainId());
       await ensureNonceNonZero(connection, profile, faucet);
 
@@ -407,7 +406,7 @@ describe("BnsConnection", () => {
   describe("getNonces", () => {
     it("can get 0/1/2 nonces", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const { faucet } = await userProfileWithFaucet(connection.chainId());
       const faucetAddress = identityToAddress(faucet);
 
@@ -456,7 +455,7 @@ describe("BnsConnection", () => {
   describe("getBlockHeader", () => {
     it("can get a valid header", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const header = await connection.getBlockHeader(3);
       expect(header.height).toEqual(3);
       // as of tendermint v0.26.0, hashes are 32-bytes, previously 20 bytes
@@ -466,7 +465,7 @@ describe("BnsConnection", () => {
 
     it("throws if it cannot get header", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       await connection
         .getBlockHeader(-3)
@@ -484,7 +483,7 @@ describe("BnsConnection", () => {
   describe("watchBlockHeaders", () => {
     it("watches headers with same data as getBlockHeader", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       const headers = await toListPromise(connection.watchBlockHeaders(), 2);
 
@@ -511,7 +510,7 @@ describe("BnsConnection", () => {
   describe("postTx", () => {
     it("can send transaction", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
       const initialHeight = await connection.height();
 
@@ -523,7 +522,7 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: grafainCodec.identityToAddress(faucet),
+        sender: bnsCodec.identityToAddress(faucet),
         recipient: recipient,
         memo: "My first payment",
         amount: {
@@ -533,8 +532,8 @@ describe("BnsConnection", () => {
         },
       });
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const txBytes = grafainCodec.bytesToPost(signed);
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const txBytes = bnsCodec.bytesToPost(signed);
       const response = await connection.postTx(txBytes);
       const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo.state).toEqual(TransactionState.Succeeded);
@@ -573,7 +572,7 @@ describe("BnsConnection", () => {
     // TODO: extend this with missing and high fees
     it("rejects send transaction with manual fees too low", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const { profile, faucet } = await userProfileWithFaucet(chainId);
@@ -581,7 +580,7 @@ describe("BnsConnection", () => {
       const sendTx: SendTransaction & WithCreator = {
         kind: "bcp/send",
         creator: faucet,
-        sender: grafainCodec.identityToAddress(faucet),
+        sender: bnsCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         memo: "This time I pay my bills",
         amount: {
@@ -598,9 +597,9 @@ describe("BnsConnection", () => {
         },
       };
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
       try {
-        await connection.postTx(grafainCodec.bytesToPost(signed));
+        await connection.postTx(bnsCodec.bytesToPost(signed));
         fail("above line should reject with low fees");
       } catch (err) {
         expect(err).toMatch(/fee less than minimum/);
@@ -610,7 +609,7 @@ describe("BnsConnection", () => {
 
     it("reports post errors (CheckTx)", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const { profile, faucet } = await userProfileWithFaucet(chainId);
@@ -619,7 +618,7 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: grafainCodec.identityToAddress(faucet),
+        sender: bnsCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         amount: {
           ...defaultAmount,
@@ -627,10 +626,10 @@ describe("BnsConnection", () => {
         },
       });
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
 
       await connection
-        .postTx(grafainCodec.bytesToPost(signed))
+        .postTx(bnsCodec.bytesToPost(signed))
         .then(
           () => fail("promise must be rejected"),
           error => expect(error).toMatch(/field \\"Amount\\": invalid currency: UNKNOWN/i),
@@ -643,7 +642,7 @@ describe("BnsConnection", () => {
       pendingWithoutBnsd();
 
       (async () => {
-        const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+        const connection = await BnsConnection.establish(bnsdTendermintUrl);
         const chainId = connection.chainId();
 
         const { profile, faucet } = await userProfileWithFaucet(chainId);
@@ -653,7 +652,7 @@ describe("BnsConnection", () => {
         const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
           kind: "bcp/send",
           creator: faucet,
-          sender: grafainCodec.identityToAddress(faucet),
+          sender: bnsCodec.identityToAddress(faucet),
           recipient: recipient,
           memo: "My first payment",
           amount: {
@@ -663,9 +662,9 @@ describe("BnsConnection", () => {
           },
         });
         const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-        const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+        const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
         const heightBeforeTransaction = await connection.height();
-        const result = await connection.postTx(grafainCodec.bytesToPost(signed));
+        const result = await connection.postTx(bnsCodec.bytesToPost(signed));
         expect(result.blockInfo.value).toEqual({ state: TransactionState.Pending });
 
         const events = new Array<BlockInfo>();
@@ -703,7 +702,7 @@ describe("BnsConnection", () => {
 
     it("can register a username", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const registryChainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -723,8 +722,8 @@ describe("BnsConnection", () => {
         targets: [{ chainId: "foobar" as ChainId, address: address }],
       });
       const nonce = await connection.getNonce({ pubkey: identity.pubkey });
-      const signed = await profile.signTransaction(registration, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(registration, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo.state).toEqual(TransactionState.Succeeded);
 
@@ -745,7 +744,7 @@ describe("BnsConnection", () => {
 
     it("can register a username with empty list of targets", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const registryChainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -765,8 +764,8 @@ describe("BnsConnection", () => {
         targets: [],
       });
       const nonce = await connection.getNonce({ pubkey: identity.pubkey });
-      const signed = await profile.signTransaction(registration, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(registration, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo.state).toEqual(TransactionState.Succeeded);
 
@@ -787,7 +786,7 @@ describe("BnsConnection", () => {
 
     it("can update targets of username", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const registryChainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -810,10 +809,10 @@ describe("BnsConnection", () => {
       });
       {
         const response = await connection.postTx(
-          grafainCodec.bytesToPost(
+          bnsCodec.bytesToPost(
             await profile.signTransaction(
               usernameRegistration,
-              grafainCodec,
+              bnsCodec,
               await connection.getNonce({ pubkey: identity.pubkey }),
             ),
           ),
@@ -831,10 +830,10 @@ describe("BnsConnection", () => {
       });
       {
         const response = await connection.postTx(
-          grafainCodec.bytesToPost(
+          bnsCodec.bytesToPost(
             await profile.signTransaction(
               updateTargets,
-              grafainCodec,
+              bnsCodec,
               await connection.getNonce({ pubkey: identity.pubkey }),
             ),
           ),
@@ -843,7 +842,7 @@ describe("BnsConnection", () => {
         expect(blockInfo.state).toEqual(TransactionState.Succeeded);
       }
 
-      // Clear artifacts
+      // Clear addresses
       const clearAddresses = await connection.withDefaultFee<UpdateTargetsOfUsernameTx & WithCreator>({
         kind: "bns/update_targets_of_username",
         creator: identity,
@@ -852,10 +851,10 @@ describe("BnsConnection", () => {
       });
       {
         const response = await connection.postTx(
-          grafainCodec.bytesToPost(
+          bnsCodec.bytesToPost(
             await profile.signTransaction(
               clearAddresses,
-              grafainCodec,
+              bnsCodec,
               await connection.getNonce({ pubkey: identity.pubkey }),
             ),
           ),
@@ -869,7 +868,7 @@ describe("BnsConnection", () => {
 
     it("can transfer a username", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const registryChainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -891,10 +890,10 @@ describe("BnsConnection", () => {
       });
       {
         const response = await connection.postTx(
-          grafainCodec.bytesToPost(
+          bnsCodec.bytesToPost(
             await profile.signTransaction(
               usernameRegistration,
-              grafainCodec,
+              bnsCodec,
               await connection.getNonce({ pubkey: identity.pubkey }),
             ),
           ),
@@ -911,10 +910,10 @@ describe("BnsConnection", () => {
       });
       {
         const response = await connection.postTx(
-          grafainCodec.bytesToPost(
+          bnsCodec.bytesToPost(
             await profile.signTransaction(
               transferUsername,
-              grafainCodec,
+              bnsCodec,
               await connection.getNonce({ pubkey: identity.pubkey }),
             ),
           ),
@@ -928,53 +927,10 @@ describe("BnsConnection", () => {
 
       connection.disconnect();
     });
-    fit("can create an artifact", async () => {
-      pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
-      const registryChainId = connection.chainId();
-
-      const profile = new UserProfile();
-      const wallet = profile.addWallet(Ed25519HdWallet.fromEntropy(Random.getBytes(32)));
-      const identity = await profile.createIdentity(wallet.id, registryChainId, HdPaths.iov(0));
-
-      // we need funds to pay the fees
-      const address = identityToAddress(identity);
-      // await sendTokensFromFaucet(connection, address, registerAmount);
-
-      // Create and send registration
-      const myImage = `foo/bar:${Math.random()}`;
-      const registration = {
-        kind: "grafain/create_artifact",
-        creator: identity,
-        image: myImage,
-        checksum: "anyValidChecksum",
-        fee: undefined,
-      } as UnsignedTransaction;
-      const nonce = await connection.getNonce({ pubkey: identity.pubkey });
-      const signed = await profile.signTransaction(registration, grafainCodec, nonce);
-
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
-      const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
-      expect(blockInfo.state).toEqual(TransactionState.Succeeded);
-
-      await tendermintSearchIndexUpdated();
-
-      // Find registration transaction
-      const searchResult = (await connection.searchTx({ signedBy: address })).filter(isConfirmedTransaction);
-      expect(searchResult.length).toEqual(1);
-      const firstSearchResultTransaction = searchResult[0].transaction;
-      if (!isCreateArtifactTX(firstSearchResultTransaction)) {
-        throw new Error("Unexpected transaction kind");
-      }
-      expect(firstSearchResultTransaction.image).toEqual(myImage);
-      expect(firstSearchResultTransaction.checksum).toEqual("anyValidChecksum");
-
-      connection.disconnect();
-    });
 
     it("can create and update a multisignature account", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const registryChainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -1001,8 +957,8 @@ describe("BnsConnection", () => {
         adminThreshold: 5,
       });
       const nonce1 = await connection.getNonce({ pubkey: identity.pubkey });
-      const signed1 = await profile.signTransaction(tx1, grafainCodec, nonce1);
-      const txBytes1 = grafainCodec.bytesToPost(signed1);
+      const signed1 = await profile.signTransaction(tx1, bnsCodec, nonce1);
+      const txBytes1 = bnsCodec.bytesToPost(signed1);
       const response1 = await connection.postTx(txBytes1);
       const blockInfo1 = await response1.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo1.state).toEqual(TransactionState.Succeeded);
@@ -1041,8 +997,8 @@ describe("BnsConnection", () => {
         adminThreshold: 6,
       });
       const nonce2 = await connection.getNonce({ pubkey: identity.pubkey });
-      const signed2 = await profile.signTransaction(tx2, grafainCodec, nonce2);
-      const txBytes2 = grafainCodec.bytesToPost(signed2);
+      const signed2 = await profile.signTransaction(tx2, bnsCodec, nonce2);
+      const txBytes2 = bnsCodec.bytesToPost(signed2);
       const response2 = await connection.postTx(txBytes2);
       const blockInfo2 = await response2.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo2.state).toEqual(TransactionState.Succeeded);
@@ -1070,7 +1026,7 @@ describe("BnsConnection", () => {
 
     it("can create and release an escrow", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const registryChainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -1102,8 +1058,8 @@ describe("BnsConnection", () => {
         memo: memo,
       });
       const nonce1 = await connection.getNonce({ pubkey: sender.pubkey });
-      const signed1 = await profile.signTransaction(tx1, grafainCodec, nonce1);
-      const txBytes1 = grafainCodec.bytesToPost(signed1);
+      const signed1 = await profile.signTransaction(tx1, bnsCodec, nonce1);
+      const txBytes1 = bnsCodec.bytesToPost(signed1);
       const response1 = await connection.postTx(txBytes1);
       const blockInfo1 = await response1.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo1.state).toEqual(TransactionState.Succeeded);
@@ -1137,8 +1093,8 @@ describe("BnsConnection", () => {
         amounts: [defaultAmount],
       });
       const nonce2 = await connection.getNonce({ pubkey: arbiter.pubkey });
-      const signed2 = await profile.signTransaction(tx2, grafainCodec, nonce2);
-      const txBytes2 = grafainCodec.bytesToPost(signed2);
+      const signed2 = await profile.signTransaction(tx2, bnsCodec, nonce2);
+      const txBytes2 = bnsCodec.bytesToPost(signed2);
       const response2 = await connection.postTx(txBytes2);
       const blockInfo2 = await response2.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo2.state).toEqual(TransactionState.Succeeded);
@@ -1162,7 +1118,7 @@ describe("BnsConnection", () => {
 
     it("any account can return an escrow (after the timeout)", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -1187,8 +1143,8 @@ describe("BnsConnection", () => {
         });
 
         const nonce = await connection.getNonce({ pubkey: sender.pubkey });
-        const signed = await profile.signTransaction(createEscrowTx, grafainCodec, nonce);
-        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+        const signed = await profile.signTransaction(createEscrowTx, bnsCodec, nonce);
+        const response = await connection.postTx(bnsCodec.bytesToPost(signed));
         const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
         if (!isBlockInfoSucceeded(blockInfo)) throw new Error("Transaction did not succeed");
         escrowId = blockInfo.result || fromHex("");
@@ -1210,8 +1166,8 @@ describe("BnsConnection", () => {
         });
 
         const nonce = await connection.getNonce({ pubkey: helperIdentity.pubkey });
-        const signed = await profile.signTransaction(returnEscrowTx, grafainCodec, nonce);
-        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+        const signed = await profile.signTransaction(returnEscrowTx, bnsCodec, nonce);
+        const response = await connection.postTx(bnsCodec.bytesToPost(signed));
         const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
         expect(blockInfo.state).toEqual(TransactionState.Succeeded);
       }
@@ -1219,7 +1175,7 @@ describe("BnsConnection", () => {
 
     it("can create and return an escrow", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const registryChainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -1251,8 +1207,8 @@ describe("BnsConnection", () => {
         memo: memo,
       });
       const nonce1 = await connection.getNonce({ pubkey: sender.pubkey });
-      const signed1 = await profile.signTransaction(tx1, grafainCodec, nonce1);
-      const txBytes1 = grafainCodec.bytesToPost(signed1);
+      const signed1 = await profile.signTransaction(tx1, bnsCodec, nonce1);
+      const txBytes1 = bnsCodec.bytesToPost(signed1);
       const response1 = await connection.postTx(txBytes1);
       const blockInfo1 = await response1.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo1.state).toEqual(TransactionState.Succeeded);
@@ -1288,8 +1244,8 @@ describe("BnsConnection", () => {
         escrowId: escrowId,
       });
       const nonce2 = await connection.getNonce({ pubkey: arbiter.pubkey });
-      const signed2 = await profile.signTransaction(tx2, grafainCodec, nonce2);
-      const txBytes2 = grafainCodec.bytesToPost(signed2);
+      const signed2 = await profile.signTransaction(tx2, bnsCodec, nonce2);
+      const txBytes2 = bnsCodec.bytesToPost(signed2);
       const response2 = await connection.postTx(txBytes2);
       const blockInfo2 = await response2.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo2.state).toEqual(TransactionState.Succeeded);
@@ -1312,7 +1268,7 @@ describe("BnsConnection", () => {
 
     it("can create and update an escrow", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const registryChainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -1347,8 +1303,8 @@ describe("BnsConnection", () => {
         memo: memo,
       });
       const nonce1 = await connection.getNonce({ pubkey: sender.pubkey });
-      const signed1 = await profile.signTransaction(tx1, grafainCodec, nonce1);
-      const txBytes1 = grafainCodec.bytesToPost(signed1);
+      const signed1 = await profile.signTransaction(tx1, bnsCodec, nonce1);
+      const txBytes1 = bnsCodec.bytesToPost(signed1);
       const response1 = await connection.postTx(txBytes1);
       const blockInfo1 = await response1.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo1.state).toEqual(TransactionState.Succeeded);
@@ -1382,8 +1338,8 @@ describe("BnsConnection", () => {
         arbiter: newArbiterAddress,
       });
       const nonce2 = await connection.getNonce({ pubkey: arbiter.pubkey });
-      const signed2 = await profile.signTransaction(tx2, grafainCodec, nonce2);
-      const txBytes2 = grafainCodec.bytesToPost(signed2);
+      const signed2 = await profile.signTransaction(tx2, bnsCodec, nonce2);
+      const txBytes2 = bnsCodec.bytesToPost(signed2);
       const response2 = await connection.postTx(txBytes2);
       const blockInfo2 = await response2.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo2.state).toEqual(TransactionState.Succeeded);
@@ -1407,7 +1363,7 @@ describe("BnsConnection", () => {
 
     it("can create and vote on a proposal", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const { profile, admin: author } = await userProfileWithFaucet(chainId);
@@ -1442,8 +1398,8 @@ describe("BnsConnection", () => {
           startTime: startTime,
         });
         const nonce = await connection.getNonce({ pubkey: author.pubkey });
-        const signed = await profile.signTransaction(createProposal, grafainCodec, nonce);
-        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+        const signed = await profile.signTransaction(createProposal, bnsCodec, nonce);
+        const response = await connection.postTx(bnsCodec.bytesToPost(signed));
         const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
         if (!isBlockInfoSucceeded(blockInfo)) {
           throw new Error("Transaction did not succeed");
@@ -1489,8 +1445,8 @@ describe("BnsConnection", () => {
           selection: VoteOption.Yes,
         });
         const nonce = await connection.getNonce({ pubkey: author.pubkey });
-        const signed = await profile.signTransaction(voteForProposal, grafainCodec, nonce);
-        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+        const signed = await profile.signTransaction(voteForProposal, bnsCodec, nonce);
+        const response = await connection.postTx(bnsCodec.bytesToPost(signed));
         await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       }
 
@@ -1514,7 +1470,7 @@ describe("BnsConnection", () => {
   describe("getTx", () => {
     it("can get a transaction by ID", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       // by non-existing ID
       {
@@ -1534,15 +1490,15 @@ describe("BnsConnection", () => {
         const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
           kind: "bcp/send",
           creator: faucet,
-          sender: grafainCodec.identityToAddress(faucet),
+          sender: bnsCodec.identityToAddress(faucet),
           recipient: await randomBnsAddress(),
           memo: memo,
           amount: defaultAmount,
         });
 
         const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-        const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+        const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+        const response = await connection.postTx(bnsCodec.bytesToPost(signed));
         await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
         const transactionId = response.transactionId;
 
@@ -1567,7 +1523,7 @@ describe("BnsConnection", () => {
 
     it("can get a transaction by ID and verify its signature", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
       const { profile, faucet } = await userProfileWithFaucet(chainId);
 
@@ -1575,15 +1531,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: grafainCodec.identityToAddress(faucet),
+        sender: bnsCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       const transactionId = response.transactionId;
 
@@ -1595,7 +1551,7 @@ describe("BnsConnection", () => {
       }
       const { transaction, primarySignature: signature } = result;
       const publicKey = transaction.creator.pubkey.data;
-      const signingJob = grafainCodec.bytesToSign(transaction, signature.nonce);
+      const signingJob = bnsCodec.bytesToSign(transaction, signature.nonce);
       const txBytes = new Sha512(signingJob.bytes).digest();
 
       const valid = await Ed25519.verifySignature(signature.signature, txBytes, publicKey);
@@ -1608,7 +1564,7 @@ describe("BnsConnection", () => {
   describe("searchTx", () => {
     it("can search for transactions by tags", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const { profile, faucet } = await userProfileWithFaucet(chainId);
@@ -1619,15 +1575,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: grafainCodec.identityToAddress(faucet),
+        sender: bnsCodec.identityToAddress(faucet),
         recipient: rcptAddress,
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo.state).toEqual(TransactionState.Succeeded);
 
@@ -1649,7 +1605,7 @@ describe("BnsConnection", () => {
 
     it("can search for transactions by height", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const { profile, faucet } = await userProfileWithFaucet(chainId);
@@ -1660,15 +1616,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: grafainCodec.identityToAddress(faucet),
+        sender: bnsCodec.identityToAddress(faucet),
         recipient: rcptAddress,
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo.state).toBe(TransactionState.Succeeded);
       const txHeight = (blockInfo as BlockInfoSucceeded | BlockInfoFailed).height;
@@ -1689,7 +1645,7 @@ describe("BnsConnection", () => {
 
     it("can search for transactions by ID", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const { profile, faucet } = await userProfileWithFaucet(chainId);
@@ -1698,15 +1654,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: grafainCodec.identityToAddress(faucet),
+        sender: bnsCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       const transactionIdToSearch = response.transactionId;
 
@@ -1731,7 +1687,7 @@ describe("BnsConnection", () => {
     // see issue https://github.com/tendermint/tendermint/issues/2759
     it("can search for transactions by minHeight/maxHeight", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
       const initialHeight = await connection.height();
 
@@ -1743,15 +1699,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: grafainCodec.identityToAddress(faucet),
+        sender: bnsCodec.identityToAddress(faucet),
         recipient: recipientAddress,
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
 
       await tendermintSearchIndexUpdated();
@@ -1816,7 +1772,7 @@ describe("BnsConnection", () => {
 
     it("reports DeliverTx errors for search by ID", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
       const initialHeight = await connection.height();
 
@@ -1827,7 +1783,7 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: brokeIdentity,
-        sender: grafainCodec.identityToAddress(brokeIdentity),
+        sender: bnsCodec.identityToAddress(brokeIdentity),
         recipient: await randomBnsAddress(),
         memo: "Sending from empty",
         amount: defaultAmount,
@@ -1837,8 +1793,8 @@ describe("BnsConnection", () => {
       await sendTokensFromFaucet(connection, identityToAddress(brokeIdentity), sendTx.fee!.tokens);
 
       const nonce = await connection.getNonce({ pubkey: brokeIdentity.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       const transactionIdToSearch = response.transactionId;
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
 
@@ -1865,7 +1821,7 @@ describe("BnsConnection", () => {
       pendingWithoutBnsd();
 
       (async () => {
-        const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+        const connection = await BnsConnection.establish(bnsdTendermintUrl);
         const chainId = connection.chainId();
 
         const { profile, faucet } = await userProfileWithFaucet(chainId);
@@ -1874,15 +1830,15 @@ describe("BnsConnection", () => {
         const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
           kind: "bcp/send",
           creator: faucet,
-          sender: grafainCodec.identityToAddress(faucet),
+          sender: bnsCodec.identityToAddress(faucet),
           recipient: await randomBnsAddress(),
           memo: memo,
           amount: defaultAmount,
         });
 
         const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-        const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-        const transactionId = grafainCodec.identifier(signed);
+        const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+        const transactionId = bnsCodec.identifier(signed);
         const heightBeforeTransaction = await connection.height();
 
         // start listening
@@ -1905,7 +1861,7 @@ describe("BnsConnection", () => {
         });
 
         // post transaction
-        await connection.postTx(grafainCodec.bytesToPost(signed));
+        await connection.postTx(bnsCodec.bytesToPost(signed));
       })().catch(done.fail);
     });
   });
@@ -1913,7 +1869,7 @@ describe("BnsConnection", () => {
   describe("liveTx", () => {
     it("finds an existing transaction", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const { profile, faucet } = await userProfileWithFaucet(chainId);
@@ -1922,15 +1878,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: grafainCodec.identityToAddress(faucet),
+        sender: bnsCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       const transactionIdToSearch = response.transactionId;
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
 
@@ -1954,7 +1910,7 @@ describe("BnsConnection", () => {
 
     it("can wait for a future transaction", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const { profile, faucet } = await userProfileWithFaucet(chainId);
@@ -1963,15 +1919,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: grafainCodec.identityToAddress(faucet),
+        sender: bnsCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       const transactionIdToSearch = response.transactionId;
 
       const result = await firstEvent(connection.liveTx({ id: transactionIdToSearch }));
@@ -1991,7 +1947,7 @@ describe("BnsConnection", () => {
 
     it("reports DeliverTx error for an existing transaction", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
       const initialHeight = await connection.height();
 
@@ -2002,7 +1958,7 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: brokeIdentity,
-        sender: grafainCodec.identityToAddress(brokeIdentity),
+        sender: bnsCodec.identityToAddress(brokeIdentity),
         recipient: await randomBnsAddress(),
         memo: "Sending from empty",
         amount: defaultAmount,
@@ -2012,8 +1968,8 @@ describe("BnsConnection", () => {
       await sendTokensFromFaucet(connection, identityToAddress(brokeIdentity), sendTx.fee!.tokens);
 
       const nonce = await connection.getNonce({ pubkey: brokeIdentity.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       const transactionIdToSearch = response.transactionId;
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
 
@@ -2034,7 +1990,7 @@ describe("BnsConnection", () => {
 
     it("reports DeliverTx error for a future transaction", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const { profile, walletId } = await userProfileWithFaucet(chainId);
@@ -2045,7 +2001,7 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: brokeIdentity,
-        sender: grafainCodec.identityToAddress(brokeIdentity),
+        sender: bnsCodec.identityToAddress(brokeIdentity),
         recipient: await randomBnsAddress(),
         memo: "Sending from empty",
         amount: defaultAmount,
@@ -2055,8 +2011,8 @@ describe("BnsConnection", () => {
       await sendTokensFromFaucet(connection, identityToAddress(brokeIdentity), sendTx.fee!.tokens);
 
       const nonce = await connection.getNonce({ pubkey: brokeIdentity.pubkey });
-      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+      const response = await connection.postTx(bnsCodec.bytesToPost(signed));
       const transactionIdToSearch = response.transactionId;
 
       const result = await firstEvent(connection.liveTx({ id: transactionIdToSearch }));
@@ -2075,7 +2031,7 @@ describe("BnsConnection", () => {
   describe("getValidators", () => {
     it("works", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       const validators = await connection.getValidators();
       expect(validators.length).toEqual(1);
@@ -2090,7 +2046,7 @@ describe("BnsConnection", () => {
   describe("getElectorates", () => {
     it("can query electorates set in genesis", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       const electorates = await connection.getElectorates();
       expect(electorates.length).toBeGreaterThanOrEqual(1);
@@ -2114,7 +2070,7 @@ describe("BnsConnection", () => {
   describe("getElectionRules", () => {
     it("can query election rules set in genesis", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       const rules = await connection.getElectionRules();
       expect(rules.length).toEqual(3);
@@ -2171,7 +2127,7 @@ describe("BnsConnection", () => {
   describe("getProposals", () => {
     it("can get list of proposals", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const proposals = await connection.getProposals(); // empty list for fresh chains
       expect(proposals.length).toBeGreaterThanOrEqual(0);
       connection.disconnect();
@@ -2179,7 +2135,7 @@ describe("BnsConnection", () => {
 
     it("can create a proposal and find it in list", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const chainId = connection.chainId();
 
       const { profile, admin: author } = await userProfileWithFaucet(chainId);
@@ -2210,9 +2166,9 @@ describe("BnsConnection", () => {
       });
 
       const nonce = await connection.getNonce({ pubkey: author.pubkey });
-      const signed = await profile.signTransaction(createProposal, grafainCodec, nonce);
+      const signed = await profile.signTransaction(createProposal, bnsCodec, nonce);
       {
-        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+        const response = await connection.postTx(bnsCodec.bytesToPost(signed));
         await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       }
 
@@ -2232,7 +2188,7 @@ describe("BnsConnection", () => {
   describe("getUsernames", () => {
     it("can query usernames by name", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const registryChainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -2251,9 +2207,9 @@ describe("BnsConnection", () => {
         targets: targets,
       });
       const nonce = await connection.getNonce({ pubkey: identity.pubkey });
-      const signed = await profile.signTransaction(registration, grafainCodec, nonce);
+      const signed = await profile.signTransaction(registration, bnsCodec, nonce);
       {
-        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+        const response = await connection.postTx(bnsCodec.bytesToPost(signed));
         await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       }
 
@@ -2279,7 +2235,7 @@ describe("BnsConnection", () => {
 
     it("can query usernames owner", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const registryChainId = connection.chainId();
 
       const profile = new UserProfile();
@@ -2298,9 +2254,9 @@ describe("BnsConnection", () => {
         targets: targets,
       });
       const nonce = await connection.getNonce({ pubkey: identity.pubkey });
-      const signed = await profile.signTransaction(registration, grafainCodec, nonce);
+      const signed = await profile.signTransaction(registration, bnsCodec, nonce);
       {
-        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
+        const response = await connection.postTx(bnsCodec.bytesToPost(signed));
         await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       }
 
@@ -2321,7 +2277,7 @@ describe("BnsConnection", () => {
   });
 
   const sendCash = async (
-    connection: GrafainConnection,
+    connection: BnsConnection,
     profile: UserProfile,
     faucet: Identity,
     rcptAddr: Address,
@@ -2330,7 +2286,7 @@ describe("BnsConnection", () => {
     const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
       kind: "bcp/send",
       creator: faucet,
-      sender: grafainCodec.identityToAddress(faucet),
+      sender: bnsCodec.identityToAddress(faucet),
       recipient: rcptAddr,
       amount: {
         quantity: "68000000000",
@@ -2339,15 +2295,15 @@ describe("BnsConnection", () => {
       },
     });
     const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-    const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
-    const txBytes = grafainCodec.bytesToPost(signed);
+    const signed = await profile.signTransaction(sendTx, bnsCodec, nonce);
+    const txBytes = bnsCodec.bytesToPost(signed);
     return connection.postTx(txBytes);
   };
 
   // make sure we can get a reactive account balance (as well as nonce)
   it("can watch accounts", async () => {
     pendingWithoutBnsd();
-    const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+    const connection = await BnsConnection.establish(bnsdTendermintUrl);
     const { profile, faucet } = await userProfileWithFaucet(connection.chainId());
     const recipientAddr = await randomBnsAddress();
 
@@ -2399,7 +2355,7 @@ describe("BnsConnection", () => {
 
   it("can start atomic swap", async () => {
     pendingWithoutBnsd();
-    const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+    const connection = await BnsConnection.establish(bnsdTendermintUrl);
     const chainId = connection.chainId();
 
     const { profile, faucet } = await userProfileWithFaucet(chainId);
@@ -2429,8 +2385,8 @@ describe("BnsConnection", () => {
     });
 
     const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-    const signed = await profile.signTransaction(swapOfferTx, grafainCodec, nonce);
-    const post = await connection.postTx(grafainCodec.bytesToPost(signed));
+    const signed = await profile.signTransaction(swapOfferTx, bnsCodec, nonce);
+    const post = await connection.postTx(bnsCodec.bytesToPost(signed));
     const transactionId = post.transactionId;
     expect(transactionId).toMatch(/^[0-9A-F]{64}$/);
 
@@ -2540,7 +2496,7 @@ describe("BnsConnection", () => {
   describe("getSwapsFromState", () => {
     it("works", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
       const { profile, faucet } = await userProfileWithFaucet(connection.chainId());
       const faucetAddr = identityToAddress(faucet);
       const recipientAddr = await randomBnsAddress();
@@ -2560,8 +2516,8 @@ describe("BnsConnection", () => {
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(swapOfferTx, grafainCodec, nonce);
-      const post = await connection.postTx(grafainCodec.bytesToPost(signed));
+      const signed = await profile.signTransaction(swapOfferTx, bnsCodec, nonce);
+      const post = await connection.postTx(bnsCodec.bytesToPost(signed));
 
       const blockInfo = await post.blockInfo.waitFor(info => !isBlockInfoPending(info));
       if (!isBlockInfoSucceeded(blockInfo)) {
@@ -2614,7 +2570,7 @@ describe("BnsConnection", () => {
   });
 
   const openSwap = async (
-    connection: GrafainConnection,
+    connection: BnsConnection,
     profile: UserProfile,
     creator: Identity,
     rcptAddr: Address,
@@ -2637,13 +2593,13 @@ describe("BnsConnection", () => {
       hash: hash,
     });
     const nonce = await connection.getNonce({ pubkey: creator.pubkey });
-    const signed = await profile.signTransaction(swapOfferTx, grafainCodec, nonce);
-    const txBytes = grafainCodec.bytesToPost(signed);
+    const signed = await profile.signTransaction(swapOfferTx, bnsCodec, nonce);
+    const txBytes = bnsCodec.bytesToPost(signed);
     return connection.postTx(txBytes);
   };
 
   const claimSwap = async (
-    connection: GrafainConnection,
+    connection: BnsConnection,
     profile: UserProfile,
     creator: Identity,
     swapId: SwapId,
@@ -2657,14 +2613,14 @@ describe("BnsConnection", () => {
       preimage: preimage,
     });
     const nonce = await connection.getNonce({ pubkey: creator.pubkey });
-    const signed = await profile.signTransaction(swapClaimTx, grafainCodec, nonce);
-    const txBytes = grafainCodec.bytesToPost(signed);
+    const signed = await profile.signTransaction(swapClaimTx, bnsCodec, nonce);
+    const txBytes = bnsCodec.bytesToPost(signed);
     return connection.postTx(txBytes);
   };
 
   it("can start and watch an atomic swap lifecycle", async () => {
     pendingWithoutBnsd();
-    const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+    const connection = await BnsConnection.establish(bnsdTendermintUrl);
     const { profile, faucet } = await userProfileWithFaucet(connection.chainId());
     const recipientAddr = await randomBnsAddress();
 
@@ -2779,7 +2735,7 @@ describe("BnsConnection", () => {
   describe("getFeeQuote", () => {
     it("works for send transaction", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       const sendTransaction = {
         kind: "bcp/send",
@@ -2808,7 +2764,7 @@ describe("BnsConnection", () => {
 
     it("works for other BNS transaction", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       const username = `testuser_${Math.random()}`;
       const usernameRegistration = {
@@ -2843,7 +2799,7 @@ describe("BnsConnection", () => {
 
     it("throws for unsupported transaction kind", async () => {
       pendingWithoutBnsd();
-      const connection = await GrafainConnection.establish(bnsdTendermintUrl);
+      const connection = await BnsConnection.establish(bnsdTendermintUrl);
 
       const otherTransaction: UnsignedTransaction = {
         kind: "other/kind",

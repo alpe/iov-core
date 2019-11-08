@@ -12,7 +12,6 @@ import {
 import * as Long from "long";
 import * as codecImpl from "./generated/codecimpl";
 import {
-  Artifact,
   BnsUsernameNft,
   CashConfiguration,
   ElectionRule,
@@ -35,10 +34,6 @@ export declare function decodeUsernameNft(
   nft: codecImpl.username.IToken & Keyed,
   registryChainId: ChainId,
 ): BnsUsernameNft;
-export declare function decodeArtifact(
-  artf: codecImpl.artifact.IArtifact, // & Keyed,
-  registryChainId: ChainId,
-): Artifact;
 export declare function decodeNonce(sequence: Long | number | null | undefined): Nonce;
 export declare function decodeUserData(
   userData: codecImpl.sigs.IUserData,
@@ -69,5 +64,5 @@ export declare function decodeProposal(
   proposal: codecImpl.gov.IProposal & Keyed,
 ): Proposal;
 export declare function decodeVote(prefix: IovBech32Prefix, vote: codecImpl.gov.IVote & Keyed): Vote;
-export declare function parseMsg(base: UnsignedTransaction, tx: codecImpl.grafain.ITx): UnsignedTransaction;
+export declare function parseMsg(base: UnsignedTransaction, tx: codecImpl.bnsd.ITx): UnsignedTransaction;
 export declare function parseTx(tx: codecImpl.bnsd.ITx, chainId: ChainId): SignedTransaction;

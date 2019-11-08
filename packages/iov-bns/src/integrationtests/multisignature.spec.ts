@@ -16,8 +16,8 @@ import { Uint64 } from "@iov/encoding";
 import { Ed25519HdWallet, HdPaths, UserProfile } from "@iov/keycontrol";
 import BN from "bn.js";
 
-import { grafainCodec } from "../grafainCodec";
-import { GrafainConnection } from "../grafainConnection";
+import { bnsCodec } from "../bnscodec";
+import { BnsConnection } from "../bnsconnection";
 import { multisignatureIdToAddress } from "../conditions";
 import { CreateMultisignatureTx, MultisignatureTx, Participant } from "../types";
 
@@ -47,7 +47,7 @@ function pendingWithoutBnsd(): void {
 
 interface ActorData {
   readonly profile: UserProfile;
-  readonly connection: GrafainConnection;
+  readonly connection: BnsConnection;
   readonly identity: Identity;
 }
 
@@ -56,7 +56,7 @@ class Actor {
     const profile = new UserProfile();
     const wallet = profile.addWallet(Ed25519HdWallet.fromMnemonic(mnemonic));
 
-    const connection = await GrafainConnection.establish(bnsUrl);
+    const connection = await BnsConnection.establish(bnsUrl);
 
     const identity = await profile.createIdentity(wallet.id, connection.chainId(), hdPath);
 
@@ -68,10 +68,10 @@ class Actor {
   }
 
   public get address(): Address {
-    return grafainCodec.identityToAddress(this.identity);
+    return bnsCodec.identityToAddress(this.identity);
   }
 
-  private readonly connection: GrafainConnection;
+  private readonly connection: BnsConnection;
   private readonly profile: UserProfile;
   private readonly identity: Identity;
 
@@ -90,16 +90,16 @@ class Actor {
 
   public async signTransaction(transaction: UnsignedTransaction): Promise<SignedTransaction> {
     const nonce = await this.connection.getNonce({ pubkey: this.identity.pubkey });
-    return this.profile.signTransaction(transaction, grafainCodec, nonce);
+    return this.profile.signTransaction(transaction, bnsCodec, nonce);
   }
 
   public async appendSignature(signedTransaction: SignedTransaction): Promise<SignedTransaction> {
     const nonce = await this.connection.getNonce({ pubkey: this.identity.pubkey });
-    return this.profile.appendSignature(this.identity, signedTransaction, grafainCodec, nonce);
+    return this.profile.appendSignature(this.identity, signedTransaction, bnsCodec, nonce);
   }
 
   public async postTransaction(signedTransaction: SignedTransaction): Promise<Uint8Array | undefined> {
-    const txBytes = grafainCodec.bytesToPost(signedTransaction);
+    const txBytes = bnsCodec.bytesToPost(signedTransaction);
     const post = await this.connection.postTx(txBytes);
     const blockInfo = await post.blockInfo.waitFor(info => !isBlockInfoPending(info));
     if (!isBlockInfoSucceeded(blockInfo)) {

@@ -251,18 +251,6 @@ export interface Vote {
   readonly selection: VoteOption;
 }
 
-// Artifact
-export interface Artifact {
-  // readonly id: string;
-  readonly owner: Address;
-  readonly image: string;
-  readonly checksum: string;
-}
-
-export interface ArtifactByOwnerQuery {
-  readonly owner: Address;
-}
-
 // username NFT
 
 export interface ChainAddressPair {
@@ -327,16 +315,6 @@ export interface RegisterUsernameTx extends LightTransaction {
 
 export function isRegisterUsernameTx(tx: LightTransaction): tx is RegisterUsernameTx {
   return tx.kind === "bns/register_username";
-}
-
-export interface CreateArtifactTX extends LightTransaction {
-  readonly kind: "grafain/create_artifact";
-  readonly image: string;
-  readonly checksum: string;
-}
-
-export function isCreateArtifactTX(tx: LightTransaction): tx is CreateArtifactTX {
-  return tx.kind === "grafain/create_artifact";
 }
 
 export interface UpdateTargetsOfUsernameTx extends LightTransaction {
@@ -481,8 +459,6 @@ export type BnsTx =
   | SwapOfferTransaction
   | SwapClaimTransaction
   | SwapAbortTransaction
-  // Artifact
-  | CreateArtifactTX
   // BNS: Usernames
   | RegisterUsernameTx
   | UpdateTargetsOfUsernameTx
@@ -499,7 +475,7 @@ export type BnsTx =
   | CreateProposalTx
   | VoteTx;
 
-export function isGrafainTx(transaction: LightTransaction): transaction is BnsTx {
+export function isBnsTx(transaction: LightTransaction): transaction is BnsTx {
   if (
     isSendTransaction(transaction) ||
     isSwapOfferTransaction(transaction) ||
@@ -509,7 +485,7 @@ export function isGrafainTx(transaction: LightTransaction): transaction is BnsTx
     return true;
   }
 
-  return transaction.kind.startsWith("grafain/");
+  return transaction.kind.startsWith("bns/");
 }
 
 export interface MultisignatureTx extends LightTransaction {

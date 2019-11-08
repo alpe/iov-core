@@ -1,6 +1,6 @@
-export { grafainCodec } from "./grafainCodec";
-export { createGrafainConnector } from "./bnsconnector";
-export { GrafainConnection } from "./grafainConnection";
+export { bnsCodec } from "./bnscodec";
+export { createBnsConnector } from "./bnsconnector";
+export { BnsConnection } from "./bnsconnection";
 export {
   Condition,
   buildCondition,
@@ -19,9 +19,6 @@ export {
   BnsUsernameNft,
   RegisterUsernameTx,
   isRegisterUsernameTx,
-  Artifact,
-  CreateArtifactTX,
-  isCreateArtifactTX,
   UpdateTargetsOfUsernameTx,
   isUpdateTargetsOfUsernameTx,
   TransferUsernameTx,
@@ -77,6 +74,6 @@ export {
   UpdateElectorateAction,
   isUpdateElectorateAction,
   BnsTx,
-  isGrafainTx,
+  isBnsTx,
 } from "./types";
 export { pubkeyToAddress } from "./util";
