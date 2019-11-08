@@ -252,7 +252,7 @@ export interface RegisterUsernameTx extends LightTransaction {
 }
 export declare function isRegisterUsernameTx(tx: LightTransaction): tx is RegisterUsernameTx;
 export interface CreateArtifactTX extends LightTransaction {
-  readonly kind: "bns/create_artifact";
+  readonly kind: "grafain/create_artifact";
   readonly image: string;
   readonly checksum: string;
 }
@@ -360,7 +360,7 @@ export declare type BnsTx =
   | UpdateEscrowPartiesTx
   | CreateProposalTx
   | VoteTx;
-export declare function isBnsTx(transaction: LightTransaction): transaction is BnsTx;
+export declare function isGrafainTx(transaction: LightTransaction): transaction is BnsTx;
 export interface MultisignatureTx extends LightTransaction {
   readonly multisig: readonly number[];
 }

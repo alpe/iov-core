@@ -69,5 +69,5 @@ export declare function decodeProposal(
   proposal: codecImpl.gov.IProposal & Keyed,
 ): Proposal;
 export declare function decodeVote(prefix: IovBech32Prefix, vote: codecImpl.gov.IVote & Keyed): Vote;
-export declare function parseMsg(base: UnsignedTransaction, tx: codecImpl.bnsd.ITx): UnsignedTransaction;
+export declare function parseMsg(base: UnsignedTransaction, tx: codecImpl.grafain.ITx): UnsignedTransaction;
 export declare function parseTx(tx: codecImpl.bnsd.ITx, chainId: ChainId): SignedTransaction;

@@ -27,10 +27,11 @@ import * as Long from "long";
 
 import * as codecImpl from "./generated/codecimpl";
 import {
-  ActionKind, Artifact,
+  ActionKind,
+  Artifact,
   BnsUsernameNft,
   CashConfiguration,
-  ChainAddressPair,
+  ChainAddressPair, CreateArtifactTX,
   CreateEscrowTx,
   CreateMultisignatureTx,
   CreateProposalTx,
@@ -65,6 +66,7 @@ import {
   VoteTx,
 } from "./types";
 import { addressPrefix, encodeBnsAddress, IovBech32Prefix } from "./util";
+import { artifact } from "./generated/codecimpl";
 
 const { fromUtf8 } = Encoding;
 
@@ -379,7 +381,7 @@ function decodeValidators(validators: readonly codecImpl.weave.IValidatorUpdate[
 }
 
 function decodeRawProposalOption(prefix: IovBech32Prefix, rawOption: Uint8Array): ProposalAction {
-  const option = codecImpl.bnsd.ProposalOptions.decode(rawOption);
+  const option = codecImpl.grafain.ProposalOptions.decode(rawOption);
   if (option.govCreateTextResolutionMsg) {
     return {
       kind: ActionKind.CreateTextResolution,
@@ -539,7 +541,17 @@ function parseSwapAbortTransaction(
   };
 }
 
-// Usernames
+function parseCreateArtifactTX(
+  base: UnsignedTransaction,
+  msg: codecImpl.artifact.ICreateArtifactMsg,
+): CreateArtifactTX & WithCreator {
+  return {
+    ...base,
+    kind: "grafain/create_artifact",
+    image: ensure(msg.image, "image"),
+    checksum: ensure(msg.checksum, "checksum"),
+  };
+}
 
 function parseRegisterUsernameTx(
   base: UnsignedTransaction,
@@ -730,7 +742,7 @@ function parseVoteTx(base: UnsignedTransaction, msg: codecImpl.gov.IVoteMsg): Vo
   };
 }
 
-export function parseMsg(base: UnsignedTransaction, tx: codecImpl.bnsd.ITx): UnsignedTransaction {
+export function parseMsg(base: UnsignedTransaction, tx: codecImpl.grafain.ITx): UnsignedTransaction {
   // Token sends
   if (tx.cashSendMsg) return parseSendTransaction(base, tx.cashSendMsg);
 
@@ -739,12 +751,7 @@ export function parseMsg(base: UnsignedTransaction, tx: codecImpl.bnsd.ITx): Uns
   if (tx.aswapReleaseMsg) return parseSwapClaimTx(base, tx.aswapReleaseMsg);
   if (tx.aswapReturnMsg) return parseSwapAbortTransaction(base, tx.aswapReturnMsg);
 
-  // Usernames
-  if (tx.usernameRegisterTokenMsg) return parseRegisterUsernameTx(base, tx.usernameRegisterTokenMsg);
-  if (tx.usernameChangeTokenTargetsMsg) {
-    return parseUpdateTargetsOfUsernameTx(base, tx.usernameChangeTokenTargetsMsg);
-  }
-  if (tx.usernameTransferTokenMsg) return parseTransferUsernameTx(base, tx.usernameTransferTokenMsg);
+  if (tx.createArtifactMsg) return parseCreateArtifactTX(base, tx.createArtifactMsg);
 
   // Multisignature contracts
   if (tx.multisigCreateMsg) return parseCreateMultisignatureTx(base, tx.multisigCreateMsg);

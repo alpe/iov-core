@@ -48,8 +48,8 @@ export interface QueryResponse {
  *
  * We can embed in iov-core process or use this in a BCP-relay
  */
-export declare class BnsConnection implements AtomicSwapConnection {
-  static establish(url: string): Promise<BnsConnection>;
+export declare class GrafainConnection implements AtomicSwapConnection {
+  static establish(url: string): Promise<GrafainConnection>;
   private static initialize;
   private readonly tmClient;
   private readonly codec;

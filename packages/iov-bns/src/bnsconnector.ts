@@ -1,15 +1,18 @@
 import { ChainConnector, ChainId } from "@iov/bcp";
 
-import { bnsCodec } from "./bnscodec";
-import { BnsConnection } from "./bnsconnection";
+import { grafainCodec } from "./grafainCodec";
+import { GrafainConnection } from "./grafainConnection";
 
 /**
  * A helper to connect to a bns-based chain at a given url
  */
-export function createBnsConnector(url: string, expectedChainId?: ChainId): ChainConnector<BnsConnection> {
+export function createGrafainConnector(
+  url: string,
+  expectedChainId?: ChainId,
+): ChainConnector<GrafainConnection> {
   return {
-    establishConnection: async () => BnsConnection.establish(url),
-    codec: bnsCodec,
+    establishConnection: async () => GrafainConnection.establish(url),
+    codec: grafainCodec,
     expectedChainId: expectedChainId,
   };
 }

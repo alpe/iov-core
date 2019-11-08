@@ -1,5 +1,4 @@
 import * as $protobuf from "protobufjs";
-
 /** Namespace grafain. */
 export namespace grafain {
   /** Properties of a Tx. */
@@ -1609,9 +1608,6 @@ export namespace bnsd {
 
     /** Tx executeBatchMsg */
     executeBatchMsg?: bnsd.IExecuteBatchMsg | null;
-
-    createArtifactMsg?: artifact.ICreateArtifactMsg | null;
-    deleteArtifactMsg?: artifact.IDeleteArtifactMsg | null;
 
     /** Tx usernameRegisterTokenMsg */
     usernameRegisterTokenMsg?: username.IRegisterTokenMsg | null;

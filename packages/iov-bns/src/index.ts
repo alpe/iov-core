@@ -1,6 +1,6 @@
-export { bnsCodec } from "./bnscodec";
-export { createBnsConnector } from "./bnsconnector";
-export { BnsConnection } from "./bnsconnection";
+export { grafainCodec } from "./grafainCodec";
+export { createGrafainConnector } from "./bnsconnector";
+export { GrafainConnection } from "./grafainConnection";
 export {
   // general conditions
   Condition,
@@ -85,6 +85,6 @@ export {
   isUpdateElectorateAction,
   // Transactions
   BnsTx,
-  isBnsTx,
+  isGrafainTx,
 } from "./types";
 export { pubkeyToAddress } from "./util";

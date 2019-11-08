@@ -330,13 +330,13 @@ export function isRegisterUsernameTx(tx: LightTransaction): tx is RegisterUserna
 }
 
 export interface CreateArtifactTX extends LightTransaction {
-  readonly kind: "bns/create_artifact";
+  readonly kind: "grafain/create_artifact";
   readonly image: string;
   readonly checksum: string;
 }
 
 export function isCreateArtifactTX(tx: LightTransaction): tx is CreateArtifactTX {
-  return tx.kind === "bns/create_artifact";
+  return tx.kind === "grafain/create_artifact";
 }
 
 export interface UpdateTargetsOfUsernameTx extends LightTransaction {
@@ -499,7 +499,7 @@ export type BnsTx =
   | CreateProposalTx
   | VoteTx;
 
-export function isBnsTx(transaction: LightTransaction): transaction is BnsTx {
+export function isGrafainTx(transaction: LightTransaction): transaction is BnsTx {
   if (
     isSendTransaction(transaction) ||
     isSwapOfferTransaction(transaction) ||
@@ -509,7 +509,7 @@ export function isBnsTx(transaction: LightTransaction): transaction is BnsTx {
     return true;
   }
 
-  return transaction.kind.startsWith("bns/");
+  return transaction.kind.startsWith("grafain/");
 }
 
 export interface MultisignatureTx extends LightTransaction {

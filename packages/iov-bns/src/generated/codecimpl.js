@@ -29101,10 +29101,10 @@ $root.validators = (function() {
             }
             if (message.addresses != null && message.hasOwnProperty("addresses")) {
                 if (!Array.isArray(message.addresses))
-                    return "artifacts: array expected";
+                    return "addresses: array expected";
                 for (var i = 0; i < message.addresses.length; ++i)
                     if (!(message.addresses[i] && typeof message.addresses[i].length === "number" || $util.isString(message.addresses[i])))
-                        return "artifacts: buffer[] expected";
+                        return "addresses: buffer[] expected";
             }
             return null;
         };
@@ -29128,7 +29128,7 @@ $root.validators = (function() {
             }
             if (object.addresses) {
                 if (!Array.isArray(object.addresses))
-                    throw TypeError(".validators.Accounts.artifacts: array expected");
+                    throw TypeError(".validators.Accounts.addresses: array expected");
                 message.addresses = [];
                 for (var i = 0; i < object.addresses.length; ++i)
                     if (typeof object.addresses[i] === "string")

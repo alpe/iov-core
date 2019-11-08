@@ -51,7 +51,7 @@ import { broadcastTxSyncSuccess, Client as TendermintClient, v0_31 } from "@iov/
 import equal from "fast-deep-equal";
 import { Stream, Subscription } from "xstream";
 
-import { bnsCodec } from "./bnscodec";
+import { grafainCodec } from "./grafainCodec";
 import { swapToAddress } from "./conditions";
 import { ChainData, Context } from "./context";
 import {
@@ -78,14 +78,14 @@ import {
   Decoder,
   ElectionRule,
   Electorate,
-  isBnsTx,
+  isGrafainTx,
   isBnsUsernamesByOwnerQuery,
   isBnsUsernamesByUsernameQuery,
   Keyed,
   Proposal,
   Result,
   Validator,
-  Vote,
+  Vote, isCreateArtifactTX,
 } from "./types";
 import {
   addressPrefix,
@@ -216,11 +216,11 @@ function createParser<T extends {}>(decoder: Decoder<T>, keyPrefix: string): (re
  *
  * We can embed in iov-core process or use this in a BCP-relay
  */
-export class BnsConnection implements AtomicSwapConnection {
-  public static async establish(url: string): Promise<BnsConnection> {
+export class GrafainConnection implements AtomicSwapConnection {
+  public static async establish(url: string): Promise<GrafainConnection> {
     const tm = await TendermintClient.connect(url);
     const chainData = await this.initialize(tm);
-    return new BnsConnection(tm, bnsCodec, chainData);
+    return new GrafainConnection(tm, grafainCodec, chainData);
   }
 
   private static async initialize(tmClient: TendermintClient): Promise<ChainData> {
@@ -270,6 +270,8 @@ export class BnsConnection implements AtomicSwapConnection {
   }
 
   public async postTx(tx: PostableBytes): Promise<PostTxResponse> {
+    // tslint:disable-next-line:no-console
+    console.log(`TX: ${Encoding.toHex(tx)}`);
     const postResponse = await this.tmClient.broadcastTxSync({ tx: tx });
     if (!broadcastTxSyncSuccess(postResponse)) {
       throw new Error(JSON.stringify(postResponse, null, 2));
@@ -730,7 +732,7 @@ export class BnsConnection implements AtomicSwapConnection {
   }
 
   public async getFeeQuote(transaction: UnsignedTransaction): Promise<Fee> {
-    if (!isBnsTx(transaction)) {
+    if (!isGrafainTx(transaction)) {
       throw new Error("Received transaction of unsupported kind.");
     }
     // use product fee if it exists, otherwise fallback to default anti-spam fee
