@@ -1,4 +1,4 @@
-export { codec } from "./codec";
+export { grafainCodec } from "./codec";
 export { createGrafainConnector } from "./connector";
 export { GrafainConnection } from "./grafainConnection";
 export {

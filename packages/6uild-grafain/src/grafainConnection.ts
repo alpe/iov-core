@@ -263,8 +263,6 @@ export class GrafainConnection implements AtomicSwapConnection {
   }
 
   public async postTx(tx: PostableBytes): Promise<PostTxResponse> {
-    // tslint:disable-next-line:no-console
-    console.log(`TX: ${Encoding.toHex(tx)}`);
     const postResponse = await this.tmClient.broadcastTxSync({ tx: tx });
     if (!broadcastTxSyncSuccess(postResponse)) {
       throw new Error(JSON.stringify(postResponse, null, 2));

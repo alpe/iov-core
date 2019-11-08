@@ -1,2 +1,2 @@
 import { TxCodec } from "@iov/bcp";
-export declare const codec: TxCodec;
+export declare const grafainCodec: TxCodec;
