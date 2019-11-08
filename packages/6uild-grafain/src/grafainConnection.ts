@@ -51,7 +51,7 @@ import { broadcastTxSyncSuccess, Client as TendermintClient, v0_31 } from "@iov/
 import equal from "fast-deep-equal";
 import { Stream, Subscription } from "xstream";
 
-import { codec } from "./codec";
+import { grafainCodec } from "./grafainCodec";
 import { swapToAddress } from "./conditions";
 import { ChainData, Context } from "./context";
 import {
@@ -213,7 +213,7 @@ export class GrafainConnection implements AtomicSwapConnection {
   public static async establish(url: string): Promise<GrafainConnection> {
     const tm = await TendermintClient.connect(url);
     const chainData = await this.initialize(tm);
-    return new GrafainConnection(tm, codec, chainData);
+    return new GrafainConnection(tm, grafainCodec, chainData);
   }
 
   private static async initialize(tmClient: TendermintClient): Promise<ChainData> {

@@ -46,7 +46,7 @@ import { asArray, firstEvent, lastValue, toListPromise } from "@iov/stream";
 import BN from "bn.js";
 import Long from "long";
 
-import { codec } from "./codec";
+import { grafainCodec } from "./grafainCodec";
 import { GrafainConnection } from "./grafainConnection";
 import { decodeNumericId } from "./decode";
 import { grafainSwapQueryTag } from "./tags";
@@ -179,13 +179,13 @@ describe("BnsConnection", () => {
     const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
       kind: "bcp/send",
       creator: identity,
-      sender: codec.identityToAddress(identity),
+      sender: grafainCodec.identityToAddress(identity),
       recipient: await randomBnsAddress(),
       amount: defaultAmount,
     });
     const nonce = await connection.getNonce({ pubkey: identity.pubkey });
-    const signed = await profile.signTransaction(sendTx, codec, nonce);
-    const response = await connection.postTx(codec.bytesToPost(signed));
+    const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+    const response = await connection.postTx(grafainCodec.bytesToPost(signed));
     await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
   }
 
@@ -199,13 +199,13 @@ describe("BnsConnection", () => {
     const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
       kind: "bcp/send",
       creator: faucet,
-      sender: codec.identityToAddress(faucet),
+      sender: grafainCodec.identityToAddress(faucet),
       recipient: recipient,
       amount: amount,
     });
     const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-    const signed = await profile.signTransaction(sendTx, codec, nonce);
-    const response = await connection.postTx(codec.bytesToPost(signed));
+    const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+    const response = await connection.postTx(grafainCodec.bytesToPost(signed));
     await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
   }
 
@@ -519,7 +519,7 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: codec.identityToAddress(faucet),
+        sender: grafainCodec.identityToAddress(faucet),
         recipient: recipient,
         memo: "My first payment",
         amount: {
@@ -529,8 +529,8 @@ describe("BnsConnection", () => {
         },
       });
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const txBytes = codec.bytesToPost(signed);
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const txBytes = grafainCodec.bytesToPost(signed);
       const response = await connection.postTx(txBytes);
       const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo.state).toEqual(TransactionState.Succeeded);
@@ -577,7 +577,7 @@ describe("BnsConnection", () => {
       const sendTx: SendTransaction & WithCreator = {
         kind: "bcp/send",
         creator: faucet,
-        sender: codec.identityToAddress(faucet),
+        sender: grafainCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         memo: "This time I pay my bills",
         amount: {
@@ -594,9 +594,9 @@ describe("BnsConnection", () => {
         },
       };
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
       try {
-        await connection.postTx(codec.bytesToPost(signed));
+        await connection.postTx(grafainCodec.bytesToPost(signed));
         fail("above line should reject with low fees");
       } catch (err) {
         expect(err).toMatch(/fee less than minimum/);
@@ -615,7 +615,7 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: codec.identityToAddress(faucet),
+        sender: grafainCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         amount: {
           ...defaultAmount,
@@ -623,10 +623,10 @@ describe("BnsConnection", () => {
         },
       });
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
 
       await connection
-        .postTx(codec.bytesToPost(signed))
+        .postTx(grafainCodec.bytesToPost(signed))
         .then(
           () => fail("promise must be rejected"),
           error => expect(error).toMatch(/field \\"Amount\\": invalid currency: UNKNOWN/i),
@@ -649,7 +649,7 @@ describe("BnsConnection", () => {
         const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
           kind: "bcp/send",
           creator: faucet,
-          sender: codec.identityToAddress(faucet),
+          sender: grafainCodec.identityToAddress(faucet),
           recipient: recipient,
           memo: "My first payment",
           amount: {
@@ -659,9 +659,9 @@ describe("BnsConnection", () => {
           },
         });
         const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-        const signed = await profile.signTransaction(sendTx, codec, nonce);
+        const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
         const heightBeforeTransaction = await connection.height();
-        const result = await connection.postTx(codec.bytesToPost(signed));
+        const result = await connection.postTx(grafainCodec.bytesToPost(signed));
         expect(result.blockInfo.value).toEqual({ state: TransactionState.Pending });
 
         const events = new Array<BlockInfo>();
@@ -720,9 +720,9 @@ describe("BnsConnection", () => {
         fee: undefined,
       } as UnsignedTransaction;
       const nonce = await connection.getNonce({ pubkey: identity.pubkey });
-      const signed = await profile.signTransaction(registration, codec, nonce);
+      const signed = await profile.signTransaction(registration, grafainCodec, nonce);
 
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo.state).toEqual(TransactionState.Succeeded);
 
@@ -770,8 +770,8 @@ describe("BnsConnection", () => {
         adminThreshold: 5,
       });
       const nonce1 = await connection.getNonce({ pubkey: identity.pubkey });
-      const signed1 = await profile.signTransaction(tx1, codec, nonce1);
-      const txBytes1 = codec.bytesToPost(signed1);
+      const signed1 = await profile.signTransaction(tx1, grafainCodec, nonce1);
+      const txBytes1 = grafainCodec.bytesToPost(signed1);
       const response1 = await connection.postTx(txBytes1);
       const blockInfo1 = await response1.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo1.state).toEqual(TransactionState.Succeeded);
@@ -810,8 +810,8 @@ describe("BnsConnection", () => {
         adminThreshold: 6,
       });
       const nonce2 = await connection.getNonce({ pubkey: identity.pubkey });
-      const signed2 = await profile.signTransaction(tx2, codec, nonce2);
-      const txBytes2 = codec.bytesToPost(signed2);
+      const signed2 = await profile.signTransaction(tx2, grafainCodec, nonce2);
+      const txBytes2 = grafainCodec.bytesToPost(signed2);
       const response2 = await connection.postTx(txBytes2);
       const blockInfo2 = await response2.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo2.state).toEqual(TransactionState.Succeeded);
@@ -871,8 +871,8 @@ describe("BnsConnection", () => {
         memo: memo,
       });
       const nonce1 = await connection.getNonce({ pubkey: sender.pubkey });
-      const signed1 = await profile.signTransaction(tx1, codec, nonce1);
-      const txBytes1 = codec.bytesToPost(signed1);
+      const signed1 = await profile.signTransaction(tx1, grafainCodec, nonce1);
+      const txBytes1 = grafainCodec.bytesToPost(signed1);
       const response1 = await connection.postTx(txBytes1);
       const blockInfo1 = await response1.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo1.state).toEqual(TransactionState.Succeeded);
@@ -906,8 +906,8 @@ describe("BnsConnection", () => {
         amounts: [defaultAmount],
       });
       const nonce2 = await connection.getNonce({ pubkey: arbiter.pubkey });
-      const signed2 = await profile.signTransaction(tx2, codec, nonce2);
-      const txBytes2 = codec.bytesToPost(signed2);
+      const signed2 = await profile.signTransaction(tx2, grafainCodec, nonce2);
+      const txBytes2 = grafainCodec.bytesToPost(signed2);
       const response2 = await connection.postTx(txBytes2);
       const blockInfo2 = await response2.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo2.state).toEqual(TransactionState.Succeeded);
@@ -956,8 +956,8 @@ describe("BnsConnection", () => {
         });
 
         const nonce = await connection.getNonce({ pubkey: sender.pubkey });
-        const signed = await profile.signTransaction(createEscrowTx, codec, nonce);
-        const response = await connection.postTx(codec.bytesToPost(signed));
+        const signed = await profile.signTransaction(createEscrowTx, grafainCodec, nonce);
+        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
         const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
         if (!isBlockInfoSucceeded(blockInfo)) throw new Error("Transaction did not succeed");
         escrowId = blockInfo.result || fromHex("");
@@ -979,8 +979,8 @@ describe("BnsConnection", () => {
         });
 
         const nonce = await connection.getNonce({ pubkey: helperIdentity.pubkey });
-        const signed = await profile.signTransaction(returnEscrowTx, codec, nonce);
-        const response = await connection.postTx(codec.bytesToPost(signed));
+        const signed = await profile.signTransaction(returnEscrowTx, grafainCodec, nonce);
+        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
         const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
         expect(blockInfo.state).toEqual(TransactionState.Succeeded);
       }
@@ -1020,8 +1020,8 @@ describe("BnsConnection", () => {
         memo: memo,
       });
       const nonce1 = await connection.getNonce({ pubkey: sender.pubkey });
-      const signed1 = await profile.signTransaction(tx1, codec, nonce1);
-      const txBytes1 = codec.bytesToPost(signed1);
+      const signed1 = await profile.signTransaction(tx1, grafainCodec, nonce1);
+      const txBytes1 = grafainCodec.bytesToPost(signed1);
       const response1 = await connection.postTx(txBytes1);
       const blockInfo1 = await response1.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo1.state).toEqual(TransactionState.Succeeded);
@@ -1057,8 +1057,8 @@ describe("BnsConnection", () => {
         escrowId: escrowId,
       });
       const nonce2 = await connection.getNonce({ pubkey: arbiter.pubkey });
-      const signed2 = await profile.signTransaction(tx2, codec, nonce2);
-      const txBytes2 = codec.bytesToPost(signed2);
+      const signed2 = await profile.signTransaction(tx2, grafainCodec, nonce2);
+      const txBytes2 = grafainCodec.bytesToPost(signed2);
       const response2 = await connection.postTx(txBytes2);
       const blockInfo2 = await response2.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo2.state).toEqual(TransactionState.Succeeded);
@@ -1116,8 +1116,8 @@ describe("BnsConnection", () => {
         memo: memo,
       });
       const nonce1 = await connection.getNonce({ pubkey: sender.pubkey });
-      const signed1 = await profile.signTransaction(tx1, codec, nonce1);
-      const txBytes1 = codec.bytesToPost(signed1);
+      const signed1 = await profile.signTransaction(tx1, grafainCodec, nonce1);
+      const txBytes1 = grafainCodec.bytesToPost(signed1);
       const response1 = await connection.postTx(txBytes1);
       const blockInfo1 = await response1.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo1.state).toEqual(TransactionState.Succeeded);
@@ -1151,8 +1151,8 @@ describe("BnsConnection", () => {
         arbiter: newArbiterAddress,
       });
       const nonce2 = await connection.getNonce({ pubkey: arbiter.pubkey });
-      const signed2 = await profile.signTransaction(tx2, codec, nonce2);
-      const txBytes2 = codec.bytesToPost(signed2);
+      const signed2 = await profile.signTransaction(tx2, grafainCodec, nonce2);
+      const txBytes2 = grafainCodec.bytesToPost(signed2);
       const response2 = await connection.postTx(txBytes2);
       const blockInfo2 = await response2.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo2.state).toEqual(TransactionState.Succeeded);
@@ -1211,8 +1211,8 @@ describe("BnsConnection", () => {
           startTime: startTime,
         });
         const nonce = await connection.getNonce({ pubkey: author.pubkey });
-        const signed = await profile.signTransaction(createProposal, codec, nonce);
-        const response = await connection.postTx(codec.bytesToPost(signed));
+        const signed = await profile.signTransaction(createProposal, grafainCodec, nonce);
+        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
         const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
         if (!isBlockInfoSucceeded(blockInfo)) {
           throw new Error("Transaction did not succeed");
@@ -1258,8 +1258,8 @@ describe("BnsConnection", () => {
           selection: VoteOption.Yes,
         });
         const nonce = await connection.getNonce({ pubkey: author.pubkey });
-        const signed = await profile.signTransaction(voteForProposal, codec, nonce);
-        const response = await connection.postTx(codec.bytesToPost(signed));
+        const signed = await profile.signTransaction(voteForProposal, grafainCodec, nonce);
+        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
         await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       }
 
@@ -1303,15 +1303,15 @@ describe("BnsConnection", () => {
         const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
           kind: "bcp/send",
           creator: faucet,
-          sender: codec.identityToAddress(faucet),
+          sender: grafainCodec.identityToAddress(faucet),
           recipient: await randomBnsAddress(),
           memo: memo,
           amount: defaultAmount,
         });
 
         const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-        const signed = await profile.signTransaction(sendTx, codec, nonce);
-        const response = await connection.postTx(codec.bytesToPost(signed));
+        const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
         await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
         const transactionId = response.transactionId;
 
@@ -1344,15 +1344,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: codec.identityToAddress(faucet),
+        sender: grafainCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       const transactionId = response.transactionId;
 
@@ -1364,7 +1364,7 @@ describe("BnsConnection", () => {
       }
       const { transaction, primarySignature: signature } = result;
       const publicKey = transaction.creator.pubkey.data;
-      const signingJob = codec.bytesToSign(transaction, signature.nonce);
+      const signingJob = grafainCodec.bytesToSign(transaction, signature.nonce);
       const txBytes = new Sha512(signingJob.bytes).digest();
 
       const valid = await Ed25519.verifySignature(signature.signature, txBytes, publicKey);
@@ -1388,15 +1388,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: codec.identityToAddress(faucet),
+        sender: grafainCodec.identityToAddress(faucet),
         recipient: rcptAddress,
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo.state).toEqual(TransactionState.Succeeded);
 
@@ -1429,15 +1429,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: codec.identityToAddress(faucet),
+        sender: grafainCodec.identityToAddress(faucet),
         recipient: rcptAddress,
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       const blockInfo = await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       expect(blockInfo.state).toBe(TransactionState.Succeeded);
       const txHeight = (blockInfo as BlockInfoSucceeded | BlockInfoFailed).height;
@@ -1467,15 +1467,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: codec.identityToAddress(faucet),
+        sender: grafainCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       const transactionIdToSearch = response.transactionId;
 
@@ -1512,15 +1512,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: codec.identityToAddress(faucet),
+        sender: grafainCodec.identityToAddress(faucet),
         recipient: recipientAddress,
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
 
       await tendermintSearchIndexUpdated();
@@ -1596,7 +1596,7 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: brokeIdentity,
-        sender: codec.identityToAddress(brokeIdentity),
+        sender: grafainCodec.identityToAddress(brokeIdentity),
         recipient: await randomBnsAddress(),
         memo: "Sending from empty",
         amount: defaultAmount,
@@ -1606,8 +1606,8 @@ describe("BnsConnection", () => {
       await sendTokensFromFaucet(connection, identityToAddress(brokeIdentity), sendTx.fee!.tokens);
 
       const nonce = await connection.getNonce({ pubkey: brokeIdentity.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       const transactionIdToSearch = response.transactionId;
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
 
@@ -1643,15 +1643,15 @@ describe("BnsConnection", () => {
         const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
           kind: "bcp/send",
           creator: faucet,
-          sender: codec.identityToAddress(faucet),
+          sender: grafainCodec.identityToAddress(faucet),
           recipient: await randomBnsAddress(),
           memo: memo,
           amount: defaultAmount,
         });
 
         const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-        const signed = await profile.signTransaction(sendTx, codec, nonce);
-        const transactionId = codec.identifier(signed);
+        const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+        const transactionId = grafainCodec.identifier(signed);
         const heightBeforeTransaction = await connection.height();
 
         // start listening
@@ -1674,7 +1674,7 @@ describe("BnsConnection", () => {
         });
 
         // post transaction
-        await connection.postTx(codec.bytesToPost(signed));
+        await connection.postTx(grafainCodec.bytesToPost(signed));
       })().catch(done.fail);
     });
   });
@@ -1691,15 +1691,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: codec.identityToAddress(faucet),
+        sender: grafainCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       const transactionIdToSearch = response.transactionId;
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
 
@@ -1732,15 +1732,15 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: faucet,
-        sender: codec.identityToAddress(faucet),
+        sender: grafainCodec.identityToAddress(faucet),
         recipient: await randomBnsAddress(),
         memo: memo,
         amount: defaultAmount,
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       const transactionIdToSearch = response.transactionId;
 
       const result = await firstEvent(connection.liveTx({ id: transactionIdToSearch }));
@@ -1771,7 +1771,7 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: brokeIdentity,
-        sender: codec.identityToAddress(brokeIdentity),
+        sender: grafainCodec.identityToAddress(brokeIdentity),
         recipient: await randomBnsAddress(),
         memo: "Sending from empty",
         amount: defaultAmount,
@@ -1781,8 +1781,8 @@ describe("BnsConnection", () => {
       await sendTokensFromFaucet(connection, identityToAddress(brokeIdentity), sendTx.fee!.tokens);
 
       const nonce = await connection.getNonce({ pubkey: brokeIdentity.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       const transactionIdToSearch = response.transactionId;
       await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
 
@@ -1814,7 +1814,7 @@ describe("BnsConnection", () => {
       const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
         kind: "bcp/send",
         creator: brokeIdentity,
-        sender: codec.identityToAddress(brokeIdentity),
+        sender: grafainCodec.identityToAddress(brokeIdentity),
         recipient: await randomBnsAddress(),
         memo: "Sending from empty",
         amount: defaultAmount,
@@ -1824,8 +1824,8 @@ describe("BnsConnection", () => {
       await sendTokensFromFaucet(connection, identityToAddress(brokeIdentity), sendTx.fee!.tokens);
 
       const nonce = await connection.getNonce({ pubkey: brokeIdentity.pubkey });
-      const signed = await profile.signTransaction(sendTx, codec, nonce);
-      const response = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+      const response = await connection.postTx(grafainCodec.bytesToPost(signed));
       const transactionIdToSearch = response.transactionId;
 
       const result = await firstEvent(connection.liveTx({ id: transactionIdToSearch }));
@@ -1979,9 +1979,9 @@ describe("BnsConnection", () => {
       });
 
       const nonce = await connection.getNonce({ pubkey: author.pubkey });
-      const signed = await profile.signTransaction(createProposal, codec, nonce);
+      const signed = await profile.signTransaction(createProposal, grafainCodec, nonce);
       {
-        const response = await connection.postTx(codec.bytesToPost(signed));
+        const response = await connection.postTx(grafainCodec.bytesToPost(signed));
         await response.blockInfo.waitFor(info => !isBlockInfoPending(info));
       }
 
@@ -2008,7 +2008,7 @@ describe("BnsConnection", () => {
     const sendTx = await connection.withDefaultFee<SendTransaction & WithCreator>({
       kind: "bcp/send",
       creator: faucet,
-      sender: codec.identityToAddress(faucet),
+      sender: grafainCodec.identityToAddress(faucet),
       recipient: rcptAddr,
       amount: {
         quantity: "68000000000",
@@ -2017,8 +2017,8 @@ describe("BnsConnection", () => {
       },
     });
     const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-    const signed = await profile.signTransaction(sendTx, codec, nonce);
-    const txBytes = codec.bytesToPost(signed);
+    const signed = await profile.signTransaction(sendTx, grafainCodec, nonce);
+    const txBytes = grafainCodec.bytesToPost(signed);
     return connection.postTx(txBytes);
   };
 
@@ -2107,8 +2107,8 @@ describe("BnsConnection", () => {
     });
 
     const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-    const signed = await profile.signTransaction(swapOfferTx, codec, nonce);
-    const post = await connection.postTx(codec.bytesToPost(signed));
+    const signed = await profile.signTransaction(swapOfferTx, grafainCodec, nonce);
+    const post = await connection.postTx(grafainCodec.bytesToPost(signed));
     const transactionId = post.transactionId;
     expect(transactionId).toMatch(/^[0-9A-F]{64}$/);
 
@@ -2238,8 +2238,8 @@ describe("BnsConnection", () => {
       });
 
       const nonce = await connection.getNonce({ pubkey: faucet.pubkey });
-      const signed = await profile.signTransaction(swapOfferTx, codec, nonce);
-      const post = await connection.postTx(codec.bytesToPost(signed));
+      const signed = await profile.signTransaction(swapOfferTx, grafainCodec, nonce);
+      const post = await connection.postTx(grafainCodec.bytesToPost(signed));
 
       const blockInfo = await post.blockInfo.waitFor(info => !isBlockInfoPending(info));
       if (!isBlockInfoSucceeded(blockInfo)) {
@@ -2315,8 +2315,8 @@ describe("BnsConnection", () => {
       hash: hash,
     });
     const nonce = await connection.getNonce({ pubkey: creator.pubkey });
-    const signed = await profile.signTransaction(swapOfferTx, codec, nonce);
-    const txBytes = codec.bytesToPost(signed);
+    const signed = await profile.signTransaction(swapOfferTx, grafainCodec, nonce);
+    const txBytes = grafainCodec.bytesToPost(signed);
     return connection.postTx(txBytes);
   };
 
@@ -2335,8 +2335,8 @@ describe("BnsConnection", () => {
       preimage: preimage,
     });
     const nonce = await connection.getNonce({ pubkey: creator.pubkey });
-    const signed = await profile.signTransaction(swapClaimTx, codec, nonce);
-    const txBytes = codec.bytesToPost(signed);
+    const signed = await profile.signTransaction(swapClaimTx, grafainCodec, nonce);
+    const txBytes = grafainCodec.bytesToPost(signed);
     return connection.postTx(txBytes);
   };
 

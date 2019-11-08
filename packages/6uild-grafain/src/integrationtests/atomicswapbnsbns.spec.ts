@@ -25,7 +25,7 @@ import { Slip10RawIndex } from "@iov/crypto";
 import { Ed25519HdWallet, HdPaths, UserProfile } from "@iov/keycontrol";
 import BN from "bn.js";
 
-import { codec } from "../codec";
+import { grafainCodec } from "../grafainCodec";
 import { GrafainConnection } from "../grafainConnection";
 
 const CASH = "CASH" as TokenTicker;
@@ -70,7 +70,7 @@ class Actor {
 
   public readonly grafainIdentity: Identity;
   public get grafainAddress(): Address {
-    return codec.identityToAddress(this.grafainIdentity);
+    return grafainCodec.identityToAddress(this.grafainIdentity);
   }
 
   private readonly profile: UserProfile;
@@ -113,8 +113,8 @@ class Actor {
   public async signAndPost(transaction: UnsignedTransaction): Promise<PostTxResponse> {
     const nonce = await this.grafainConnection.getNonce({ pubkey: transaction.creator.pubkey });
 
-    const signed = await this.profile.signTransaction(transaction, codec, nonce);
-    const txBytes = codec.bytesToPost(signed);
+    const signed = await this.profile.signTransaction(transaction, grafainCodec, nonce);
+    const txBytes = grafainCodec.bytesToPost(signed);
     const post = await this.grafainConnection.postTx(txBytes);
     return post;
   }

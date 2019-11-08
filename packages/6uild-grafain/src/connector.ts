@@ -1,6 +1,6 @@
 import { ChainConnector, ChainId } from "@iov/bcp";
 
-import { codec } from "./codec";
+import { grafainCodec } from "./grafainCodec";
 import { GrafainConnection } from "./grafainConnection";
 
 /**
@@ -12,7 +12,7 @@ export function createGrafainConnector(
 ): ChainConnector<GrafainConnection> {
   return {
     establishConnection: async () => GrafainConnection.establish(url),
-    codec: codec,
+    codec: grafainCodec,
     expectedChainId: expectedChainId,
   };
 }

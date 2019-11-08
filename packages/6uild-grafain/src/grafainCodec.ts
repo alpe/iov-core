@@ -17,7 +17,7 @@ import { buildSignedTx, buildUnsignedTx } from "./encode";
 import * as codecImpl from "./generated/codecimpl";
 import { appendSignBytes, identityToAddress, isValidAddress } from "./util";
 
-export const codec: TxCodec = {
+export const grafainCodec: TxCodec = {
   // these are the bytes we create to add a signature
   // they often include nonce and chainID, but not other signatures
   bytesToSign: (tx: UnsignedTransaction, nonce: Nonce): SigningJob => {
@@ -38,7 +38,7 @@ export const codec: TxCodec = {
 
   // identifier is usually some sort of hash of bytesToPost, chain-dependent
   identifier: (tx: SignedTransaction): TransactionId => {
-    const transactionBytes = (codec.bytesToPost(tx) as unknown) as TxBytes;
+    const transactionBytes = (grafainCodec.bytesToPost(tx) as unknown) as TxBytes;
     const hash = v0_31.hashTx(transactionBytes);
     return Encoding.toHex(hash).toUpperCase() as TransactionId;
   },

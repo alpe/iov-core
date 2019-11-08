@@ -16,7 +16,7 @@ import { Uint64 } from "@iov/encoding";
 import { Ed25519HdWallet, HdPaths, UserProfile } from "@iov/keycontrol";
 import BN from "bn.js";
 
-import { codec } from "../codec";
+import { grafainCodec } from "../grafainCodec";
 import { GrafainConnection } from "../grafainConnection";
 import { multisignatureIdToAddress } from "../conditions";
 import { CreateMultisignatureTx, MultisignatureTx, Participant } from "../types";
@@ -68,7 +68,7 @@ class Actor {
   }
 
   public get address(): Address {
-    return codec.identityToAddress(this.identity);
+    return grafainCodec.identityToAddress(this.identity);
   }
 
   private readonly connection: GrafainConnection;
@@ -90,16 +90,16 @@ class Actor {
 
   public async signTransaction(transaction: UnsignedTransaction): Promise<SignedTransaction> {
     const nonce = await this.connection.getNonce({ pubkey: this.identity.pubkey });
-    return this.profile.signTransaction(transaction, codec, nonce);
+    return this.profile.signTransaction(transaction, grafainCodec, nonce);
   }
 
   public async appendSignature(signedTransaction: SignedTransaction): Promise<SignedTransaction> {
     const nonce = await this.connection.getNonce({ pubkey: this.identity.pubkey });
-    return this.profile.appendSignature(this.identity, signedTransaction, codec, nonce);
+    return this.profile.appendSignature(this.identity, signedTransaction, grafainCodec, nonce);
   }
 
   public async postTransaction(signedTransaction: SignedTransaction): Promise<Uint8Array | undefined> {
-    const txBytes = codec.bytesToPost(signedTransaction);
+    const txBytes = grafainCodec.bytesToPost(signedTransaction);
     const post = await this.connection.postTx(txBytes);
     const blockInfo = await post.blockInfo.waitFor(info => !isBlockInfoPending(info));
     if (!isBlockInfoSucceeded(blockInfo)) {
